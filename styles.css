@@ -108,13 +108,13 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .btn {
   font-family: var(--f-sf);
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 0.01em;
-  padding: 16px 26px;
+  padding: 11px 20px;
   border-radius: 999px;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   transition: transform 220ms cubic-bezier(.2,.7,.2,1),
               background-color 220ms ease,
               color 220ms ease,
@@ -250,47 +250,49 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  width: 52px;
-  height: 52px;
+  width: 50px;
+  height: 50px;
   border-radius: 999px;
-  background: var(--sky);
-  color: #000;
+  background: var(--white);
   text-decoration: none;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 6px 28px -6px rgba(67,173,233,0.45);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.28);
   transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
 }
 .qc-btn:hover {
-  width: 210px;
-  box-shadow: 0 8px 36px -6px rgba(67,173,233,0.65);
+  width: 215px;
+  box-shadow: 0 6px 28px rgba(0,0,0,0.35);
 }
 .qc-label {
   flex-shrink: 0;
   font-family: var(--f-sf);
   font-weight: 700;
   font-size: 13px;
-  color: #000;
+  color: var(--navy-deep);
   white-space: nowrap;
-  padding-left: 20px;
+  padding-left: 18px;
   padding-right: 6px;
   clip-path: inset(0 100% 0 0);
-  transition: clip-path 0.38s ease 0.12s;
+  transition: clip-path 0.40s ease 0.10s;
 }
 .qc-btn:hover .qc-label {
   clip-path: inset(0 0% 0 0);
 }
 .qc-icon {
   flex-shrink: 0;
-  width: 52px;
-  min-width: 52px;
-  height: 52px;
+  width: 42px;
+  min-width: 42px;
+  height: 42px;
+  margin: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #000;
+  background: var(--sky);
+  border-radius: 50%;
+  color: var(--white);
 }
-.qc-icon svg { width: 20px; height: 20px; }
+.qc-icon svg { width: 18px; height: 18px; }
 
 /* ============================================================
    HERO
