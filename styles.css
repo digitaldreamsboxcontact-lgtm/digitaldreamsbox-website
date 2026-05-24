@@ -1057,6 +1057,25 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   background: var(--navy);
 }
 
+.sv-section-title {
+  font-family: var(--f-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white-55);
+  margin: 0 0 32px;
+}
+
+.sv-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .sv-grid {
   position: absolute; inset: 0;
   background-image:
