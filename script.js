@@ -106,26 +106,82 @@
     }, { passive: true });
   }
 
-  /* ── 4. Mobile nav toggle ─────────────────────────────────── */
+  /* ── 4. Mobile nav — premium overlay ────────────────────────── */
   var navToggle = document.querySelector('.nav-toggle');
   var navLinks  = document.querySelector('.nav-links');
-  var navCta    = document.querySelector('.nav-cta');
+
   if (navToggle) {
+    // Replace static SVG with animated lines
+    navToggle.innerHTML =
+      '<span class="line"></span>' +
+      '<span class="line"></span>' +
+      '<span class="line"></span>';
+
+    // Collect page links from desktop nav
+    var pageLinks = navLinks ? Array.from(navLinks.querySelectorAll('a')) : [];
+    var nums = ['01', '02', '03', '04', '05'];
+
+    // Build overlay links HTML
+    var linksHTML = pageLinks.map(function (a, i) {
+      return '<a href="' + a.getAttribute('href') + '" style="--i:' + i + '">' +
+             '<span class="nav-num">' + (nums[i] || '') + '</span>' +
+             a.textContent.trim() +
+             '</a>';
+    }).join('');
+
+    // Determine path prefix (pages/contact.html vs contact.html)
+    var isSubPage = window.location.pathname.indexOf('/pages/') !== -1;
+    var contactHref = isSubPage ? 'contact.html' : 'pages/contact.html';
+    var telLink = 'tel:+33688848145';
+
+    // Create overlay
+    var overlay = document.createElement('div');
+    overlay.className = 'nav-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', 'Navigation principale');
+    overlay.innerHTML =
+      '<div class="nav-overlay-inner">' +
+        '<nav class="nav-overlay-links" aria-label="Navigation">' + linksHTML + '</nav>' +
+        '<div class="nav-overlay-bottom">' +
+          '<a href="' + telLink + '" class="btn btn-ghost">' +
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.5 12.5 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.5 12.5 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>' +
+            '06 88 84 81 45' +
+          '</a>' +
+          '<a href="' + contactHref + '" class="btn btn-primary">' +
+            'Nous contacter' +
+            '<svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>' +
+          '</a>' +
+          '<p class="nav-overlay-location">' +
+            '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>' +
+            'Sarrebourg, Moselle' +
+          '</p>' +
+        '</div>' +
+      '</div>';
+
+    document.body.appendChild(overlay);
+
+    function openMenu() {
+      navToggle.setAttribute('aria-expanded', 'true');
+      overlay.classList.add('open');
+      document.body.classList.add('nav-open');
+    }
+    function closeMenu() {
+      navToggle.setAttribute('aria-expanded', 'false');
+      overlay.classList.remove('open');
+      document.body.classList.remove('nav-open');
+    }
+
     navToggle.addEventListener('click', function () {
-      var open = navToggle.getAttribute('aria-expanded') === 'true';
-      navToggle.setAttribute('aria-expanded', String(!open));
-      if (navLinks) navLinks.classList.toggle('open', !open);
-      if (navCta)   navCta.classList.toggle('open', !open);
-      document.body.classList.toggle('nav-open', !open);
+      navToggle.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
     });
-    // close on link click
-    document.querySelectorAll('.nav-links a, .nav-cta a').forEach(function (a) {
-      a.addEventListener('click', function () {
-        navToggle.setAttribute('aria-expanded', 'false');
-        if (navLinks) navLinks.classList.remove('open');
-        if (navCta)   navCta.classList.remove('open');
-        document.body.classList.remove('nav-open');
-      });
+
+    overlay.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeMenu();
     });
   }
 
@@ -152,11 +208,9 @@
 
   function goProc(i) {
     procIdx = Math.max(0, Math.min(cards.length - 1, i));
-    cards.forEach(function (c, idx) { c.classList.toggle('is-active', idx === procIdx); });
-    dots.forEach(function  (d, idx) { d.classList.toggle('on',        idx === procIdx); });
+    dots.forEach(function  (d, idx) { d.classList.toggle('on', idx === procIdx); });
     if (prevBtn) prevBtn.toggleAttribute('disabled', procIdx <= 0);
     if (nextBtn) nextBtn.toggleAttribute('disabled', procIdx >= cards.length - 1);
-    // scroll card into view inside the rail
     if (cards[procIdx]) {
       var card = cards[procIdx];
       var railRect = rail.getBoundingClientRect();
@@ -180,6 +234,36 @@
 
     // dot click
     dots.forEach(function (d, i) { d.addEventListener('click', function () { goProc(i); }); });
+
+    // sync dots when user natively scrolls the rail (trackpad / mouse wheel)
+    var scrollSyncTimer;
+    rail.addEventListener('scroll', function () {
+      clearTimeout(scrollSyncTimer);
+      scrollSyncTimer = setTimeout(function () {
+        var atEnd   = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4;
+        var atStart = rail.scrollLeft <= 4;
+        var closest;
+        if (atEnd) {
+          closest = cards.length - 1;
+        } else if (atStart) {
+          closest = 0;
+        } else {
+          var railMid = rail.scrollLeft + rail.offsetWidth / 2;
+          closest = 0;
+          var closestDist = Infinity;
+          cards.forEach(function (card, i) {
+            var dist = Math.abs((card.offsetLeft + card.offsetWidth / 2) - railMid);
+            if (dist < closestDist) { closestDist = dist; closest = i; }
+          });
+        }
+        if (closest !== procIdx) {
+          procIdx = closest;
+          dots.forEach(function (d, idx) { d.classList.toggle('on', idx === procIdx); });
+          if (prevBtn) prevBtn.toggleAttribute('disabled', procIdx <= 0);
+          if (nextBtn) nextBtn.toggleAttribute('disabled', procIdx >= cards.length - 1);
+        }
+      }, 80);
+    }, { passive: true });
 
     goProc(0);
   }

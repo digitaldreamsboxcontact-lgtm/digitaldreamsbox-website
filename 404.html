@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0B1526" />
+
+  <title>Page introuvable — Digital Dreamsbox</title>
+  <meta name="description" content="Cette page n'existe pas ou a été déplacée. Retournez à l'accueil de Digital Dreamsbox." />
+
+  <link rel="icon" type="image/png" href="mpsw9c6z-Logo-Digitaldreamsbox-sw.png" />
+  <link rel="apple-touch-icon" href="mpsw9c6z-Logo-Digitaldreamsbox-sw.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Phudu:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* ── 404 page — overrides ── */
+
+    /* Masquer les blobs injectés par script.js */
+    #bg-blobs { display: none !important; }
+
+    /* Header : logo seul, zéro navigation */
+    .site-header .nav-links,
+    .site-header .nav-toggle,
+    .site-header .nav-cta { display: none !important; }
+
+    /* Layout 404 centré */
+    .page-404 {
+      min-height: calc(100vh - 160px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px var(--pad-x);
+    }
+
+    .err-inner {
+      text-align: center;
+      max-width: 600px;
+    }
+
+    .err-code {
+      font-family: var(--f-body);
+      font-size: clamp(100px, 20vw, 180px);
+      font-weight: 700;
+      line-height: 1;
+      color: var(--sky);
+      opacity: 0.15;
+      letter-spacing: -0.04em;
+      margin-bottom: -24px;
+      display: block;
+    }
+
+    .err-eyebrow {
+      font-family: var(--f-sf);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .err-title {
+      font-family: var(--f-disp);
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .err-body {
+      font-family: var(--f-body);
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--white-70);
+      margin-bottom: 40px;
+    }
+
+    .err-ctas {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Footer minimal */
+    .err-footer {
+      background: var(--ink);
+      border-top: 1px solid var(--rule);
+      padding: 28px 0;
+    }
+
+    .err-footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .err-footer .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .err-footer .brand img {
+      height: 32px;
+      width: auto;
+    }
+
+    .err-footer .brand-name { display: none; }
+
+    .err-footer-copy {
+      font-family: var(--f-sf);
+      font-size: 12px;
+      color: var(--white-70);
+    }
+
+    .err-footer-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .err-footer-links a {
+      font-family: var(--f-sf);
+      font-size: 12px;
+      color: var(--white-70);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .err-footer-links a:hover { color: var(--white); }
+
+    @media (max-width: 600px) {
+      .err-footer-inner { flex-direction: column; text-align: center; }
+      .err-footer-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER MINIMAL — logo seul -->
+  <header class="site-header" id="site-header">
+    <div class="nav-inner shell">
+      <a href="index.html" class="brand" aria-label="Digital Dreamsbox — Accueil">
+        <img src="mpsw9c6z-Logo-Digitaldreamsbox-sw.png" alt="Logo Digital Dreamsbox" class="brand-logo" />
+        <span class="brand-name">Digital Dreamsbox</span>
+      </a>
+      <!-- Pas de navigation sur la page 404 -->
+    </div>
+  </header>
+
+  <!-- SECTION 404 -->
+  <main class="page-404">
+    <div class="err-inner">
+      <span class="err-code" aria-hidden="true">404</span>
+      <span class="err-eyebrow">Page introuvable</span>
+      <h1 class="err-title">Ce lien n'existe plus<br>ou a été déplacé.</h1>
+      <p class="err-body">
+        La page que vous cherchez a peut-être été supprimée, renommée<br>
+        ou n'a jamais existé. Pas de panique — l'accueil est à portée de clic.
+      </p>
+      <div class="err-ctas">
+        <a href="index.html" class="btn btn-primary">← Retour à l'accueil</a>
+        <a href="pages/contact.html" class="btn btn-ghost">Nous contacter</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER MINIMAL -->
+  <footer class="err-footer">
+    <div class="err-footer-inner">
+      <a href="index.html" class="brand" aria-label="Digital Dreamsbox — Accueil">
+        <img src="mpsw9c6z-Logo-Digitaldreamsbox-sw.png" alt="Logo Digital Dreamsbox" />
+        <span class="brand-name">Digital Dreamsbox</span>
+      </a>
+      <p class="err-footer-copy">© 2026 Digital Dreamsbox — Tous droits réservés</p>
+      <nav class="err-footer-links" aria-label="Liens légaux">
+        <a href="pages/mentions-legales.html">Mentions légales</a>
+        <a href="pages/confidentialite.html">Politique de confidentialité</a>
+        <a href="pages/cgv.html">CGV</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

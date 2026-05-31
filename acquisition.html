@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0B1526" />
+
+  <title>Agence web &amp; branding à Sarrebourg — Digital Dreamsbox</title>
+  <meta name="description" content="Création de site web et identité de marque pour les artisans et PME de Moselle. Studio indépendant basé à Sarrebourg. Premier échange gratuit, sans engagement." />
+
+  <link rel="icon" type="image/png" href="mpsw9c6z-Logo-Digitaldreamsbox-sw.png" />
+  <link rel="apple-touch-icon" href="mpsw9c6z-Logo-Digitaldreamsbox-sw.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Phudu:wght@400;500;600;700&family=Righteous&family=Baloo+2:wght@400;500;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* ── Overrides acquisition.html ── */
+
+    /* Header : logo seul, zéro navigation */
+    .acq-header .nav-links,
+    .acq-header .nav-toggle,
+    .acq-header .nav-cta { display: none !important; }
+
+    /* Équipe : intro centré */
+    .acq-equipe-intro {
+      text-align: center;
+      margin-bottom: 64px;
+      padding: 0 var(--pad-x);
+    }
+    .acq-equipe-intro .h-section { margin-top: 14px; }
+    .acq-equipe-intro .body-md {
+      max-width: 58ch;
+      margin: 16px auto 0;
+    }
+
+    /* Localisation tag sous les photos */
+    .acq-location {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--f-sf);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sky);
+    }
+
+    /* Footer minimal */
+    .acq-footer {
+      background: var(--ink);
+      border-top: 1px solid var(--rule);
+      position: relative;
+      z-index: 2;
+      padding: 28px 0;
+    }
+    .acq-footer .footer-bottom {
+      border-top: none;
+      padding-top: 0;
+    }
+    .acq-footer .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .acq-footer .brand img { height: 32px; width: auto; }
+
+    /* Smooth scroll sur la page */
+    html { scroll-behavior: smooth; }
+
+    /* Service cards : hauteur réduite + espacement interne resserré */
+    .services-stack .service-inner { min-height: 360px; }
+    .services-stack .service-copy { gap: 12px; padding: 36px clamp(24px, 3.5vw, 48px); }
+
+    /* Mobile : masquer les pills dans les service-card pour alléger */
+    @media (max-width: 900px) {
+      .services-stack .pills { display: none; }
+    }
+
+    /* Process cards : hauteur réduite, contenu qui colle en haut */
+    .process-card {
+      min-height: clamp(300px, 38vh, 380px);
+      justify-content: flex-start;
+      gap: 20px;
+      flex: 0 0 clamp(300px, 36vw, 460px); /* force identique sur toutes les cartes */
+      width: clamp(300px, 36vw, 460px);
+      max-width: clamp(300px, 36vw, 460px);
+      scroll-snap-align: start;
+    }
+    /* Rail : scroll-snap pour que chaque carte s'aligne proprement */
+    .section-process .process-rail {
+      scroll-snap-type: x mandatory;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER MINIMAL — logo uniquement
+============================================================ -->
+<header class="site-header acq-header" role="banner">
+  <div class="shell-wide nav">
+    <a href="index.html" class="brand" aria-label="Digital Dreamsbox — Accueil">
+      <img src="mpsw9c6z-Logo-Digitaldreamsbox-sw.png" alt="Logo Digital Dreamsbox" width="46" height="46" />
+      <span class="brand-text">
+        <span class="b1">Digital</span>
+        <span class="b2">Dreamsbox</span>
+      </span>
+    </a>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================================================
+     1. HERO
+============================================================ -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="shell hero-shell">
+    <span class="eyebrow reveal">Agence digitale — Sarrebourg, Moselle</span>
+    <h1 id="hero-title" class="hero-title reveal" style="--rd:60ms;">
+      Votre travail est sérieux.<br>
+      Votre <span class="accent">IMAGE</span> doit l'être aussi.
+    </h1>
+    <p class="hero-sub reveal" style="--rd:140ms;">
+      Création de site web et identité de marque pour les artisans et PME de Moselle qui veulent être pris au sérieux.
+    </p>
+    <div class="hero-ctas reveal" style="--rd:220ms;">
+      <a href="#contact" class="btn btn-primary" data-magnet="">
+        Demander un devis gratuit
+        <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+      </a>
+      <a href="tel:+33688848145" class="btn btn-ghost">
+        Ou appeler directement
+      </a>
+    </div>
+    <div class="hero-meta reveal" style="--rd:320ms;">
+      <div>
+        <span class="k">Zone d'intervention</span>
+        <span class="v">Grand Est</span>
+      </div>
+      <div>
+        <span class="k">Premier appel gratuit</span>
+        <span class="v">20 min</span>
+      </div>
+      <div>
+        <span class="k">Pas une grande boîte</span>
+        <span class="v">Studio indépendant</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     2. CONSTAT (PROBLÈME)
+============================================================ -->
+<section class="section-problem" aria-labelledby="problem-title">
+  <div class="shell problem-grid">
+    <div>
+      <h2 id="problem-title" class="problem-quote reveal">
+        Vous faites du beau travail.<br>
+        Le problème ? Vos prochains clients
+        <em>ne le savent pas encore.</em>
+      </h2>
+    </div>
+    <div class="problem-stack">
+      <article class="problem-card reveal from-r">
+        <span class="num">01</span>
+        <div>
+          <h4>« Mon site ne ramène personne »</h4>
+          <p>Votre site existe, mais il n'apparaît pas quand on vous cherche. Les prospects partent chez un concurrent mieux positionné.</p>
+        </div>
+      </article>
+      <article class="problem-card reveal from-r" style="--rd:80ms;">
+        <span class="num">02</span>
+        <div>
+          <h4>« Mon image ne dit pas qui je suis »</h4>
+          <p>Le travail est sérieux, l'image l'est moins. Un prospect vous juge en 10 secondes. Ce qu'il voit doit être à la hauteur.</p>
+        </div>
+      </article>
+      <article class="problem-card reveal from-r" style="--rd:160ms;">
+        <span class="num">03</span>
+        <div>
+          <h4>« Je n'ai pas le temps de gérer ça »</h4>
+          <p>Vous avez un métier. Nous avons le nôtre. Vous n'avez pas à tout savoir du digital pour en tirer profit.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     3. SERVICES — 2 leviers
+============================================================ -->
+<section class="section-services" id="services" aria-labelledby="services-title">
+  <div class="shell">
+    <div class="services-head">
+      <span class="eyebrow reveal">Nos services</span>
+      <h2 id="services-title" class="h-section reveal" style="--rd:60ms;">
+        Deux leviers.<br>Un seul objectif.
+      </h2>
+    </div>
+  </div>
+
+  <div class="shell services-stack">
+
+    <!-- Card Branding -->
+    <article class="service-card" data-stack="1">
+      <div class="service-inner">
+        <div class="service-copy">
+          <span class="num-tag">01 — Identité visuelle</span>
+          <h3>Branding</h3>
+          <p class="promise">Une image qui reflète la qualité de votre travail.</p>
+          <p class="benefit">Logo, couleurs, typographie, supports. Une identité cohérente à chaque point de contact.</p>
+          <div class="pills">
+            <span class="pill">Logo</span>
+            <span class="pill">Charte graphique</span>
+            <span class="pill">Supports print &amp; digital</span>
+            <span class="pill">Manuel d'identité</span>
+          </div>
+        </div>
+        <div class="service-visual service-visual--photo">
+          <img src="mpprqc2p-identite-marque-services-premium.webp" alt="Branding &amp; Identité de marque" loading="lazy" />
+        </div>
+      </div>
+    </article>
+
+    <!-- Card Site web -->
+    <article class="service-card alt" data-stack="2">
+      <div class="service-inner">
+        <div class="service-copy">
+          <span class="num-tag">02 — Présence numérique</span>
+          <h3>Site Web</h3>
+          <p class="promise">Un site pensé pour convertir, pas juste pour exister.</p>
+          <p class="benefit">Rapide, beau, référencé. Conçu pour apparaître sur Google et donner envie de vous contacter dès la première visite.</p>
+          <div class="pills">
+            <span class="pill">Design sur mesure</span>
+            <span class="pill">SEO inclus</span>
+            <span class="pill">Mobile-first</span>
+            <span class="pill">Hébergement pris en charge</span>
+          </div>
+        </div>
+        <div class="service-visual service-visual--photo">
+          <img src="mprketfq-image-site-web-premium-acquisition.webp" alt="Création de site web" loading="lazy" style="border-radius:10px;margin:20px;width:calc(100% - 40px);height:calc(100% - 40px);" />
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     4. MÉTHODE — process rail
+============================================================ -->
+<section class="section-process" id="methode" aria-labelledby="process-title">
+  <div class="shell">
+    <div class="process-intro">
+      <div>
+        <span class="eyebrow reveal">Notre méthode</span>
+        <h2 id="process-title" class="h-section science reveal" style="--rd:60ms;">
+          Simple. Rapide.<br>Sans jargon.
+        </h2>
+      </div>
+      <p class="right reveal" style="--rd:140ms;">Quatre étapes claires pour passer d'un premier appel à un site ou une identité qui vous ressemble. Vous savez où on en est à chaque instant.</p>
+    </div>
+    <div class="process-controls">
+
+      <div class="process-nav">
+        <button type="button" data-proc-prev aria-label="Précédent">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button type="button" data-proc-next aria-label="Suivant">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="process-rail-wrap">
+    <div class="process-rail" role="region" aria-label="Étapes du projet — défilement horizontal">
+
+      <article class="process-card is-active">
+        <div>
+          <span class="step-num">01</span>
+          <span class="duration"><span style="width:6px;height:6px;background:currentColor;border-radius:999px;display:inline-block;"></span>Gratuit — 20 min</span>
+          <h3>Appel découverte</h3>
+        </div>
+        <div>
+          <p>On comprend votre métier, vos clients, vos objectifs. Aucun engagement.</p>
+          <ul>
+            <li>On écoute avant de parler</li>
+            <li>Pas de jargon</li>
+            <li>Bilan honnête</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="process-card">
+        <div>
+          <span class="step-num">02</span>
+          <span class="duration"><span style="width:6px;height:6px;background:currentColor;border-radius:999px;display:inline-block;"></span>Sous 48h</span>
+          <h3>Proposition sur mesure</h3>
+        </div>
+        <div>
+          <p>Devis clair, délais précis, aucune mauvaise surprise.</p>
+          <ul>
+            <li>Prix transparent</li>
+            <li>Calendrier défini</li>
+            <li>Aucun extra caché</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="process-card">
+        <div>
+          <span class="step-num">03</span>
+          <span class="duration"><span style="width:6px;height:6px;background:currentColor;border-radius:999px;display:inline-block;"></span>3 à 6 semaines</span>
+          <h3>On crée ensemble</h3>
+        </div>
+        <div>
+          <p>Vous validez, on ajuste. Vous restez décideur à chaque étape.</p>
+          <ul>
+            <li>Points réguliers</li>
+            <li>Vous gardez la main</li>
+            <li>Itérations rapides</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="process-card">
+        <div>
+          <span class="step-num">04</span>
+          <span class="duration"><span style="width:6px;height:6px;background:currentColor;border-radius:999px;display:inline-block;"></span>Long terme</span>
+          <h3>Livraison &amp; suivi</h3>
+        </div>
+        <div>
+          <p>On vous livre un outil que vous maîtrisez. On reste disponibles.</p>
+          <ul>
+            <li>Formation incluse</li>
+            <li>Accès remis</li>
+            <li>Support continu</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <div class="shell">
+    <div class="process-progress" aria-hidden="true">
+      <span class="pdot on"></span>
+      <span class="pdot"></span>
+      <span class="pdot"></span>
+      <span class="pdot"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     5. ÉQUIPE
+============================================================ -->
+<section class="section-equipe" id="equipe" aria-labelledby="equipe-title">
+
+  <div class="shell acq-equipe-intro">
+    <span class="eyebrow reveal">Qui nous sommes</span>
+    <h2 id="equipe-title" class="h-section reveal" style="--rd:60ms;">
+      Un studio indépendant,<br>basé en Moselle.
+    </h2>
+    <p class="body-md reveal" style="--rd:140ms;">
+      Digital Dreamsbox, c'est une équipe locale. On a fondé cette agence parce qu'on voyait trop de bons professionnels invisibles en ligne. On travaille sérieusement, on communique clairement, et on livre ce qu'on promet. Pas de promesses creuses, pas de jargon.
+    </p>
+  </div>
+
+  <div class="equipe-grid">
+    <div class="equipe-card eq-lucas reveal">
+      <div class="eq-photo-wrap">
+        <img src="mpqvruso-Portrait-PDG-lucas.webp" alt="Lucas — CEO Directeur Commercial" loading="lazy" />
+      </div>
+      <div class="eq-label">
+        <span class="eq-name">Lucas</span>
+        <span class="eq-role">CEO · Directeur Commercial</span>
+      </div>
+    </div>
+    <div class="equipe-card eq-leo reveal" style="--rd:140ms;">
+      <div class="eq-photo-wrap">
+        <img src="mpqvrusn-Portrait-PDG-le_o.webp" alt="Léo — CEO Directeur Artistique" loading="lazy" />
+      </div>
+      <div class="eq-label">
+        <span class="eq-name">Léo</span>
+        <span class="eq-role">CEO · Directeur Artistique</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="shell reveal" style="margin-top: 48px; display: flex; justify-content: center;">
+    <span class="acq-location">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+      Sarrebourg, Moselle
+    </span>
+  </div>
+
+</section>
+
+<!-- ============================================================
+     6. FAQ
+============================================================ -->
+<section class="section-faq" id="faq" aria-labelledby="faq-title">
+  <div class="shell faq-grid">
+    <aside class="faq-side">
+      <span class="eyebrow reveal">Questions fréquentes</span>
+      <h2 id="faq-title" class="h-section reveal" style="--rd:60ms;">
+        Les questions que vous vous posez.
+      </h2>
+      <p class="body-md reveal" style="--rd:140ms;">On préfère être transparents dès le départ.</p>
+      <div class="ctas reveal" style="--rd:220ms;">
+        <a href="#contact" class="btn btn-primary">Demander un devis gratuit</a>
+      </div>
+    </aside>
+
+    <div class="faq-list reveal" style="--rd:120ms;">
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Combien ça coûte ?</span>
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Chaque projet est unique. On propose toujours un devis clair et adapté à votre budget réel, après un premier échange gratuit.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Combien de temps pour avoir mon site ?</span>
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Entre 2 et 4 semaines selon la complexité. On définit ensemble un calendrier réaliste dès le départ.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Je ne suis pas à l'aise avec le digital, c'est un problème ?</span>
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Pas du tout. C'est exactement pour ça qu'on est là. On vous guide à chaque étape, en langage clair, sans jargon.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Est-ce que je garde la main sur mon site après ?</span>
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Oui. On vous forme, on vous remet les accès, et on reste disponibles si vous avez besoin d'aide.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Vous travaillez uniquement en Moselle ?</span>
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">On est basés près de Sarrebourg, mais on travaille dans toute la région Grand Est, en visio ou en présentiel.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     7. CTA FINALE + FORMULAIRE
+============================================================ -->
+<section class="section-contact" id="contact" aria-labelledby="contact-title">
+  <div class="shell contact-grid">
+
+    <div>
+      <h2 id="contact-title" class="reveal" style="--rd:60ms;">
+        Prêt à changer ce que vos prospects<br>
+        <span class="blue">voient en premier ?</span>
+      </h2>
+      <p class="ctxt reveal" style="--rd:140ms;">
+        Premier échange gratuit, sans engagement. En 20 minutes, on voit si on peut vous aider.
+      </p>
+      <div class="contact-actions reveal" style="--rd:220ms;">
+        <a href="#contact-form" class="btn btn-primary" data-magnet="">
+          Demander un devis →
+        </a>
+        <a href="tel:+33688848145" class="btn btn-ghost">
+          Appeler directement
+        </a>
+      </div>
+      <div class="contact-list reveal" style="--rd:300ms;">
+        <div class="contact-item">
+          <div class="k">Téléphone</div>
+          <div class="v"><a href="tel:+33688848145">06 88 84 81 45</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="k">Email</div>
+          <div class="v"><a href="mailto:contact@digitaldreamsbox.com">contact@digitaldreamsbox.com</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="k">Localisation</div>
+          <div class="v">Sarrebourg, Moselle</div>
+        </div>
+        <div class="contact-item">
+          <div class="k">Premier contact</div>
+          <div class="v">Gratuit &amp; sans engagement</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-card reveal from-r" style="--rd:200ms;">
+      <h3>Envoyez votre demande</h3>
+      <p class="sub">On vous répond sous 24h</p>
+      <form id="contact-form" class="form" novalidate>
+        <div class="field">
+          <label for="f-name">Prénom &amp; Nom</label>
+          <input id="f-name" name="name" type="text" required autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" required autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="f-phone">Téléphone</label>
+          <input id="f-phone" name="phone" type="tel" autocomplete="tel" />
+        </div>
+        <div class="field">
+          <label for="f-need">Votre besoin</label>
+          <textarea id="f-need" name="message" required placeholder="Création de site, branding, les deux..."></textarea>
+        </div>
+        <div class="honeypot" aria-hidden="true">
+          <label>Ne pas remplir<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+        </div>
+        <div class="form-actions">
+          <small>Gratuit — sans engagement</small>
+          <button type="submit" class="btn btn-primary">
+            Envoyer
+            <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+        <div class="form-success" role="status">Message reçu — on revient vers vous sous 24 h ouvrées.</div>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER MINIMAL
+============================================================ -->
+<footer class="acq-footer" role="contentinfo">
+  <div class="shell">
+    <div class="footer-bottom">
+      <div class="brand">
+        <img src="mpsw9c6z-Logo-Digitaldreamsbox-sw.png" alt="" width="32" height="32" />
+        <span class="brand-text">
+          <span class="b1">Digital</span>
+          <span class="b2">Dreamsbox</span>
+        </span>
+      </div>
+      <span>© <span data-year>2026</span> Digital Dreamsbox — Tous droits réservés</span>
+      <span>
+        <a href="pages/mentions-legales.html">Mentions légales</a>
+        &nbsp;·&nbsp;
+        <a href="pages/confidentialite.html">Politique de confidentialité</a>
+        &nbsp;·&nbsp;
+        <a href="pages/cgv.html">CGV</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     QUICK CONTACT — boutons flottants bas-droite
+============================================================ -->
+<div class="quick-contact" aria-label="Contact rapide">
+  <a href="tel:+33688848145" class="qc-btn" aria-label="Appeler Digital Dreamsbox">
+    <span class="qc-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.5 12.5 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.5 12.5 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"></path></svg>
+    </span>
+    <span class="qc-label">06 88 84 81 45</span>
+  </a>
+  <a href="mailto:contact@digitaldreamsbox.com" class="qc-btn" aria-label="Envoyer un email à Digital Dreamsbox">
+    <span class="qc-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+    </span>
+    <span class="qc-label">contact@digitaldreamsbox.com</span>
+  </a>
+</div>
+
+<script src="script.js" defer></script>
+</body>
+</html>
