@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0B1526" />
+  <title>Politique de confidentialité — Digital Dreamsbox</title>
+  <meta name="description" content="Politique de confidentialité et protection des données personnelles de Digital Dreamsbox, agence de communication visuelle à Sarrebourg." />
+  <link rel="canonical" href="https://digitaldreamsbox.com/pages/confidentialite.html" />
+  <meta name="robots" content="noindex, follow" />
+
+  <link rel="icon" type="image/png" href="../assets/logo-icon.png" />
+  <link rel="apple-touch-icon" href="../assets/logo-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Phudu:wght@400;500;600;700&family=Righteous&family=Baloo+2:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../styles.css" />
+
+  <style>
+    .legal-hero {
+      padding: 160px 0 70px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .legal-body {
+      padding: 64px 0 120px;
+    }
+    .legal-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 760px) 240px;
+      gap: 72px;
+      align-items: start;
+    }
+    .legal-content h2 {
+      font-family: var(--f-phudu);
+      font-weight: 500;
+      font-size: clamp(24px, 2.4vw, 32px);
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      color: var(--white);
+      margin: 48px 0 14px;
+      padding-top: 32px;
+      border-top: 1px solid var(--rule);
+    }
+    .legal-content h2:first-child {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+    .legal-content h3 {
+      font-family: var(--f-sf);
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--sky);
+      margin: 28px 0 10px;
+    }
+    .legal-content p {
+      font-family: var(--f-body);
+      font-weight: 500;
+      font-size: 15.5px;
+      line-height: 1.72;
+      color: var(--white-70);
+      margin: 0 0 16px;
+    }
+    .legal-content ul, .legal-content ol {
+      padding-left: 22px;
+      margin: 0 0 20px;
+    }
+    .legal-content li {
+      font-family: var(--f-body);
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--white-70);
+      margin-bottom: 8px;
+    }
+    .legal-content strong { color: var(--white); font-weight: 700; }
+    .legal-content em { color: var(--sky); font-style: normal; }
+    .legal-content a { color: var(--sky); text-decoration: underline; text-underline-offset: 3px; }
+    .legal-content .info-block {
+      background: rgba(67, 173, 233, 0.07);
+      border: 1px solid var(--sky-30);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .legal-content .info-block p { margin: 0; color: var(--white); font-size: 14.5px; }
+    .legal-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-family: var(--f-body);
+      font-size: 14px;
+    }
+    .legal-content table th {
+      text-align: left;
+      padding: 12px 16px;
+      background: rgba(67,173,233,0.10);
+      color: var(--white);
+      font-family: var(--f-sf);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--sky-30);
+    }
+    .legal-content table td {
+      padding: 12px 16px;
+      color: var(--white-70);
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+      line-height: 1.55;
+    }
+    .legal-content table tr:last-child td { border-bottom: none; }
+    .legal-content .rights-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 20px 0;
+    }
+    .legal-content .right-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      padding: 18px 20px;
+    }
+    .legal-content .right-card .rc-title {
+      font-family: var(--f-sf);
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--white);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .legal-content .right-card .rc-title .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--sky);
+      flex-shrink: 0;
+    }
+    .legal-content .right-card p {
+      font-size: 13.5px;
+      margin: 0;
+      line-height: 1.55;
+    }
+    /* TODO badge */
+    .todo {
+      display: inline-block;
+      background: rgba(255, 180, 0, 0.15);
+      border: 1px solid rgba(255, 180, 0, 0.4);
+      color: #ffd060;
+      font-family: var(--f-sf);
+      font-weight: 700;
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      cursor: help;
+    }
+    .legal-aside {
+      position: sticky;
+      top: 100px;
+    }
+    .aside-toc {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--rule);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .aside-toc h4 {
+      font-family: var(--f-sf);
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin: 0 0 16px;
+    }
+    .aside-toc ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .aside-toc li a {
+      font-family: var(--f-sf);
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--white-70);
+      text-decoration: none;
+      display: block;
+      padding: 6px 10px;
+      border-radius: 8px;
+      transition: background 180ms ease, color 180ms ease;
+      line-height: 1.35;
+    }
+    .aside-toc li a:hover { background: rgba(255,255,255,0.06); color: var(--white); }
+    .aside-meta {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--rule);
+      border-radius: 18px;
+      padding: 24px;
+    }
+    .aside-meta .meta-line {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .aside-meta .meta-line:last-child { border-bottom: none; }
+    .aside-meta .meta-line .mk {
+      font-family: var(--f-sf);
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white-55);
+    }
+    .aside-meta .meta-line .mv {
+      font-family: var(--f-sf);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--white);
+    }
+    @media (max-width: 900px) {
+      .legal-grid { grid-template-columns: 1fr; gap: 32px; }
+      .legal-aside { position: static; }
+      .legal-content .rights-grid { grid-template-columns: 1fr; }
+      .legal-content table { font-size: 13px; }
+      .legal-content table th, .legal-content table td { padding: 10px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="bg-blobs" aria-hidden="true"></div>
+
+<!-- HEADER -->
+<header class="site-header" role="banner">
+  <div class="shell-wide nav">
+    <a href="../index.html" class="brand" aria-label="Digital Dreamsbox — Accueil">
+      <img src="../assets/logo-icon-light.png" alt="Logo Digital Dreamsbox" width="46" height="46" />
+      <span class="brand-text">
+        <span class="b1">Digital</span>
+        <span class="b2">Dreamsbox</span>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="agence.html">Agence</a>
+      <a href="services.html">Services</a>
+      <a href="journal.html">Journal</a>
+      <a href="galerie.html">Galerie</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="tel:+33688848145" class="btn btn-ghost nav-call" aria-label="Appeler">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.5 12.5 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.5 12.5 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+        Appeler
+      </a>
+      <a href="../index.html#contact" class="btn btn-primary" data-magnet>
+        Devis gratuit
+        <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="legal-hero">
+  <div class="shell">
+    <div class="crumbs reveal">
+      <a href="../index.html">Accueil</a>
+      <span class="sep">/</span>
+      <span>Politique de confidentialité</span>
+    </div>
+    <span class="eyebrow reveal" style="--rd:40ms;">Protection des données</span>
+    <h1 class="h-section reveal" style="--rd:80ms;">Politique de<br/><em style="color:var(--sky);font-style:normal;">Confidentialité</em></h1>
+    <p class="body-md reveal" style="--rd:140ms;max-width:64ch;">Chez Digital Dreamsbox, la protection de vos données personnelles est une priorité. Ce document vous explique quelles données nous collectons, pourquoi, comment nous les utilisons et quels sont vos droits.</p>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="legal-body">
+  <div class="shell">
+    <div class="legal-grid">
+
+      <!-- CONTENU PRINCIPAL -->
+      <article class="legal-content">
+
+        <h2 id="art1">Article 1 — Responsable du traitement</h2>
+        <div class="info-block">
+          <p>
+            <strong>Digital Dreamsbox</strong><br/>
+            <!-- TODO: remplacer par votre forme juridique -->
+            Forme juridique : <span class="todo" title="À compléter">[SAS / SARL]</span><br/>
+            Siège social : Sarrebourg, 57400 Moselle, France<br/>
+            <!-- TODO: remplacer par votre SIRET -->
+            SIRET : <span class="todo" title="À compléter">[NUMÉRO SIRET]</span><br/>
+            Représentée par : <span class="todo" title="À compléter">Lucas [NOM DE FAMILLE]</span>, en qualité de <span class="todo" title="À compléter">[Président / Gérant]</span><br/>
+            Téléphone : <a href="tel:+33688848145">06 88 84 81 45</a><br/>
+            Email : <a href="mailto:contact@digitaldreamsbox.com">contact@digitaldreamsbox.com</a>
+          </p>
+        </div>
+        <p>
+          Digital Dreamsbox agit en qualité de <strong>responsable du traitement</strong> au sens du Règlement Général sur la Protection des Données (RGPD, Règlement UE 2016/679) et de la loi Informatique et Libertés modifiée.
+        </p>
+
+        <h2 id="art2">Article 2 — Données collectées</h2>
+        <p>Nous collectons les données suivantes selon les points de contact :</p>
+
+        <h3>Via le formulaire de contact (site web)</h3>
+        <ul>
+          <li>Nom et prénom</li>
+          <li>Adresse email</li>
+          <li>Numéro de téléphone</li>
+          <li>Message libre (description de votre projet ou demande)</li>
+        </ul>
+
+        <h3>Dans le cadre d'une relation commerciale</h3>
+        <ul>
+          <li>Nom et prénom du contact</li>
+          <li>Raison sociale et SIRET de l'entreprise</li>
+          <li>Adresse postale professionnelle</li>
+          <li>Coordonnées de facturation</li>
+          <li>Historique des échanges et des projets réalisés</li>
+        </ul>
+
+        <h3>Via la navigation sur le site (données techniques)</h3>
+        <ul>
+          <li>Adresse IP (anonymisée)</li>
+          <li>Type de navigateur et appareil</li>
+          <li>Pages visitées, durée de visite (via cookies analytiques, avec consentement)</li>
+          <li>Données de performance publicitaire (Google Ads, avec consentement)</li>
+        </ul>
+        <p>Nous ne collectons <strong>aucune donnée sensible</strong> (origine ethnique, santé, convictions religieuses, etc.).</p>
+
+        <h2 id="art3">Article 3 — Finalités et base légale du traitement</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Finalité</th>
+              <th>Base légale</th>
+              <th>Durée de conservation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Répondre à une demande de contact ou de devis</td>
+              <td>Intérêt légitime / Exécution d'un contrat précontractuel</td>
+              <td>3 ans après le dernier contact</td>
+            </tr>
+            <tr>
+              <td>Gestion de la relation client et exécution des prestations</td>
+              <td>Exécution du contrat</td>
+              <td>Durée du contrat + 5 ans</td>
+            </tr>
+            <tr>
+              <td>Facturation et obligations comptables</td>
+              <td>Obligation légale (art. L. 123-22 C.com.)</td>
+              <td>10 ans (documents comptables)</td>
+            </tr>
+            <tr>
+              <td>Envoi d'informations commerciales (newsletter, offres)</td>
+              <td>Consentement</td>
+              <td>Jusqu'au retrait du consentement</td>
+            </tr>
+            <tr>
+              <td>Mesure d'audience du site web (analytics)</td>
+              <td>Consentement (cookies)</td>
+              <td>13 mois maximum (cookies)</td>
+            </tr>
+            <tr>
+              <td>Suivi des campagnes publicitaires Google Ads</td>
+              <td>Consentement (cookies)</td>
+              <td>13 mois maximum (cookies)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2 id="art4">Article 4 — Destinataires des données</h2>
+        <p>
+          Vos données personnelles sont traitées par les membres de l'équipe Digital Dreamsbox ayant besoin d'y accéder dans le cadre de leur mission. Elles ne sont jamais vendues à des tiers.
+        </p>
+        <p>Nous pouvons faire appel à des sous-traitants techniques pour certains traitements :</p>
+        <ul>
+          <li><strong>OVHcloud</strong> — hébergement du site web (siège : 2 rue Kellermann, 59100 Roubaix, France). Données hébergées en France.</li>
+          <li><strong>Google LLC</strong> — Google Analytics (mesure d'audience), Google Ads (publicité), Google Workspace (emails). Transfert encadré par les clauses contractuelles types de la Commission européenne.</li>
+          <li><strong>Logiciel de facturation</strong> — <span class="todo" title="À compléter">[Nom du logiciel utilisé]</span>.</li>
+        </ul>
+        <p>
+          Ces sous-traitants agissent exclusivement sur nos instructions et s'engagent contractuellement à respecter la confidentialité et la sécurité des données.
+        </p>
+
+        <h2 id="art5">Article 5 — Transferts hors Union européenne</h2>
+        <p>
+          Certains de nos prestataires (notamment Google) peuvent transférer des données en dehors de l'Union européenne. Ces transferts sont encadrés par des garanties appropriées, notamment les <strong>clauses contractuelles types</strong> adoptées par la Commission européenne, conformément à l'article 46 du RGPD.
+        </p>
+        <p>
+          Pour exercer vos droits concernant ces transferts, vous pouvez nous contacter à l'adresse indiquée à l'article 1.
+        </p>
+
+        <h2 id="art6">Article 6 — Vos droits</h2>
+        <p>Conformément au RGPD et à la loi Informatique et Libertés, vous disposez des droits suivants :</p>
+
+        <div class="rights-grid">
+          <div class="right-card">
+            <div class="rc-title"><span class="dot"></span>Droit d'accès</div>
+            <p>Obtenir la confirmation que vos données sont traitées et en recevoir une copie.</p>
+          </div>
+          <div class="right-card">
+            <div class="rc-title"><span class="dot"></span>Droit de rectification</div>
+            <p>Faire corriger des données inexactes ou incomplètes vous concernant.</p>
+          </div>
+          <div class="right-card">
+            <div class="rc-title"><span class="dot"></span>Droit à l'effacement</div>
+            <p>Demander la suppression de vos données, sous réserve de nos obligations légales.</p>
+          </div>
+          <div class="right-card">
+            <div class="rc-title"><span class="dot"></span>Droit à la limitation</div>
+            <p>Suspendre le traitement de vos données dans certaines situations.</p>
+          </div>
+          <div class="right-card">
+            <div class="rc-title"><span class="dot"></span>Droit à la portabilité</div>
+            <p>Recevoir vos données dans un format structuré et lisible par machine.</p>
+          </div>
+          <div class="right-card">
+            <div class="rc-title"><span class="dot"></span>Droit d'opposition</div>
+            <p>Vous opposer au traitement de vos données pour des raisons liées à votre situation particulière.</p>
+          </div>
+          <div class="right-card">
+            <div class="rc-title"><span class="dot"></span>Retrait du consentement</div>
+            <p>Retirer votre consentement à tout moment, sans que cela remette en cause la licéité des traitements antérieurs.</p>
+          </div>
+          <div class="right-card">
+            <div class="rc-title"><span class="dot"></span>Droit de réclamation</div>
+            <p>Introduire une réclamation auprès de la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener">cnil.fr</a>).</p>
+          </div>
+        </div>
+
+        <p>
+          Pour exercer l'un de ces droits, contactez-nous par email à <a href="mailto:contact@digitaldreamsbox.com">contact@digitaldreamsbox.com</a> ou par courrier à notre siège social. Nous répondrons dans un délai maximum de <strong>30 jours</strong>. Une pièce d'identité pourra vous être demandée pour confirmer votre identité.
+        </p>
+
+        <h2 id="art7">Article 7 — Cookies</h2>
+        <h3>Qu'est-ce qu'un cookie ?</h3>
+        <p>
+          Un cookie est un petit fichier texte déposé sur votre navigateur lors de la visite d'un site web. Il permet de mémoriser certaines informations sur votre navigation.
+        </p>
+
+        <h3>Cookies utilisés sur digitaldreamsbox.com</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Cookie</th>
+              <th>Émetteur</th>
+              <th>Finalité</th>
+              <th>Durée</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>cookie_consent</code></td>
+              <td>Digital Dreamsbox</td>
+              <td>Mémorisation de votre choix de consentement aux cookies</td>
+              <td>12 mois</td>
+            </tr>
+            <tr>
+              <td><code>_ga</code>, <code>_gid</code></td>
+              <td>Google Analytics</td>
+              <td>Mesure d'audience anonymisée (pages visitées, durée, source de trafic)</td>
+              <td>13 mois / 24h</td>
+            </tr>
+            <tr>
+              <td><code>_gcl_au</code></td>
+              <td>Google Ads</td>
+              <td>Suivi des conversions publicitaires</td>
+              <td>90 jours</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Comment gérer vos cookies ?</h3>
+        <p>
+          Lors de votre première visite sur notre site, un bandeau vous permet d'accepter ou de refuser les cookies non essentiels. Vous pouvez modifier vos préférences à tout moment en cliquant sur le lien "Cookies" en bas de page.
+        </p>
+        <p>
+          Vous pouvez également configurer votre navigateur pour bloquer ou supprimer les cookies :
+        </p>
+        <ul>
+          <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+          <li><a href="https://support.mozilla.org/fr/kb/cookies-informations-sites-enregistrent" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+          <li><a href="https://support.apple.com/fr-fr/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Apple Safari</a></li>
+          <li><a href="https://support.microsoft.com/fr-fr/windows/supprimer-et-g%C3%A9rer-les-cookies" target="_blank" rel="noopener">Microsoft Edge</a></li>
+        </ul>
+        <p>
+          La désactivation des cookies peut altérer certaines fonctionnalités du site et ne vous permettra pas de bénéficier de contenus personnalisés.
+        </p>
+        <p>
+          Pour vous opposer au suivi Google Analytics, vous pouvez installer le <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">module de désactivation Google Analytics</a>.
+        </p>
+
+        <h2 id="art8">Article 8 — Sécurité des données</h2>
+        <p>
+          Digital Dreamsbox met en oeuvre les mesures techniques et organisationnelles appropriées pour protéger vos données contre tout accès non autorisé, perte, destruction ou divulgation. Ces mesures comprennent notamment :
+        </p>
+        <ul>
+          <li>Chiffrement des données en transit (protocole HTTPS / TLS)</li>
+          <li>Accès aux données restreint aux personnes habilitées</li>
+          <li>Hébergement sur des serveurs sécurisés (OVHcloud, France)</li>
+          <li>Mots de passe forts et authentification sécurisée pour les outils internes</li>
+        </ul>
+        <p>
+          En cas de violation de données susceptible d'engendrer un risque pour vos droits et libertés, Digital Dreamsbox s'engage à notifier la CNIL dans les 72 heures conformément à l'article 33 du RGPD, et à vous en informer dans les meilleurs délais si le risque est élevé.
+        </p>
+
+        <h2 id="art9">Article 9 — Liens vers des sites tiers</h2>
+        <p>
+          Notre site peut contenir des liens vers des sites tiers (réseaux sociaux, partenaires, références). Digital Dreamsbox n'est pas responsable des pratiques de confidentialité de ces sites. Nous vous invitons à consulter leurs politiques de confidentialité respectives.
+        </p>
+
+        <h2 id="art10">Article 10 — Modification de la présente politique</h2>
+        <p>
+          Digital Dreamsbox se réserve le droit de modifier la présente politique de confidentialité à tout moment, notamment pour se conformer aux évolutions légales ou réglementaires. La version en vigueur est celle publiée sur ce site, avec indication de sa date de mise à jour.
+        </p>
+        <p>
+          En cas de modification substantielle, nous vous en informerons par tout moyen approprié (email, bandeau sur le site) dans la mesure du possible.
+        </p>
+
+        <h2 id="art11">Article 11 — Contact et réclamations</h2>
+        <p>Pour toute question relative à la présente politique ou à l'exercice de vos droits :</p>
+        <div class="info-block">
+          <p>
+            <strong>Digital Dreamsbox</strong><br/>
+            Email : <a href="mailto:contact@digitaldreamsbox.com">contact@digitaldreamsbox.com</a><br/>
+            Téléphone : <a href="tel:+33688848145">06 88 84 81 45</a><br/>
+            Adresse : Sarrebourg, 57400 Moselle, France
+          </p>
+        </div>
+        <p>
+          Si vous estimez que le traitement de vos données personnelles constitue une violation du RGPD, vous avez le droit d'introduire une réclamation auprès de la <strong>Commission Nationale de l'Informatique et des Libertés (CNIL)</strong> :
+        </p>
+        <ul>
+          <li>Site web : <a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a></li>
+          <li>Courrier : CNIL, 3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07</li>
+          <li>Téléphone : 01 53 73 22 22</li>
+        </ul>
+
+      </article>
+
+      <!-- BARRE LATÉRALE -->
+      <aside class="legal-aside">
+        <div class="aside-toc">
+          <h4>Sommaire</h4>
+          <ul>
+            <li><a href="#art1">1. Responsable du traitement</a></li>
+            <li><a href="#art2">2. Données collectées</a></li>
+            <li><a href="#art3">3. Finalités et base légale</a></li>
+            <li><a href="#art4">4. Destinataires</a></li>
+            <li><a href="#art5">5. Transferts hors UE</a></li>
+            <li><a href="#art6">6. Vos droits</a></li>
+            <li><a href="#art7">7. Cookies</a></li>
+            <li><a href="#art8">8. Sécurité</a></li>
+            <li><a href="#art9">9. Liens tiers</a></li>
+            <li><a href="#art10">10. Modifications</a></li>
+            <li><a href="#art11">11. Contact & réclamations</a></li>
+          </ul>
+        </div>
+        <div class="aside-meta">
+          <div class="meta-line">
+            <span class="mk">Version</span>
+            <span class="mv">1.0</span>
+          </div>
+          <div class="meta-line">
+            <span class="mk">Mise à jour</span>
+            <span class="mv">Juin 2026</span>
+          </div>
+          <div class="meta-line">
+            <span class="mk">Conformité</span>
+            <span class="mv">RGPD / LCEN</span>
+          </div>
+          <div class="meta-line">
+            <span class="mk">Hébergeur</span>
+            <span class="mv">OVHcloud, France</span>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer" role="contentinfo">
+  <div class="shell">
+    <div class="footer-top">
+      <div>
+        <div class="brand brand--on-dark"><img src="../assets/logo-icon-light.png" alt="" width="46" height="46" /><span class="brand-text"><span class="b1">Digital</span><span class="b2">Dreamsbox</span></span></div>
+        <p class="footer-blurb">Agence de communication visuelle à Sarrebourg. Branding, sites web, Google Ads et signalétique.</p>
+      </div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html#branding">Branding</a></li><li><a href="services.html#sites-web">Sites web</a></li><li><a href="services.html#google-ads">Google Ads</a></li><li><a href="services.html#signaletique">Signalétique</a></li></ul></div>
+      <div class="footer-col"><h5>Agence</h5><ul><li><a href="agence.html">Qui sommes-nous</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="journal.html">Journal</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li><a href="tel:+33688848145">06 88 84 81 45</a></li><li><a href="mailto:contact@digitaldreamsbox.com">contact@digitaldreamsbox.com</a></li><li>Sarrebourg, 57400</li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Digital Dreamsbox — Tous droits réservés.</span>
+      <span><a href="#">Mentions légales</a> &nbsp;·&nbsp; <a href="confidentialite.html" aria-current="page">Politique de confidentialité</a> &nbsp;·&nbsp; <a href="cgv.html">CGV</a></span>
+    </div>
+  </div>
+</footer>
+
+<aside class="quick-contact" aria-label="Contact rapide">
+  <a href="#" class="qc-btn" data-vcard aria-label="Ajouter au contact"><span class="qc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span><span class="qc-label">Ajouter au contact</span></a>
+  <a href="tel:+33688848145" class="qc-btn" aria-label="Appeler"><span class="qc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.5 12.5 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.5 12.5 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></span><span class="qc-label">Appeler</span></a>
+</aside>
+
+<script src="../script.js" defer></script>
+</body>
+</html>

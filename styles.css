@@ -50,22 +50,85 @@ body {
   position: relative;
 }
 
-/* ----- Global atmospheric glow layer -----
-   Travels with the scroll, paints soft blue spotlights down the page
-   so the dark uniform navy never reads flat. Mirrors the inspiration
-   references (deep blue base + lit-from-side blue glows). */
-body::before {
-  content: "";
-  position: absolute;
+/* ----- Animated blob background layer -----
+   6 orbes lumineux bleus : 3 moyens (ambiance) + 3 petits (accents).
+   Injectés via script.js. Vitesse contrôlée au scroll via WAAPI playbackRate. */
+#bg-blobs {
+  position: fixed;
   inset: 0;
-  pointer-events: none;
   z-index: 0;
-  background:
-    radial-gradient(900px 700px at 8% 6%, rgba(67,173,233,0.14), transparent 60%),
-    radial-gradient(900px 700px at 100% 28%, rgba(67,173,233,0.10), transparent 60%),
-    radial-gradient(800px 600px at 0% 55%, rgba(67,173,233,0.10), transparent 60%),
-    radial-gradient(900px 700px at 100% 78%, rgba(67,173,233,0.12), transparent 60%),
-    radial-gradient(700px 500px at 50% 100%, rgba(67,173,233,0.10), transparent 60%);
+  pointer-events: none;
+  overflow: hidden;
+}
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+}
+/* ── Moyens — ambiance de fond ── */
+.blob-1 {
+  width: 300px; height: 250px;
+  background: rgba(50, 160, 230, 0.15);
+  filter: blur(70px);
+  top: -30px; left: -30px;
+  animation: blobDrift1 11s ease-in-out infinite alternate;
+}
+.blob-2 {
+  width: 260px; height: 220px;
+  background: rgba(67, 173, 233, 0.13);
+  filter: blur(65px);
+  top: -20px; right: -20px;
+  animation: blobDrift2 9s ease-in-out infinite alternate;
+}
+.blob-3 {
+  width: 240px; height: 200px;
+  background: rgba(40, 140, 220, 0.14);
+  filter: blur(60px);
+  bottom: -30px; right: 8%;
+  animation: blobDrift3 12s ease-in-out infinite alternate;
+}
+/* ── Petits — accents lumineux ── */
+.blob-4 {
+  width: 110px; height: 95px;
+  background: rgba(67, 173, 233, 0.22);
+  filter: blur(30px);
+  top: 22%; right: 18%;
+  animation: blobDrift4 6s ease-in-out infinite alternate;
+}
+.blob-5 {
+  width: 95px; height: 85px;
+  background: rgba(80, 185, 240, 0.18);
+  filter: blur(28px);
+  bottom: 28%; left: 12%;
+  animation: blobDrift1 7s ease-in-out infinite alternate-reverse;
+}
+.blob-6 {
+  width: 85px; height: 75px;
+  background: rgba(55, 165, 235, 0.24);
+  filter: blur(24px);
+  top: 55%; right: 6%;
+  animation: blobDrift2 5.5s ease-in-out infinite alternate-reverse;
+}
+/* Déformation goutte d'eau : à mi-course le blob s'étire dans la direction de déplacement */
+@keyframes blobDrift1 {
+  0%   { transform: translate(0,      0    ) scaleX(1)    scaleY(1);    }
+  50%  { transform: translate(105px,  80px ) scaleX(1.38) scaleY(0.74); }
+  100% { transform: translate(210px,  160px) scaleX(1)    scaleY(1);    }
+}
+@keyframes blobDrift2 {
+  0%   { transform: translate(0,       0    ) scaleX(1.06) scaleY(1);    }
+  50%  { transform: translate(-78px,   88px ) scaleX(0.76) scaleY(1.38); }
+  100% { transform: translate(-155px,  175px) scaleX(1.06) scaleY(1);    }
+}
+@keyframes blobDrift3 {
+  0%   { transform: translate(0,       0     ) scaleX(1)    scaleY(1);    }
+  50%  { transform: translate(-88px,  -65px  ) scaleX(0.78) scaleY(1.32); }
+  100% { transform: translate(-175px, -130px ) scaleX(1)    scaleY(1);    }
+}
+@keyframes blobDrift4 {
+  0%   { transform: translate(0,      0     ) scaleX(0.95) scaleY(1);    }
+  50%  { transform: translate(68px,  -55px  ) scaleX(1.36) scaleY(0.76); }
+  100% { transform: translate(135px, -110px ) scaleX(0.95) scaleY(1);    }
 }
 main, header, footer { position: relative; z-index: 1; }
 img { max-width: 100%; display: block; }
@@ -240,9 +303,10 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   padding: 10px 14px;
   border-radius: 999px;
   color: var(--white);
-  transition: color 200ms ease, background-color 200ms ease;
+  transition: color 100ms ease, background-color 100ms ease;
 }
-.nav-links a:hover { color: var(--sky); background: rgba(67,173,233,0.10); }
+.nav-links a:hover,
+.nav-links a[aria-current="page"] { color: var(--sky); background: rgba(67,173,233,0.10); }
 
 .nav-cta { display: flex; align-items: center; gap: 10px; }
 
@@ -337,9 +401,6 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background:
-    radial-gradient(900px 700px at 0% 90%, rgba(67,173,233,0.22), transparent 62%),
-    radial-gradient(900px 700px at 100% 8%, rgba(67,173,233,0.10), transparent 62%);
 }
 .hero::after {
   content: "";
@@ -586,7 +647,6 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: radial-gradient(700px 500px at 100% 50%, rgba(67,173,233,0.10), transparent 60%);
 }
 .problem-grid {
   display: grid;
@@ -665,9 +725,6 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background:
-    radial-gradient(50% 70% at 0% 30%, rgba(67,173,233,0.14), transparent 60%),
-    radial-gradient(40% 60% at 100% 100%, rgba(67,173,233,0.08), transparent 60%);
 }
 .about-grid {
   position: relative;
@@ -794,7 +851,6 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: radial-gradient(60% 70% at 50% 100%, rgba(67,173,233,0.16), transparent 65%);
 }
 .process-intro {
   padding: 0 0 40px;
@@ -1018,9 +1074,6 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background:
-    radial-gradient(45% 60% at 100% 10%, rgba(67,173,233,0.14), transparent 60%),
-    radial-gradient(45% 60% at 0% 90%, rgba(67,173,233,0.10), transparent 60%);
 }
 .services-head {
   text-align: left;
@@ -1036,16 +1089,17 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   position: sticky;
   top: 90px;
   margin-bottom: 24px;
-  background: linear-gradient(180deg, #0B1729 0%, #060917 100%);
+  background: rgba(255,255,255,0.04);
   color: var(--white);
   border: 1px solid var(--rule);
   border-radius: 28px;
   overflow: hidden;
+  backdrop-filter: blur(10px);
   box-shadow: 0 50px 100px -50px rgba(0,0,0,0.7);
   transform-origin: top center;
 }
 .service-card.alt {
-  background: linear-gradient(180deg, #0B1729 0%, #060917 100%);
+  background: rgba(255,255,255,0.03);
 }
 
 .service-inner {
@@ -1347,8 +1401,6 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background:
-    radial-gradient(60% 70% at 50% 50%, rgba(67,173,233,0.18), transparent 65%);
 }
 .proof-head {
   display: grid;
@@ -1479,9 +1531,6 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background:
-    radial-gradient(50% 70% at 100% 20%, rgba(67,173,233,0.12), transparent 60%),
-    radial-gradient(50% 70% at 0% 80%, rgba(67,173,233,0.10), transparent 60%);
 }
 .blog-head {
   display: grid;
@@ -1617,7 +1666,6 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: radial-gradient(45% 60% at 30% 60%, rgba(67,173,233,0.12), transparent 60%);
 }
 .faq-grid {
   display: grid;
@@ -1707,9 +1755,6 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   position: absolute;
   inset: 0;
   z-index: -1;
-  background:
-    radial-gradient(50% 60% at 90% 10%, rgba(67,173,233,0.20), transparent 60%),
-    radial-gradient(40% 50% at 0% 100%, rgba(67,173,233,0.16), transparent 60%);
   pointer-events: none;
 }
 .contact-grid {
@@ -1934,7 +1979,7 @@ html.js-ready .reveal.in {
    SUB-PAGES — Hero compact + article layout
    ============================================================ */
 .page-hero {
-  background: var(--navy-deep);
+  background: transparent;
   padding: 160px 0 80px;
   position: relative;
   overflow: hidden;
@@ -1943,9 +1988,6 @@ html.js-ready .reveal.in {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(50% 50% at 100% 0%, rgba(67,173,233,0.16), transparent 60%),
-    radial-gradient(40% 60% at 0% 100%, rgba(67,173,233,0.10), transparent 60%);
   pointer-events: none;
 }
 .page-hero .inner {
@@ -2365,3 +2407,4 @@ html.js-ready .reveal.in {
 .cookies .actions .accept:hover { background: #2f9dd9; }
 .cookies .actions .reject { background: rgba(255,255,255,0.08); color: var(--white); }
 .cookies .actions .reject:hover { background: rgba(255,255,255,0.14); }
+

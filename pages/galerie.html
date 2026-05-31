@@ -3,27 +3,202 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#1a2536" />
+  <meta name="theme-color" content="#0B1526" />
 
-  <title>Galerie — Nos réalisations pour artisans & PME · Digital Dreamsbox</title>
-  <meta name="description" content="Cas clients du bâtiment et des services en Moselle. Brief, choix, résultats sur 90 jours." />
+  <title>Galerie — Branding, sites web & signalétique · Digital Dreamsbox</title>
+  <meta name="description" content="Aperçu de nos créations : identités visuelles, sites web, signalétique et publicités pour artisans et PME en Moselle et Grand Est." />
   <link rel="canonical" href="https://digitaldreamsbox.com/pages/galerie.html" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Galerie — Digital Dreamsbox" />
-  <meta property="og:description" content="Nos cas clients en Moselle et Grand Est." />
+  <meta property="og:description" content="Branding, sites web, signalétique et Google Ads pour artisans et PME du Grand Est." />
   <meta property="og:image" content="https://digitaldreamsbox.com/assets/logo-full.jpg" />
-  <link rel="icon" type="image/png" href="../assets/logo-icon.png" />
+  <link rel="icon" type="image/png" href="../mpmy420f-Logo-D_D-claire.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Phudu:wght@400;500;600;700&family=Righteous&family=Baloo+2:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../styles.css" />
+
+  <style>
+    .gallery-filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 52px;
+    }
+    .filter-btn {
+      font-family: var(--f-sf);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      padding: 9px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: transparent;
+      color: rgba(255,255,255,0.55);
+      cursor: pointer;
+      transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+    }
+    .filter-btn:hover { border-color: var(--sky); color: var(--sky); }
+    .filter-btn.active { background: var(--sky); border-color: var(--sky); color: #fff; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 1060px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .gallery-grid { grid-template-columns: 1fr; gap: 14px; } }
+
+    .gi {
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 280ms cubic-bezier(.2,.7,.2,1), border-color 280ms ease;
+      cursor: pointer;
+    }
+    .gi:hover { transform: translateY(-5px); border-color: rgba(67,173,233,0.40); }
+
+    /* Tall variant spans 2 rows */
+    .gi.tall { grid-row: span 2; }
+    .gi.tall .gi-visual { aspect-ratio: auto; height: 100%; min-height: 480px; }
+
+    .gi-visual {
+      position: relative;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    /* Color variants */
+    .gi-visual.v-a {
+      background: linear-gradient(140deg, #0d1e38 0%, #1a3660 100%);
+    }
+    .gi-visual.v-b {
+      background: linear-gradient(140deg, #091420 0%, #1a2e48 100%);
+    }
+    .gi-visual.v-c {
+      background: linear-gradient(140deg, #0a1828 0%, #43ADE9 200%);
+    }
+    .gi-visual.v-d {
+      background: linear-gradient(140deg, #08111f 0%, #284060 100%);
+    }
+
+    /* Subtle grid pattern */
+    .gi-visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 36px 36px;
+      pointer-events: none;
+    }
+
+    .gi-mark {
+      position: relative;
+      z-index: 1;
+      font-family: var(--f-phudu);
+      font-weight: 700;
+      font-size: clamp(52px, 7vw, 80px);
+      letter-spacing: -0.02em;
+      color: rgba(255,255,255,0.10);
+      user-select: none;
+      line-height: 1;
+    }
+
+    /* Accent dot */
+    .gi-dot {
+      position: absolute;
+      z-index: 2;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--sky);
+    }
+    .gi-dot.tl { top: 20px; left: 20px; }
+    .gi-dot.br { bottom: 20px; right: 20px; }
+    .gi-dot.tr { top: 20px; right: 20px; }
+
+    /* Hover overlay */
+    .gi-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(6, 13, 24, 0.72);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 240ms ease;
+      z-index: 3;
+    }
+    .gi:hover .gi-overlay { opacity: 1; }
+    .gi-overlay-label {
+      font-family: var(--f-sf);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 11px 26px;
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 999px;
+    }
+
+    /* Info block */
+    .gi-info {
+      padding: 16px 20px 20px;
+    }
+    .gi-cat {
+      font-family: var(--f-sf);
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 5px;
+    }
+    .gi-name {
+      font-family: var(--f-sf);
+      font-weight: 700;
+      font-size: 15px;
+      color: #fff;
+      line-height: 1.3;
+    }
+    .gi-loc {
+      font-family: var(--f-body);
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      margin-top: 3px;
+    }
+
+    .gallery-section {
+      padding: 48px 0 100px;
+    }
+    .gallery-note {
+      text-align: center;
+      margin-top: 56px;
+      font-family: var(--f-sf);
+      font-size: 14px;
+      color: rgba(255,255,255,0.40);
+      letter-spacing: 0.04em;
+    }
+  </style>
 </head>
 <body>
 
 <header class="site-header" role="banner">
   <div class="shell-wide nav">
-    <a href="../index.html" class="brand"><img src="../assets/logo-icon-light.png" alt="Logo Digital Dreamsbox" width="46" height="46" /><span class="brand-text"><span class="b1">Digital</span><span class="b2">Dreamsbox</span></span></a>
+    <a href="../index.html" class="brand" aria-label="Digital Dreamsbox — Accueil">
+      <img src="../mpmy420f-Logo-D_D-claire.png" alt="Logo Digital Dreamsbox" width="46" height="46" />
+      <span class="brand-text">
+        <span class="b1">Digital</span>
+        <span class="b2">Dreamsbox</span>
+      </span>
+    </a>
     <nav class="nav-links" aria-label="Navigation principale">
       <a href="agence.html">Agence</a>
       <a href="services.html">Services</a>
@@ -31,10 +206,18 @@
       <a href="galerie.html" aria-current="page">Galerie</a>
     </nav>
     <div class="nav-cta">
-      <a href="tel:+33688848145" class="btn btn-ghost nav-call"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.5 12.5 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.5 12.5 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>Appeler</a>
-      <a href="../index.html#contact" class="btn btn-primary" data-magnet>Devis gratuit<svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      <a href="tel:+33688848145" class="btn btn-ghost nav-call" aria-label="Appeler">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.5 12.5 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.5 12.5 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+        Appeler
+      </a>
+      <a href="contact.html" class="btn btn-primary" data-magnet>
+        Nous contacter
+        <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
     </div>
-    <button class="nav-toggle" aria-label="Menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    <button class="nav-toggle" aria-label="Menu">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
   </div>
 </header>
 
@@ -45,120 +228,159 @@
     <div>
       <div class="crumbs reveal"><a href="../index.html">Accueil</a><span class="sep">/</span><span>Galerie</span></div>
       <span class="eyebrow reveal">Galerie</span>
-      <h1 class="reveal" style="--rd:60ms;">Nos<br/><span class="blue">réalisations.</span></h1>
+      <h1 class="reveal" style="--rd:60ms;">Un aperçu<br/><span class="blue">du travail.</span></h1>
     </div>
-    <p class="lede reveal" style="--rd:140ms;">Une réalisation racontée vaut mieux qu'une galerie sans contexte. Voici quelques cas récents en Moselle, Bas-Rhin et Meurthe-et-Moselle.</p>
+    <p class="lede reveal" style="--rd:140ms;">Branding, sites web, signalétique, publicité. Chaque projet est construit sur mesure — voici quelques extraits visuels de ce qu'on crée pour les artisans et PME du Grand Est.</p>
   </div>
 </section>
 
-<section class="gal-section">
+<section class="gallery-section">
   <div class="shell">
-    <div class="gal-grid">
 
-      <article class="gal-card reveal">
-        <div class="visual a">
-          <div class="grid"></div>
-          <div class="mark" aria-hidden="true">AB</div>
-          <span class="meta-tag">Branding + Site + Ads</span>
-        </div>
-        <div class="body">
-          <span class="who">Atelier Becker · Phalsbourg</span>
-          <h3>Couverture &amp; zinguerie : ×7 sur les devis entrants.</h3>
-          <p>Refonte complète de l'image, site SEO local, campagnes Google Ads géociblées Phalsbourg + Sarrebourg.</p>
-          <div class="stats">
-            <div><span class="s">×7</span><span class="l">Devis / mois</span></div>
-            <div><span class="s">2,1<small style="font-size:0.55em;">s</small></span><span class="l">LCP</span></div>
-            <div><span class="s">Top 3</span><span class="l">Google local</span></div>
-          </div>
-        </div>
-      </article>
+    <div class="gallery-filters reveal">
+      <button class="filter-btn active" data-filter="all">Tout</button>
+      <button class="filter-btn" data-filter="branding">Branding</button>
+      <button class="filter-btn" data-filter="sites-web">Sites web</button>
+      <button class="filter-btn" data-filter="signaletique">Signalétique</button>
+      <button class="filter-btn" data-filter="ads">Google Ads</button>
+    </div>
 
-      <article class="gal-card reveal" style="--rd:80ms;">
-        <div class="visual b">
-          <div class="grid"></div>
-          <div class="mark" aria-hidden="true">MD</div>
-          <span class="meta-tag">Branding + Signalétique</span>
-        </div>
-        <div class="body">
-          <span class="who">Menuiserie Delvigne · Sarrebourg</span>
-          <h3>Une identité au niveau du travail.</h3>
-          <p>Logo, charte, marquage véhicule, signalétique d'atelier. Cohérence visuelle de bout en bout, fabrication locale.</p>
-          <div class="stats">
-            <div><span class="s">3<small style="font-size:0.55em;">vans</small></span><span class="l">Marqués</span></div>
-            <div><span class="s">+42%</span><span class="l">Notoriété locale</span></div>
-          </div>
-        </div>
-      </article>
+    <div class="gallery-grid">
 
-      <article class="gal-card reveal" style="--rd:160ms;">
-        <div class="visual c">
-          <div class="grid"></div>
-          <div class="mark" aria-hidden="true">RK</div>
-          <span class="meta-tag">Google Ads</span>
+      <!-- 01 — Branding Atelier Becker -->
+      <div class="gi reveal" data-cat="branding">
+        <div class="gi-visual v-c">
+          <div class="gi-dot tl"></div>
+          <div class="gi-mark">AB</div>
+          <div class="gi-dot br"></div>
+          <div class="gi-overlay"><span class="gi-overlay-label">Voir le projet</span></div>
         </div>
-        <div class="body">
-          <span class="who">RK Élec · Saverne</span>
-          <h3>Du clic utile, pas du trafic.</h3>
-          <p>Reprise de campagnes Google Ads en perte de vitesse. Restructuration mots-clés, géociblage, suivi des appels.</p>
-          <div class="stats">
-            <div><span class="s">−38%</span><span class="l">Coût / appel</span></div>
-            <div><span class="s">×3</span><span class="l">Devis / sem.</span></div>
-          </div>
+        <div class="gi-info">
+          <div class="gi-cat">Branding</div>
+          <div class="gi-name">Identité visuelle — Atelier Becker</div>
+          <div class="gi-loc">Phalsbourg · Moselle</div>
         </div>
-      </article>
+      </div>
 
-      <article class="gal-card reveal" style="--rd:240ms;">
-        <div class="visual b">
-          <div class="grid"></div>
-          <div class="mark" aria-hidden="true">PS</div>
-          <span class="meta-tag">Site web</span>
+      <!-- 02 — Site web Plomberie Schmitt -->
+      <div class="gi reveal" data-cat="sites-web" style="--rd:60ms;">
+        <div class="gi-visual v-a">
+          <div class="gi-dot tr"></div>
+          <div class="gi-mark">PS</div>
+          <div class="gi-overlay"><span class="gi-overlay-label">Voir le projet</span></div>
         </div>
-        <div class="body">
-          <span class="who">Plomberie Schmitt · Sarrebourg</span>
-          <h3>Un site qui fait sonner le téléphone.</h3>
-          <p>Site vitrine + landing dépannage 24/7. Architecture pensée pour le mobile et l'appel direct.</p>
-          <div class="stats">
-            <div><span class="s">68%</span><span class="l">Appels mobile</span></div>
-            <div><span class="s">1,8<small style="font-size:0.55em;">s</small></span><span class="l">LCP</span></div>
-          </div>
+        <div class="gi-info">
+          <div class="gi-cat">Site web</div>
+          <div class="gi-name">Site vitrine &amp; landing urgence — Plomberie Schmitt</div>
+          <div class="gi-loc">Sarrebourg · Moselle</div>
         </div>
-      </article>
+      </div>
 
-      <article class="gal-card reveal" style="--rd:80ms;">
-        <div class="visual a">
-          <div class="grid"></div>
-          <div class="mark" aria-hidden="true">JL</div>
-          <span class="meta-tag">Branding</span>
+      <!-- 03 — Signalétique Couvreur Charpentier (tall) -->
+      <div class="gi tall reveal" data-cat="signaletique" style="--rd:120ms;">
+        <div class="gi-visual v-b">
+          <div class="gi-dot tl"></div>
+          <div class="gi-mark">CC</div>
+          <div class="gi-dot br"></div>
+          <div class="gi-overlay"><span class="gi-overlay-label">Voir le projet</span></div>
         </div>
-        <div class="body">
-          <span class="who">Jardinerie Loutz · Sarreguemines</span>
-          <h3>Repositionnement et identité refondue.</h3>
-          <p>Audit, nouveau logo, palette, supports imprimés. Une marque qui parle aux particuliers comme aux pros.</p>
-          <div class="stats">
-            <div><span class="s">2</span><span class="l">Pistes créatives</span></div>
-            <div><span class="s">8<small style="font-size:0.55em;">sem.</small></span><span class="l">Délai</span></div>
-          </div>
+        <div class="gi-info">
+          <div class="gi-cat">Signalétique</div>
+          <div class="gi-name">Bâches chantier &amp; marquage véhicule — Couvreur Charpentier</div>
+          <div class="gi-loc">Lunéville · Meurthe-et-Moselle</div>
         </div>
-      </article>
+      </div>
 
-      <article class="gal-card reveal" style="--rd:160ms;">
-        <div class="visual c">
-          <div class="grid"></div>
-          <div class="mark" aria-hidden="true">CC</div>
-          <span class="meta-tag">Signalétique</span>
+      <!-- 04 — Google Ads RK Élec -->
+      <div class="gi reveal" data-cat="ads" style="--rd:80ms;">
+        <div class="gi-visual v-d">
+          <div class="gi-dot br"></div>
+          <div class="gi-mark">RK</div>
+          <div class="gi-overlay"><span class="gi-overlay-label">Voir le projet</span></div>
         </div>
-        <div class="body">
-          <span class="who">Couvreur Charpentier · Lunéville</span>
-          <h3>Visible sur chaque chantier.</h3>
-          <p>Bâches chantier, marquage utilitaire, panneaux d'information. Signalétique conforme et fabriquée en local.</p>
-          <div class="stats">
-            <div><span class="s">12<small style="font-size:0.55em;">supports</small></span><span class="l">Déployés</span></div>
-            <div><span class="s">100%</span><span class="l">Local</span></div>
-          </div>
+        <div class="gi-info">
+          <div class="gi-cat">Google Ads</div>
+          <div class="gi-name">Campagne locale géociblée — RK Élec</div>
+          <div class="gi-loc">Saverne · Bas-Rhin</div>
         </div>
-      </article>
+      </div>
+
+      <!-- 05 — Branding Menuiserie Delvigne -->
+      <div class="gi reveal" data-cat="branding" style="--rd:140ms;">
+        <div class="gi-visual v-a">
+          <div class="gi-dot tl"></div>
+          <div class="gi-mark">MD</div>
+          <div class="gi-dot br"></div>
+          <div class="gi-overlay"><span class="gi-overlay-label">Voir le projet</span></div>
+        </div>
+        <div class="gi-info">
+          <div class="gi-cat">Branding + Signalétique</div>
+          <div class="gi-name">Logo, charte &amp; marquage véhicule — Menuiserie Delvigne</div>
+          <div class="gi-loc">Sarrebourg · Moselle</div>
+        </div>
+      </div>
+
+      <!-- 06 — Site web + Ads Atelier Becker -->
+      <div class="gi reveal" data-cat="sites-web" style="--rd:60ms;">
+        <div class="gi-visual v-c">
+          <div class="gi-dot tr"></div>
+          <div class="gi-mark">AB</div>
+          <div class="gi-overlay"><span class="gi-overlay-label">Voir le projet</span></div>
+        </div>
+        <div class="gi-info">
+          <div class="gi-cat">Site web + Google Ads</div>
+          <div class="gi-name">Site SEO local &amp; campagnes — Atelier Becker</div>
+          <div class="gi-loc">Phalsbourg · Moselle</div>
+        </div>
+      </div>
+
+      <!-- 07 — Branding Jardinerie Loutz -->
+      <div class="gi reveal" data-cat="branding" style="--rd:100ms;">
+        <div class="gi-visual v-b">
+          <div class="gi-dot tl"></div>
+          <div class="gi-mark">JL</div>
+          <div class="gi-overlay"><span class="gi-overlay-label">Voir le projet</span></div>
+        </div>
+        <div class="gi-info">
+          <div class="gi-cat">Branding</div>
+          <div class="gi-name">Repositionnement &amp; identité — Jardinerie Loutz</div>
+          <div class="gi-loc">Sarreguemines · Moselle</div>
+        </div>
+      </div>
+
+      <!-- 08 — Signalétique Menuiserie Delvigne -->
+      <div class="gi reveal" data-cat="signaletique" style="--rd:160ms;">
+        <div class="gi-visual v-d">
+          <div class="gi-dot br"></div>
+          <div class="gi-mark">MD</div>
+          <div class="gi-overlay"><span class="gi-overlay-label">Voir le projet</span></div>
+        </div>
+        <div class="gi-info">
+          <div class="gi-cat">Signalétique</div>
+          <div class="gi-name">3 vans marqués &amp; signalétique atelier — Menuiserie Delvigne</div>
+          <div class="gi-loc">Sarrebourg · Moselle</div>
+        </div>
+      </div>
+
+      <!-- 09 — Ads Google Atelier Becker -->
+      <div class="gi reveal" data-cat="ads" style="--rd:200ms;">
+        <div class="gi-visual v-a">
+          <div class="gi-dot tl"></div>
+          <div class="gi-dot br"></div>
+          <div class="gi-mark">×7</div>
+          <div class="gi-overlay"><span class="gi-overlay-label">Voir le projet</span></div>
+        </div>
+        <div class="gi-info">
+          <div class="gi-cat">Google Ads</div>
+          <div class="gi-name">Campagne devis entrants — Atelier Becker</div>
+          <div class="gi-loc">Phalsbourg + Sarrebourg · Moselle</div>
+        </div>
+      </div>
 
     </div>
+
+    <p class="gallery-note reveal">Les images de projets sont ajoutées au fil des validations clients.</p>
+
   </div>
 </section>
 
@@ -166,14 +388,19 @@
   <div class="shell contact-grid">
     <div>
       <span class="eyebrow reveal">Étape suivante</span>
-      <h2 class="reveal" style="--rd:60ms;">Le prochain<br/>cas, c'est <span class="blue">vous</span> ?</h2>
+      <h2 class="reveal" style="--rd:60ms;">Le prochain<br/>projet, c'est <span class="blue">vous</span> ?</h2>
       <p class="ctxt reveal" style="--rd:140ms;">Un échange de 30 minutes, sans engagement. On comprend votre activité, vous repartez avec une recommandation claire.</p>
       <div class="contact-actions reveal" style="--rd:220ms;">
-        <a href="tel:+33688848145" class="btn btn-primary" data-magnet><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.5 12.5 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.5 12.5 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>Appeler — 06 88 84 81 45</a>
-        <a href="#" class="btn btn-ghost" data-vcard><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Ajouter au contact</a>
+        <a href="tel:+33688848145" class="btn btn-primary" data-magnet>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.5 12.5 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.5 12.5 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          Appeler — 06 88 84 81 45
+        </a>
+        <a href="#" class="btn btn-ghost" data-vcard>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Ajouter au contact
+        </a>
       </div>
     </div>
-
     <div class="contact-card reveal from-r" style="--rd:200ms;">
       <h3>Demander un devis</h3>
       <p class="sub">Réponse écrite sous 24 h ouvrées.</p>
@@ -182,7 +409,10 @@
         <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" required /></div>
         <div class="field"><label for="f-msg">Votre projet</label><textarea id="f-msg" name="message" required></textarea></div>
         <div class="honeypot" aria-hidden="true"><label>Ne pas remplir<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
-        <div class="form-actions"><small>RGPD — confidentialité respectée.</small><button type="submit" class="btn btn-primary">Envoyer<svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button></div>
+        <div class="form-actions">
+          <small>RGPD — confidentialité respectée.</small>
+          <button type="submit" class="btn btn-primary">Envoyer<svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+        </div>
         <div class="form-success" role="status">Message reçu — on revient vers vous sous 24 h ouvrées.</div>
       </form>
     </div>
@@ -194,20 +424,55 @@
 <footer class="site-footer" role="contentinfo">
   <div class="shell">
     <div class="footer-top">
-      <div><div class="brand brand--on-dark"><img src="../assets/logo-icon-light.png" alt="" width="46" height="46" /><span class="brand-text"><span class="b1">Digital</span><span class="b2">Dreamsbox</span></span></div><p class="footer-blurb">Agence de communication visuelle à Sarrebourg.</p></div>
+      <div>
+        <div class="brand">
+          <img src="../mpmy420f-Logo-D_D-claire.png" alt="" width="46" height="46" />
+          <span class="brand-text"><span class="b1">Digital</span><span class="b2">Dreamsbox</span></span>
+        </div>
+        <p class="footer-blurb">Agence de communication visuelle à Sarrebourg.</p>
+      </div>
       <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html#branding">Branding</a></li><li><a href="services.html#sites-web">Sites web</a></li><li><a href="services.html#google-ads">Google Ads</a></li><li><a href="services.html#signaletique">Signalétique</a></li></ul></div>
       <div class="footer-col"><h5>Agence</h5><ul><li><a href="agence.html">Qui sommes-nous</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="journal.html">Journal</a></li></ul></div>
       <div class="footer-col"><h5>Contact</h5><ul><li><a href="tel:+33688848145">06 88 84 81 45</a></li><li><a href="mailto:contact@digitaldreamsbox.com">contact@digitaldreamsbox.com</a></li><li>Sarrebourg, 57400</li></ul></div>
     </div>
-    <div class="footer-bottom"><span>© <span data-year>2026</span> Digital Dreamsbox</span><span><a href="#">Mentions légales</a> · <a href="#">Confidentialité</a></span></div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Digital Dreamsbox</span>
+      <span><a href="#">Mentions légales</a> · <a href="#">Confidentialité</a></span>
+    </div>
   </div>
 </footer>
 
 <aside class="quick-contact" aria-label="Contact rapide">
-  <a href="#" class="qc-btn" data-vcard aria-label="Ajouter au contact"><span class="qc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>Ajouter au contact</a>
-  <a href="tel:+33688848145" class="qc-btn" aria-label="Appeler 06 88 84 81 45"><span class="qc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.5 12.5 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.5 12.5 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></span>Appeler</a>
+  <a href="#" class="qc-btn" data-vcard aria-label="Ajouter au contact">
+    <span class="qc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>
+    Ajouter au contact
+  </a>
+  <a href="tel:+33688848145" class="qc-btn" aria-label="Appeler 06 88 84 81 45">
+    <span class="qc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.5 12.5 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.5 12.5 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></span>
+    Appeler
+  </a>
 </aside>
 
 <script src="../script.js" defer></script>
+<script>
+  (function () {
+    var btns = document.querySelectorAll('.filter-btn');
+    var items = document.querySelectorAll('.gi');
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        btns.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        var filter = btn.dataset.filter;
+        items.forEach(function (item) {
+          if (filter === 'all' || item.dataset.cat === filter) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  })();
+</script>
 </body>
 </html>
