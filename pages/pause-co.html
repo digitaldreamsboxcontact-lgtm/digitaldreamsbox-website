@@ -8,7 +8,7 @@
   <title>Pause &amp; co — Branding &amp; Identité visuelle · Digital Dreamsbox</title>
   <meta name="description" content="Branding complet pour Pause & co : logo, identité visuelle, typographie et direction artistique d'un traiteur artisanal parisien. Un projet signé Digital Dreamsbox." />
   <link rel="canonical" href="https://digitaldreamsbox.com/pages/pause-co.html" />
-  <link rel="icon" type="image/webp" href="../favicon.webp" />
+  <link rel="icon" type="image/webp" href="../mpzsg1fe-Ico_ne-Apple-d_d.webp" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -60,7 +60,7 @@
     .proj-intro-grid .proj-intro-desc {
       grid-column: 2;
       grid-row: 2;
-      align-self: start;
+      align-self: center;
     }
     .proj-intro-eyebrow {
       font-family: var(--f-sf);
@@ -68,7 +68,7 @@
       font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--sky, #43ade9);
+      color: var(--sky, #1d9ee9);
       display: block;
       margin-bottom: 18px;
       text-align: left;
@@ -124,18 +124,19 @@
       text-align: center;
     }
     .proj-3d-logo {
-      max-width: 520px;
       width: 70%;
+      max-width: min(520px, 90%);
       display: inline-block;
       position: relative;
-      filter: drop-shadow(0 0 56px rgba(67,173,233,.22));
+      filter: drop-shadow(0 0 32px rgba(67,173,233,.22));
     }
     .proj-carousel-stage {
       position: relative;
       width: 100%;
       margin: 0;
-      padding: 110px 0;
-      overflow: hidden;
+      padding: 110px 0 28px;
+      overflow-x: clip;
+      overflow-y: visible;
       cursor: grab;
       touch-action: pan-y;
     }
@@ -309,7 +310,7 @@
       font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--sky, #43ade9);
+      color: var(--sky, #1d9ee9);
       display: block;
     }
     .proj-split-text h3 {
@@ -349,7 +350,7 @@
       color: #fff;
       margin: 0 0 28px;
     }
-    .proj-cta h2 em { color: var(--sky, #43ade9); font-style: normal; }
+    .proj-cta h2 em { color: var(--sky, #1d9ee9); font-style: normal; }
     .proj-cta .ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
     /* ─── Projets liés ─── */
@@ -374,7 +375,7 @@
       font-weight: 600;
       letter-spacing: .10em;
       text-transform: uppercase;
-      color: var(--sky, #43ade9);
+      color: var(--sky, #1d9ee9);
       text-decoration: none;
       display: flex;
       align-items: center;
@@ -429,21 +430,22 @@
 
     /* ─── Responsive ─── */
     @media (max-width: 1100px) {
-      .proj-carousel-stage { padding: 90px 0; }
+      .proj-carousel-stage { padding: 90px 0 22px; }
       .proj-carousel-track { height: 240px; gap: 22px; }
     }
     @media (max-width: 900px) {
-      .proj-intro-grid    { grid-template-columns: 1fr; gap: 28px; }
+      .proj-intro-grid    { display: flex; flex-direction: column; gap: 16px; }
+      .proj-intro-top, .proj-intro-grid .proj-intro-title, .proj-intro-grid .proj-intro-desc { grid-column: unset; grid-row: unset; align-self: unset; }
       .proj-meta-grid     { grid-template-columns: 1fr; }
       .proj-split-grid    { grid-template-columns: 1fr; gap: 36px; }
       .proj-split-grid-rev{ grid-template-columns: 1fr; gap: 36px; }
       .proj-related-grid  { grid-template-columns: repeat(2, 1fr); }
-      .proj-carousel-stage { padding: 80px 0; }
+      .proj-carousel-stage { padding: 80px 0 18px; }
       .proj-carousel-track { height: 200px; gap: 18px; }
       .proj-3d-logo { width: 80%; }
     }
     @media (max-width: 600px) {
-      .proj-carousel-stage { padding: 64px 0; }
+      .proj-carousel-stage { padding: 64px 0 14px; }
       .proj-carousel-track { height: 160px; gap: 14px; }
       .proj-3d-logo { width: 88%; }
     }
@@ -464,8 +466,11 @@
 
 <header class="site-header" role="banner">
   <div class="shell-wide nav">
+    <button class="back-btn" onclick="history.back()" aria-label="Retour à la page précédente">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
     <a href="../index.html" class="brand" aria-label="Digital Dreamsbox — Accueil">
-      <img src="../mpsw9c6z-Logo-Digitaldreamsbox-sw.png" alt="Logo Digital Dreamsbox" width="46" height="46" />
+      <img src="../mq02h9of-NVlogo-3d-d_d.png" alt="Logo Digital Dreamsbox" width="46" height="46" />
       <span class="brand-text">
         <span class="b1">Digital</span>
         <span class="b2">Dreamsbox</span>
@@ -474,8 +479,9 @@
     <nav class="nav-links" aria-label="Navigation principale">
       <a href="agence.html">Agence</a>
       <a href="services.html">Services</a>
-      <a href="journal.html">Journal</a>
-      <a href="galerie.html">Galerie</a>
+      <a href="galerie.html">Réalisations</a>
+      <a href="journal.html">Journal</a><a href="contact.html">Contact</a>
+
     </nav>
     <div class="nav-cta">
       <a href="tel:+33688848145" class="btn btn-ghost nav-call" aria-label="Appeler">
@@ -512,7 +518,7 @@
             <div class="crumbs">
               <a href="../index.html">Accueil</a>
               <span class="sep">/</span>
-              <a href="galerie.html">Galerie</a>
+        
               <span class="sep">/</span>
               <span>Pause &amp; co</span>
             </div>
@@ -719,7 +725,7 @@
     <div class="footer-top">
       <div>
         <div class="brand">
-          <img src="../mpsw9c6z-Logo-Digitaldreamsbox-sw.png" alt="" width="46" height="46" />
+          <img src="../mq02h9of-NVlogo-3d-d_d.png" alt="" width="46" height="46" />
         </div>
         <p class="footer-blurb">Agence de marque &amp; design visuel.</p>
       </div>
