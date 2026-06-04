@@ -1,6 +1,6 @@
 /* ============================================================
    Digital Dreamsbox — global styles (THÈME SOMBRE)
-   Palette : #28374D navy / #43ADE9 sky / #FFFFFF white
+   Palette : #28374D navy / #1D9EE9 sky / #FFFFFF white
    ============================================================ */
 
 :root {
@@ -12,7 +12,7 @@
   --navy-soft: #0B1526;
   --navy-elev: #0B1526;
   --ink: #060D18;          /* even darker accent (kept for footer & deepest sections) */
-  --sky: #43ADE9;
+  --sky: #1D9EE9;
   --sky-08: rgba(67, 173, 233, 0.08);
   --sky-15: rgba(67, 173, 233, 0.15);
   --sky-30: rgba(67, 173, 233, 0.30);
@@ -250,7 +250,29 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   align-items: center;
   gap: 14px;
 }
-.brand img { height: 38px; width: auto; }
+.brand img { height: 36px; width: auto; }
+@media (max-width: 390px) { .brand img { height: 30px; } }
+
+/* ─── Back button (sub-pages only) ─── */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  color: var(--white);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 150ms ease;
+  margin-right: 4px;
+}
+.back-btn:hover { background: rgba(255,255,255,0.08); }
+@media (max-width: 920px) {
+  .back-btn + .brand { display: none; }
+}
 .brand-text { display: none; }
 .brand-text .b1 {
   font-family: var(--f-baloo);
@@ -281,8 +303,9 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   border-radius: 999px;
   color: var(--white);
   position: relative;
-  transition: color 150ms ease;
+  transition: color 150ms ease, background-color 150ms ease;
 }
+.nav-links a:hover { background: transparent; }
 .nav-links a::after {
   content: '';
   position: absolute;
@@ -2042,7 +2065,7 @@ body.nav-open { overflow: hidden; }
   margin-bottom: 50px;
 }
 .footer-top .brand { margin-bottom: 14px; }
-.footer-top .brand img { height: 44px; }
+.footer-top .brand img { height: 52px; }
 .footer-top .brand-text { display: none; }
 .footer-blurb {
   font-family: var(--f-body);
