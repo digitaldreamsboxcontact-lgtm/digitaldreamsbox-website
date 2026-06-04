@@ -87,28 +87,7 @@ body {
   bottom: -30px; right: 8%;
   animation: blobDrift3 12s ease-in-out infinite alternate;
 }
-/* ── Petits — accents lumineux ── */
-.blob-4 {
-  width: 110px; height: 95px;
-  background: rgba(67, 173, 233, 0.22);
-  filter: blur(30px);
-  top: 22%; right: 18%;
-  animation: blobDrift4 6s ease-in-out infinite alternate;
-}
-.blob-5 {
-  width: 95px; height: 85px;
-  background: rgba(80, 185, 240, 0.18);
-  filter: blur(28px);
-  bottom: 28%; left: 12%;
-  animation: blobDrift1 7s ease-in-out infinite alternate-reverse;
-}
-.blob-6 {
-  width: 85px; height: 75px;
-  background: rgba(55, 165, 235, 0.24);
-  filter: blur(24px);
-  top: 55%; right: 6%;
-  animation: blobDrift2 5.5s ease-in-out infinite alternate-reverse;
-}
+
 /* Déformation goutte d'eau : à mi-course le blob s'étire dans la direction de déplacement */
 @keyframes blobDrift1 {
   0%   { transform: translate(0,      0    ) scaleX(1)    scaleY(1);    }
@@ -257,6 +236,9 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   box-shadow: 0 1px 0 var(--rule);
   padding: 12px 0;
 }
+.site-header.hidden {
+  transform: translateY(-100%);
+}
 .nav {
   display: flex;
   align-items: center;
@@ -387,7 +369,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   justify-content: center;
 }
 .nav-overlay-links a {
-  font-family: var(--f-disp);
+  font-family: var(--f-phudu);
   font-size: clamp(36px, 8.5vw, 56px);
   font-weight: 700;
   color: var(--white);
