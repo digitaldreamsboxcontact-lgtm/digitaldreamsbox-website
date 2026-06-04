@@ -8,10 +8,10 @@
 
   /* ── 0. Animated blob background + scroll-speed acceleration ─ */
   (function () {
-    /* Inject 6 blobs */
+    /* Inject 3 blobs grands uniquement */
     var wrap = document.createElement('div');
     wrap.id = 'bg-blobs';
-    for (var i = 1; i <= 6; i++) {
+    for (var i = 1; i <= 3; i++) {
       var b = document.createElement('div');
       b.className = 'blob blob-' + i;
       wrap.appendChild(b);
@@ -75,8 +75,8 @@
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
         var el = entry.target;
-        var delay = parseFloat(getComputedStyle(el).getPropertyValue('--rd') || '0') * 1000;
-        setTimeout(function () { el.classList.add('visible'); }, delay);
+        var delay = parseFloat(getComputedStyle(el).getPropertyValue('--rd') || '0');
+        setTimeout(function () { el.classList.add('in'); }, delay);
         revealObserver.unobserve(el);
       }
     });
@@ -88,7 +88,6 @@
 
   /* ── 3. Header scroll state ──────────────────────────────── */
   var header = document.querySelector('.site-header');
-  var lastY = 0;
   if (header) {
     window.addEventListener('scroll', function () {
       var y = window.scrollY;
@@ -97,12 +96,6 @@
       } else {
         header.classList.remove('scrolled');
       }
-      if (y > lastY + 8 && y > 200) {
-        header.classList.add('hidden');
-      } else if (y < lastY - 4) {
-        header.classList.remove('hidden');
-      }
-      lastY = y;
     }, { passive: true });
   }
 
@@ -391,7 +384,7 @@
       .then(function (r) { return r.json(); })
       .then(function () {
         form.reset();
-        if (success) success.classList.add('visible');
+        if (success) success.classList.add('show');
         submit.disabled    = false;
         submit.textContent = 'Envoyer';
       })

@@ -1,5 +1,5 @@
 .DS_Store
-graphify-out/
 .od-skills/
-*.artifact.json
+graphify-out/
 uploads/
+*.zip
