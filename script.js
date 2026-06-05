@@ -307,6 +307,7 @@
     'URL:https://digitaldreamsbox.com',
     'ADR;TYPE=WORK:;;Sarrebourg;;57400;;FR',
     'NOTE:Agence web & branding — Moselle · Grand Est',
+    'PHOTO;VALUE=URI:https://digitaldreamsbox.com/mpzsg1fe-Ico_ne-Apple-d_d.webp',
     'END:VCARD'
   ].join('\r\n');
 
