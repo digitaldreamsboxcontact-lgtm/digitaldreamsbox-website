@@ -253,26 +253,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .brand img { height: 36px; width: auto; }
 @media (max-width: 390px) { .brand img { height: 30px; } }
 
-/* ─── Back button (sub-pages only) ─── */
-.back-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-  background: transparent;
-  border: none;
-  color: var(--white);
-  border-radius: 999px;
-  cursor: pointer;
-  transition: background 150ms ease;
-  margin-right: 4px;
-}
-.back-btn:hover { background: rgba(255,255,255,0.08); }
-@media (max-width: 920px) {
-  .back-btn + .brand { display: none; }
-}
+
 .brand-text { display: none; }
 .brand-text .b1 {
   font-family: var(--f-baloo);
