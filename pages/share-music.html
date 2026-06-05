@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0B1526" />
+
+  <title>Share Music — UI/UX Design &amp; Branding · Digital Dreamsbox</title>
+  <meta name="description" content="UI/UX Design et branding complet pour Share Music : identité visuelle, design d'application mobile et direction artistique. Un projet signé Digital Dreamsbox." />
+  <link rel="canonical" href="https://digitaldreamsbox.com/pages/share-music.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Phudu:wght@400;500;600;700&family=Righteous&family=Baloo+2:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+
+  <style>
+    html, body { overscroll-behavior-x: none; }
+
+    /* ─── Body ─── */
+    .proj-body {
+      position: relative;
+      background: var(--bg, #0b1526);
+    }
+
+    /* ─── 0. Hero image ─── */
+    .proj-hero-img-section {
+      width: 100%;
+      display: block;
+      line-height: 0;
+      background: var(--bg, #0b1526);
+    }
+    .proj-hero-img-section img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* ─── 1. Intro ─── */
+    .proj-intro {
+      padding: 56px 0 64px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .proj-intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.45fr;
+      column-gap: 56px;
+      row-gap: 0;
+      align-items: start;
+      justify-items: stretch;
+    }
+    .proj-intro-top {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .proj-intro-grid .proj-intro-title {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    .proj-intro-grid .proj-intro-desc {
+      grid-column: 2;
+      grid-row: 2;
+      align-self: center;
+    }
+    .proj-intro-eyebrow {
+      font-family: var(--f-sf);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sky, #1d9ee9);
+      display: block;
+      margin-bottom: 18px;
+      text-align: left;
+    }
+    .proj-intro-eyebrow::before {
+      content: '—\00a0';
+    }
+    .proj-intro-title {
+      font-family: var(--f-phudu);
+      font-size: clamp(36px, 5.5vw, 64px);
+      font-weight: 700;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      color: #fff;
+      margin: 0;
+      text-align: left;
+      max-width: 100%;
+      text-transform: uppercase;
+    }
+    .proj-intro-desc {
+      font-family: var(--f-body);
+      font-size: 15px;
+      line-height: 1.78;
+      color: rgba(255,255,255,.68);
+      margin: 0;
+      max-width: none;
+      text-align: left;
+      padding-bottom: 4px;
+    }
+    .proj-intro-desc strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* ─── 2. Logo 3D + Carrousel ─── */
+    .proj-carousel-section {
+      padding: 80px 0 88px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .proj-carousel-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 55% 45% at 50% 42%, rgba(67,173,233,.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .proj-3d-logo-wrap {
+      position: relative;
+      margin-bottom: 56px;
+      text-align: center;
+    }
+    .proj-3d-logo {
+      max-width: 320px;
+      width: 50%;
+      display: inline-block;
+      position: relative;
+      filter: drop-shadow(0 0 32px rgba(67,173,233,.22));
+    }
+    .proj-carousel-stage {
+      position: relative;
+      width: 100%;
+      margin: 0;
+      padding: 110px 0 28px;
+      overflow-x: clip;
+      overflow-y: visible;
+      cursor: grab;
+      touch-action: pan-y;
+    }
+    .proj-carousel-stage.is-dragging { cursor: grabbing; }
+    .proj-carousel-track {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      position: relative;
+      height: 280px;
+      padding: 0;
+      width: max-content;
+      transform: translate3d(0, 0, 0);
+      transition: transform 0.42s cubic-bezier(.2,.8,.2,1);
+      will-change: transform;
+    }
+    .proj-carousel-track.is-dragging { transition: none; }
+    .proj-carousel-slide {
+      --t: 0;
+      flex: 0 0 auto;
+      position: relative;
+      user-select: none;
+      -webkit-user-drag: none;
+      height: 100%;
+      cursor: pointer;
+      z-index: 1;
+    }
+    .proj-carousel-slide.is-active { z-index: 5; }
+    .proj-carousel-slide img {
+      height: 100%;
+      width: auto;
+      display: block;
+      pointer-events: none;
+      -webkit-user-drag: none;
+      border-radius: 6px;
+      box-shadow: 0 14px 36px rgba(0,0,0,.45);
+      transform-origin: center center;
+      transform: scale(calc(0.78 + 0.82 * var(--t)));
+      opacity: calc(0.45 + 0.55 * var(--t));
+      transition: transform 0.42s cubic-bezier(.2,.8,.2,1), opacity 0.42s cubic-bezier(.2,.8,.2,1);
+    }
+    .proj-carousel-slide.is-active { cursor: grab; }
+    .proj-carousel-slide.is-active img {
+      box-shadow: 0 18px 44px rgba(0,0,0,.5);
+    }
+    .proj-carousel-pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      margin-top: 24px;
+      position: relative;
+      z-index: 10;
+    }
+    .pag-bar {
+      display: inline-block;
+      height: 4px;
+      width: 24px;
+      background: rgba(255,255,255,.22);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      padding: 0;
+    }
+    .pag-bar:hover { background: rgba(255,255,255,.4); }
+    .pag-bar.active {
+      width: 44px;
+      background: #4a90e2;
+    }
+    .pag-bar.active:hover { background: #4a90e2; }
+
+    /* ─── 4. Méta projet ─── */
+    .proj-meta {
+      padding: 88px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .proj-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .proj-meta-img {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .proj-meta-img img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 3/4;
+    }
+    .proj-meta-content {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+    .proj-spec-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .proj-spec-table tr {
+      border-bottom: 1px solid var(--rule);
+    }
+    .proj-spec-table td {
+      padding: 14px 0;
+      font-family: var(--f-sf);
+      font-size: 13px;
+      vertical-align: top;
+    }
+    .proj-spec-table td:first-child {
+      color: rgba(255,255,255,.30);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 10px;
+      padding-right: 28px;
+      white-space: nowrap;
+      padding-top: 16px;
+    }
+    .proj-spec-table td:last-child {
+      color: rgba(255,255,255,.80);
+      line-height: 1.5;
+    }
+    .proj-meta-desc {
+      font-family: var(--f-body);
+      font-size: 15px;
+      line-height: 1.78;
+      color: rgba(255,255,255,.56);
+      margin: 0;
+    }
+    .proj-meta-desc strong {
+      color: rgba(255,255,255,.84);
+      font-weight: 600;
+    }
+
+    /* ─── 5-7. Sections alternées ─── */
+    .proj-split {
+      padding: 88px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .proj-split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .proj-split-grid-rev {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .proj-split-img {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .proj-split-img img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 3/4;
+    }
+    .proj-split-text {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .proj-split-text .chapter-num {
+      font-family: var(--f-sf);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sky, #1d9ee9);
+      display: block;
+    }
+    .proj-split-text h3 {
+      font-family: var(--f-phudu);
+      font-size: clamp(26px, 2.8vw, 42px);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin: 0;
+    }
+    .proj-split-text p {
+      font-family: var(--f-body);
+      font-size: 15px;
+      line-height: 1.78;
+      color: rgba(255,255,255,.56);
+      margin: 0;
+    }
+    .proj-split-text strong {
+      color: rgba(255,255,255,.82);
+      font-weight: 600;
+    }
+
+    /* ─── CTA ─── */
+    .proj-cta {
+      padding: 88px 0;
+      text-align: center;
+      border-bottom: 1px solid var(--rule);
+    }
+    .proj-cta .eyebrow { margin-bottom: 16px; }
+    .proj-cta h2 {
+      font-family: var(--f-phudu);
+      font-size: clamp(28px, 4vw, 54px);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      color: #fff;
+      margin: 0 0 28px;
+    }
+    .proj-cta h2 em { color: var(--sky, #1d9ee9); font-style: normal; }
+    .proj-cta .ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ─── Projets liés ─── */
+    .proj-related { padding: 80px 0 100px; }
+    .proj-related-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 40px;
+    }
+    .proj-related-header h2 {
+      font-family: var(--f-phudu);
+      font-size: clamp(22px, 2.5vw, 36px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin: 0;
+    }
+    .proj-related-header a {
+      font-family: var(--f-sf);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: var(--sky, #1d9ee9);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .proj-related-header a:hover { opacity: .8; }
+    .proj-related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .rel-card { display: flex; flex-direction: column; text-decoration: none; }
+    .rel-img-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      aspect-ratio: 4/3;
+      display: block;
+    }
+    .rel-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .55s cubic-bezier(.2,.7,.2,1);
+    }
+    .rel-card:hover .rel-img-wrap img { transform: scale(1.04); }
+    .rel-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(6,9,23,.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity .3s ease;
+      border-radius: 10px;
+    }
+    .rel-card:hover .rel-overlay { opacity: 1; }
+    .rel-overlay span {
+      font-family: var(--f-sf);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 10px 22px;
+      border: 1px solid rgba(255,255,255,.30);
+      border-radius: 999px;
+    }
+    .rel-caption { padding: 14px 2px 4px; }
+    .rel-title { font-family: var(--f-sf); font-size: 14px; font-weight: 600; color: #fff; display: block; }
+    .rel-type  { font-family: var(--f-sf); font-size: 11px; color: rgba(255,255,255,.38); display: block; margin-top: 3px; }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 1100px) {
+      .proj-carousel-stage { padding: 90px 0 22px; }
+      .proj-carousel-track { height: 240px; gap: 22px; }
+    }
+    @media (max-width: 900px) {
+      .proj-intro-grid    { display: flex; flex-direction: column; gap: 16px; }
+      .proj-intro-top, .proj-intro-grid .proj-intro-title, .proj-intro-grid .proj-intro-desc { grid-column: unset; grid-row: unset; align-self: unset; }
+      .proj-meta-grid     { grid-template-columns: 1fr; }
+      .proj-split-grid    { grid-template-columns: 1fr; gap: 36px; }
+      .proj-split-grid-rev{ grid-template-columns: 1fr; gap: 36px; }
+      .proj-related-grid  { grid-template-columns: repeat(2, 1fr); }
+      .proj-carousel-stage { padding: 80px 0 18px; }
+      .proj-carousel-track { height: 200px; gap: 18px; }
+      .proj-3d-logo { max-width: 240px; width: 60%; }
+    }
+    @media (max-width: 600px) {
+      .proj-carousel-stage { padding: 64px 0 14px; }
+      .proj-carousel-track { height: 160px; gap: 14px; }
+      .proj-3d-logo { max-width: 180px; width: 70%; }
+    }
+    @media (max-width: 540px) {
+      .proj-related-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GNMMKY3BZB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GNMMKY3BZB');
+  </script>
+  <link rel="icon" type="image/png" href="../favicon-light.png" />
+  <link rel="apple-touch-icon" href="../favicon-light.png" />
+<meta property="og:image" content="https://digitaldreamsbox.com/mpzsfo5z-Images-de-partage.webp">
+  <meta name="twitter:image" content="https://digitaldreamsbox.com/mpzsfo5z-Images-de-partage.webp">
+</head>
+<body>
+
+<header class="site-header" role="banner">
+  <div class="shell-wide nav">
+    <a href="/" class="brand" aria-label="Digital Dreamsbox — Accueil">
+      <img src="../mq02h9of-NVlogo-3d-d_d.png" alt="Logo Digital Dreamsbox" width="46" height="46" />
+      <span class="brand-text">
+        <span class="b1">Digital</span>
+        <span class="b2">Dreamsbox</span>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="agence.html">Agence</a>
+      <a href="services.html">Services</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="journal.html">Journal</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="tel:+33688848145" class="btn btn-ghost nav-call" aria-label="Appeler">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.5 12.5 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.5 12.5 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+        Appeler
+      </a>
+      <a href="contact.html" class="btn btn-primary" data-magnet>
+        Nous contacter
+        <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <div class="proj-body">
+
+    <!-- ─── 0. Hero image ─── -->
+    <section class="proj-hero-img-section" data-od-id="hero-image" aria-label="Share Music — visuel principal">
+      <img src="../mq0p5yck-Bannie_re-de-la-page-share-music.webp"
+           alt="Share Music — bannière du projet, interface musicale sombre"
+           fetchpriority="high" />
+    </section>
+
+    <!-- ─── 1. Intro ─── -->
+    <section class="proj-intro" data-od-id="intro" aria-label="Présentation du projet">
+      <div class="shell">
+        <div class="proj-intro-grid">
+          <div class="proj-intro-top">
+            <div class="crumbs">
+              <a href="/">Accueil</a>
+              <span class="sep">/</span>
+              <a href="galerie.html">Galerie</a>
+              <span class="sep">/</span>
+              <span>Share Music</span>
+            </div>
+            <span class="proj-intro-eyebrow">Plonger dans l'univers de</span>
+          </div>
+          <h1 class="proj-intro-title">Share Music</h1>
+          <p class="proj-intro-desc"><strong>Share Music</strong> est une application mobile dédiée au partage et à la découverte musicale entre utilisateurs. L'identité visuelle, sombre et immersive, conjugue design d'interface et direction artistique pour créer une expérience qui capte dès le premier geste.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── 2. Logo 3D + Carrousel ─── -->
+    <section class="proj-carousel-section" data-od-id="logo-carousel" aria-label="Logo 3D et carrousel du projet">
+      <div class="proj-3d-logo-wrap">
+        <img class="proj-3d-logo"
+             src="../mq0p5ycz-logo-3d-share-music.png"
+             alt="Share Music — logotype 3D"
+             loading="lazy" />
+      </div>
+
+      <div class="proj-carousel-stage">
+        <div class="proj-carousel-track" role="region" aria-label="Carrousel de visuels Share Music">
+          <div class="proj-carousel-slide is-active">
+            <img src="../mq0p5ycg-image-share-music-paysage-1.webp"
+                 alt="Share Music — visuel 1"
+                 loading="lazy" />
+          </div>
+          <div class="proj-carousel-slide">
+            <img src="../mq0p5yd4-image-share-music-paysage-2.webp"
+                 alt="Share Music — visuel 2"
+                 loading="lazy" />
+          </div>
+          <div class="proj-carousel-slide">
+            <img src="../mq0p5ycz-image-share-music-paysage-3.webp"
+                 alt="Share Music — visuel 3"
+                 loading="lazy" />
+          </div>
+          <div class="proj-carousel-slide">
+            <img src="../mq0p5ycy-image-share-music-paysage-4.webp"
+                 alt="Share Music — visuel 4"
+                 loading="lazy" />
+          </div>
+          <div class="proj-carousel-slide">
+            <img src="../mq0p5ycr-image-share-music-paysage-5.webp"
+                 alt="Share Music — visuel 5"
+                 loading="lazy" />
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <div class="proj-carousel-pagination" role="tablist" aria-label="Indicateur de page">
+      <span class="pag-bar active"></span>
+      <span class="pag-bar"></span>
+      <span class="pag-bar"></span>
+      <span class="pag-bar"></span>
+      <span class="pag-bar"></span>
+    </div>
+
+    <!-- ─── 3. Méta + description ─── -->
+    <section class="proj-meta" data-od-id="meta" aria-label="Fiche projet">
+      <div class="shell">
+        <div class="proj-meta-grid">
+
+          <div class="proj-meta-img">
+            <img src="../mq0p5ycw-image-portrait-share-music-1.webp"
+                 alt="Share Music — interface de l'application mobile"
+                 loading="lazy" />
+          </div>
+
+          <div class="proj-meta-content">
+            <table class="proj-spec-table" aria-label="Informations projet">
+              <tr>
+                <td>Services</td>
+                <td>UI/UX Design, Branding, Direction artistique</td>
+              </tr>
+              <tr>
+                <td>Client</td>
+                <td>Share Music</td>
+              </tr>
+              <tr>
+                <td>Projet</td>
+                <td>Application mobile</td>
+              </tr>
+              <tr>
+                <td>Secteur</td>
+                <td>Musique / Tech</td>
+              </tr>
+              <tr>
+                <td>Année</td>
+                <td>2024</td>
+              </tr>
+            </table>
+            <p class="proj-meta-desc"><strong>Share Music</strong> est née d'une vision simple : transformer le partage musical en un moment visuel fort. L'application repose sur une esthétique sombre et contrastée, où chaque écran est pensé pour mettre la musique au premier plan. Du branding au design des interfaces, chaque décision visuelle renforce l'identité d'une appli qui se distingue par sa cohérence et son ambition.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── 4. UI/UX Design ─── -->
+    <section class="proj-split" data-od-id="split-01" aria-label="UI/UX Design">
+      <div class="shell">
+        <div class="proj-split-grid">
+          <div class="proj-split-text">
+            <span class="chapter-num">01 — UI/UX Design</span>
+            <h3>Des interfaces pensées<br>pour l'émotion.</h3>
+            <p>Chaque écran de l'application a été conçu autour d'un principe : <strong>mettre la musique en scène</strong>. La hiérarchie visuelle guide l'œil sans effort — pochettes en plein format, typographie aérée, transitions fluides. L'interface disparaît pour laisser place à l'expérience. Les parcours utilisateurs sont directs, les interactions sensorielles, le tout pensé pour une utilisation instinctive dès le premier lancement.</p>
+          </div>
+          <div class="proj-split-img">
+            <img src="../mq0p5ycp-image-portrait-share-music-2.webp"
+                 alt="Share Music — écran de l'application mobile"
+                 loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── 5. Branding & Identité ─── -->
+    <section class="proj-split" data-od-id="split-02" aria-label="Branding et identité visuelle">
+      <div class="shell">
+        <div class="proj-split-grid-rev">
+          <div class="proj-split-img">
+            <img src="../mq0p5ycr-image-portrait-share-music-3.webp"
+                 alt="Share Music — identité visuelle et branding"
+                 loading="lazy" />
+          </div>
+          <div class="proj-split-text">
+            <span class="chapter-num">02 — Branding &amp; Identité visuelle</span>
+            <h3>Une marque qui résonne<br>avant même d'être entendue.</h3>
+            <p>Le logotype 3D de Share Music est conçu pour marquer. <strong>Vert signal, fond sombre, forme architecturée</strong> — le système couleur est binaire et sans compromis. Le vert porte l'énergie, le dark canvas lui donne de la profondeur. Appliqué sur l'appli, les supports print ou les réseaux sociaux, l'identité reste immédiatement reconnaissable et s'adapte à chaque surface sans perdre de son impact.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── CTA ─── -->
+    <section class="proj-cta" data-od-id="cta" aria-label="Démarrer un projet similaire">
+      <div class="shell" style="max-width:920px;">
+        <span class="eyebrow">Votre tour</span>
+        <h2><span style="white-space:nowrap;">Un projet comme celui&#8209;là,</span><br><em>ça se construit ensemble.</em></h2>
+        <div class="ctas">
+          <a href="contact.html" class="btn btn-primary" data-magnet>
+            Demander un devis
+            <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="galerie.html" class="btn btn-ghost">Voir la galerie</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Projets liés ─── -->
+    <section class="proj-related" data-od-id="related" aria-label="Autres projets">
+      <div class="shell">
+        <div class="proj-related-header">
+          <h2>Autres projets</h2>
+          <a href="galerie.html" aria-label="Voir toute la galerie">
+            Toute la galerie
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="proj-related-grid">
+          <a class="rel-card" href="best-burger.html" aria-label="Best Burger — voir le projet">
+            <div class="rel-img-wrap">
+              <img src="../mpvcrvnl-galerie-creation-site-web-restaurant-burger-branding-identite-visuelle.webp" alt="Best Burger — branding identité visuelle" loading="lazy" />
+              <div class="rel-overlay"><span>Voir le projet</span></div>
+            </div>
+            <div class="rel-caption">
+              <span class="rel-title">Best Burger</span>
+              <span class="rel-type">Branding, Direction artistique</span>
+            </div>
+          </a>
+          <a class="rel-card" href="pause-co.html" aria-label="Pause &amp; co — voir le projet">
+            <div class="rel-img-wrap">
+              <img src="../mpz57ng2-preview-projet-pauseco.webp" alt="Pause &amp; co — identité visuelle traiteur" loading="lazy" />
+              <div class="rel-overlay"><span>Voir le projet</span></div>
+            </div>
+            <div class="rel-caption">
+              <span class="rel-title">Pause &amp; co</span>
+              <span class="rel-type">Branding</span>
+            </div>
+          </a>
+          <a class="rel-card" href="la-table-du-marche.html" aria-label="La Table Du Marché — voir le projet">
+            <div class="rel-img-wrap">
+              <img src="../mpvdmpxx-galerie-refonte-site-web-restaurant-luxueux-branding-identite-visuelle.webp" alt="La Table Du Marché — refonte site web restaurant" loading="lazy" />
+              <div class="rel-overlay"><span>Voir le projet</span></div>
+            </div>
+            <div class="rel-caption">
+              <span class="rel-title">La Table Du Marché</span>
+              <span class="rel-type">Site Web, Branding</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- .proj-body -->
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="shell">
+    <div class="footer-top">
+      <div>
+        <div class="brand">
+          <img src="../mq02h9of-NVlogo-3d-d_d.png" alt="" width="46" height="46" />
+        </div>
+        <p class="footer-blurb">Agence de marque &amp; design visuel.</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="services.html#branding">Branding</a></li>
+          <li><a href="services.html#sites-web">Sites web</a></li>
+          <li><a href="services.html#google-ads">Google Ads</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Agence</h5>
+        <ul>
+          <li><a href="agence.html">Qui sommes-nous</a></li>
+          <li><a href="galerie.html">Galerie</a></li>
+          <li><a href="journal.html">Journal</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="tel:+33688848145">06 88 84 81 45</a></li>
+          <li><a href="mailto:contact@digitaldreamsbox.com">contact@digitaldreamsbox.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Réseaux</h5>
+        <ul>
+          <li><a href="https://www.youtube.com/@DigitalDreamsbox" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.instagram.com/digital_dreamsbox/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/digital-dreamsbox-749b29371" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span data-year="">2026</span> Digital Dreamsbox — Tous droits réservés.</span>
+      <span><a href="mentions-legales.html">Mentions légales</a> &nbsp;·&nbsp; <a href="confidentialite.html">Politique de confidentialité</a> &nbsp;·&nbsp; <a href="cgv.html">CGV</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../script.js"></script>
+
+<script>
+  /* Share Music — carrousel transform-based (1 geste = 1 image, centrage déterministe) */
+  (function () {
+    var rail = document.querySelector('.proj-carousel-stage');
+    if (!rail) return;
+    var track = rail.querySelector('.proj-carousel-track');
+    if (!track) return;
+    var slides = Array.from(track.querySelectorAll('.proj-carousel-slide'));
+    var dots   = Array.from(document.querySelectorAll('.proj-carousel-pagination .pag-bar'));
+    if (!slides.length) return;
+
+    var idx = 0;
+    var locked = false;
+    var lockTo = null;
+    var TRANSITION_MS = 460;
+
+    function getGap() {
+      var v = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap);
+      return isFinite(v) ? v : 28;
+    }
+
+    function computeTranslateX(i) {
+      var gap = getGap();
+      var x = 0;
+      for (var k = 0; k < i; k++) {
+        x += slides[k].offsetWidth + gap;
+      }
+      var slideCenter = x + slides[i].offsetWidth / 2;
+      var railCenter  = rail.offsetWidth / 2;
+      return railCenter - slideCenter;
+    }
+
+    function paint() {
+      slides.forEach(function (s, k) {
+        s.classList.toggle('is-active', k === idx);
+        var d = Math.abs(k - idx);
+        var t = d === 0 ? 1 : d === 1 ? 0.35 : 0;
+        s.style.setProperty('--t', t.toFixed(3));
+      });
+      dots.forEach(function (d, k) { d.classList.toggle('active', k === idx); });
+    }
+
+    function applyTransform(tx, instant) {
+      if (instant) {
+        var prev = track.style.transition;
+        track.style.transition = 'none';
+        track.style.transform = 'translate3d(' + tx + 'px, 0, 0)';
+        track.offsetHeight;
+        track.style.transition = prev;
+      } else {
+        track.style.transform = 'translate3d(' + tx + 'px, 0, 0)';
+      }
+    }
+
+    function goTo(i, instant) {
+      i = Math.max(0, Math.min(slides.length - 1, i));
+      idx = i;
+      paint();
+      applyTransform(computeTranslateX(idx), !!instant);
+      if (!instant) {
+        locked = true;
+        clearTimeout(lockTo);
+        lockTo = setTimeout(function () { locked = false; }, TRANSITION_MS);
+      }
+    }
+
+    function step(dir) {
+      if (locked) return;
+      var next = idx + (dir > 0 ? 1 : -1);
+      if (next < 0 || next > slides.length - 1) return;
+      goTo(next);
+    }
+
+    dots.forEach(function (d, i) {
+      d.addEventListener('click', function () { if (!locked) goTo(i); });
+    });
+
+    var isDown = false, dragStartX = 0, dragMoved = false, dragDir = 0;
+    slides.forEach(function (s, i) {
+      s.addEventListener('click', function (e) {
+        if (dragMoved) { e.preventDefault(); return; }
+        if (i !== idx && !locked) goTo(i);
+      });
+    });
+
+    var touchStartX = 0, touchStartY = 0, touchActive = false;
+    rail.addEventListener('touchstart', function (e) {
+      if (locked) return;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchActive = true;
+    }, { passive: true });
+    rail.addEventListener('touchend', function (e) {
+      if (!touchActive) return;
+      touchActive = false;
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      var dy = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(dx) < 30 || Math.abs(dx) < Math.abs(dy)) return;
+      step(dx < 0 ? 1 : -1);
+    }, { passive: true });
+
+    var wheelCooldownUntil = 0;
+    rail.addEventListener('wheel', function (e) {
+      var ax = Math.abs(e.deltaX);
+      var ay = Math.abs(e.deltaY);
+      if (ax <= ay) return;
+      if (ax < 4) return;
+      e.preventDefault();
+      var now = Date.now();
+      if (now < wheelCooldownUntil) return;
+      if (locked) return;
+      wheelCooldownUntil = now + TRANSITION_MS + 120;
+      step(e.deltaX > 0 ? 1 : -1);
+    }, { passive: false });
+
+    rail.addEventListener('mousedown', function (e) {
+      if (locked) return;
+      isDown = true; dragMoved = false; dragDir = 0;
+      dragStartX = e.pageX;
+      rail.classList.add('is-dragging');
+      track.classList.add('is-dragging');
+      e.preventDefault();
+    });
+    window.addEventListener('mousemove', function (e) {
+      if (!isDown) return;
+      var dx = e.pageX - dragStartX;
+      if (Math.abs(dx) > 8) {
+        dragMoved = true;
+        dragDir = dx < 0 ? 1 : -1;
+      }
+    });
+    window.addEventListener('mouseup', function () {
+      if (!isDown) return;
+      isDown = false;
+      rail.classList.remove('is-dragging');
+      track.classList.remove('is-dragging');
+      if (dragMoved && dragDir !== 0) step(dragDir);
+      setTimeout(function () { dragMoved = false; }, 60);
+    });
+
+    var resizeTo = null;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTo);
+      resizeTo = setTimeout(function () { goTo(idx, true); }, 80);
+    });
+
+    function init(retries) {
+      retries = retries || 0;
+      if (slides[0] && slides[0].offsetWidth === 0 && retries < 30) {
+        requestAnimationFrame(function () { init(retries + 1); });
+        return;
+      }
+      goTo(0, true);
+    }
+    var imgs = rail.querySelectorAll('img');
+    var loaded = 0;
+    if (imgs.length === 0) init();
+    imgs.forEach(function (img) {
+      if (img.complete && img.naturalWidth) { loaded++; if (loaded === imgs.length) init(); }
+      else {
+        img.addEventListener('load',  function () { loaded++; if (loaded === imgs.length) init(); });
+        img.addEventListener('error', function () { loaded++; if (loaded === imgs.length) init(); });
+      }
+    });
+    window.addEventListener('load', function () { goTo(idx, true); });
+  })();
+</script>
+
+</body>
+</html>
