@@ -559,8 +559,8 @@
   ];
   var STAR_COUNT = 26;
   var SWEEP_MS   = 680;
-  var FADE_IN    = 460;
-  var FADE_OUT   = 420;
+  var FADE_IN    = 350;
+  var FADE_OUT   = 340;
   var running    = false;
 
   function spawnStars() {
