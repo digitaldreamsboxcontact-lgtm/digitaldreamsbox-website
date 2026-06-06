@@ -60,6 +60,11 @@ body {
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
+  animation: blobsFadeIn 900ms ease forwards;
+}
+@keyframes blobsFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 .blob {
   position: absolute;

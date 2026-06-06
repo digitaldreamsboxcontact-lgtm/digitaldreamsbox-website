@@ -6,18 +6,9 @@
 (function () {
   'use strict';
 
-  /* ── 0. Animated blob background + scroll-speed acceleration ─ */
-  /* Différé : ne bloque pas le thread principal au chargement    */
+  /* ── 0. Blob scroll-speed acceleration ──────────────────────── */
+  /* Les blobs sont dans le HTML — seule l'accélération au scroll est différée */
   (window.requestIdleCallback || function (fn) { setTimeout(fn, 200); })(function () {
-    var wrap = document.createElement('div');
-    wrap.id = 'bg-blobs';
-    for (var i = 1; i <= 3; i++) {
-      var b = document.createElement('div');
-      b.className = 'blob blob-' + i;
-      wrap.appendChild(b);
-    }
-    document.body.insertBefore(wrap, document.body.firstChild);
-
     var lastScrollY = window.scrollY;
     var decayTimer  = null;
     var MAX_RATE    = 6.5;
