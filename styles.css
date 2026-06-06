@@ -2668,6 +2668,15 @@ html.js-ready .reveal.in {
 
 
 /* ── Page transition ─────────────────────────────────────── */
+#pt-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: #0B1526;
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+}
 .pt-star {
   position: fixed;
   z-index: 9999;
