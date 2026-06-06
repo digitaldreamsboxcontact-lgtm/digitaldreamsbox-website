@@ -7,8 +7,8 @@
   'use strict';
 
   /* ── 0. Animated blob background + scroll-speed acceleration ─ */
-  (function () {
-    /* Inject 3 blobs grands uniquement */
+  /* Différé : ne bloque pas le thread principal au chargement    */
+  (window.requestIdleCallback || function (fn) { setTimeout(fn, 200); })(function () {
     var wrap = document.createElement('div');
     wrap.id = 'bg-blobs';
     for (var i = 1; i <= 3; i++) {
@@ -18,8 +18,6 @@
     }
     document.body.insertBefore(wrap, document.body.firstChild);
 
-    /* Scroll velocity → WAAPI playbackRate.
-       Faster scroll = faster blobs. When scroll stops, rate decays back to 1. */
     var lastScrollY = window.scrollY;
     var decayTimer  = null;
     var MAX_RATE    = 6.5;
@@ -37,15 +35,12 @@
     }
 
     function decayToNormal() {
-      /* Smooth 400ms decay: step down 4 times */
-      var steps  = 4;
-      var delay  = 100;
-      var current = MAX_RATE;
+      var steps = 4;
+      var delay = 100;
       for (var s = 1; s <= steps; s++) {
         (function (step) {
           setTimeout(function () {
-            var r = 1 + (MAX_RATE - 1) * (1 - step / steps);
-            setRate(r);
+            setRate(1 + (MAX_RATE - 1) * (1 - step / steps));
           }, delay * step);
         })(s);
       }
@@ -55,15 +50,11 @@
       var y     = window.scrollY;
       var delta = Math.abs(y - lastScrollY);
       lastScrollY = y;
-
-      /* Map pixel delta per event to rate: ~25px → max */
-      var rate = Math.min(1 + delta / 6.5, MAX_RATE);
-      setRate(rate);
-
+      setRate(Math.min(1 + delta / 6.5, MAX_RATE));
       clearTimeout(decayTimer);
       decayTimer = setTimeout(decayToNormal, 120);
     }, { passive: true });
-  })();
+  });
 
   /* ── 1. Year update ──────────────────────────────────────── */
   document.querySelectorAll('[data-year]').forEach(function (el) {
@@ -100,77 +91,76 @@
   }
 
   /* ── 4. Mobile nav — premium overlay ────────────────────────── */
+  /* L'overlay est construit au PREMIER clic : le listener est
+     enregistré immédiatement, le DOM lourd est créé seulement
+     quand l'utilisateur en a besoin.                            */
   var navToggle = document.querySelector('.nav-toggle');
   var navLinks  = document.querySelector('.nav-links');
 
   if (navToggle) {
-    // Replace static SVG with animated lines
     navToggle.innerHTML =
       '<span class="line"></span>' +
       '<span class="line"></span>' +
       '<span class="line"></span>';
 
-    // Collect page links from desktop nav
-    var pageLinks = navLinks ? Array.from(navLinks.querySelectorAll('a')) : [];
-    var nums = ['01', '02', '03', '04', '05'];
+    var overlay = null;
 
-    // Build overlay links HTML
-    var linksHTML = pageLinks.map(function (a, i) {
-      return '<a href="' + a.getAttribute('href') + '" style="--i:' + i + '">' +
-             '<span class="nav-num">' + (nums[i] || '') + '</span>' +
-             a.textContent.trim() +
-             '</a>';
-    }).join('');
+    function buildOverlay() {
+      var pageLinks  = navLinks ? Array.from(navLinks.querySelectorAll('a')) : [];
+      var nums       = ['01', '02', '03', '04', '05'];
+      var isSubPage  = window.location.pathname.indexOf('/pages/') !== -1;
+      var contactHref = isSubPage ? 'contact.html' : 'pages/contact.html';
 
-    // Determine path prefix (pages/contact.html vs contact.html)
-    var isSubPage = window.location.pathname.indexOf('/pages/') !== -1;
-    var contactHref = isSubPage ? 'contact.html' : 'pages/contact.html';
-    var telLink = 'tel:+33688848145';
+      var linksHTML = pageLinks.map(function (a, i) {
+        return '<a href="' + a.getAttribute('href') + '" style="--i:' + i + '">' +
+               '<span class="nav-num">' + (nums[i] || '') + '</span>' +
+               a.textContent.trim() + '</a>';
+      }).join('');
 
-    // Create overlay
-    var overlay = document.createElement('div');
-    overlay.className = 'nav-overlay';
-    overlay.setAttribute('role', 'dialog');
-    overlay.setAttribute('aria-modal', 'true');
-    overlay.setAttribute('aria-label', 'Navigation principale');
-    overlay.innerHTML =
-      '<div class="nav-overlay-inner">' +
-        '<nav class="nav-overlay-links" aria-label="Navigation">' + linksHTML + '</nav>' +
-        '<div class="nav-overlay-bottom">' +
-          '<a href="' + telLink + '" class="btn btn-ghost">' +
-            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.5 12.5 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.5 12.5 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>' +
-            '06 88 84 81 45' +
-          '</a>' +
-          '<a href="' + contactHref + '" class="btn btn-primary">' +
-            'Nous contacter' +
-            '<svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>' +
-          '</a>' +
-          '<p class="nav-overlay-location">' +
-            '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>' +
-            'Sarrebourg, Moselle' +
-          '</p>' +
-        '</div>' +
-      '</div>';
+      overlay = document.createElement('div');
+      overlay.className = 'nav-overlay';
+      overlay.setAttribute('role', 'dialog');
+      overlay.setAttribute('aria-modal', 'true');
+      overlay.setAttribute('aria-label', 'Navigation principale');
+      overlay.innerHTML =
+        '<div class="nav-overlay-inner">' +
+          '<nav class="nav-overlay-links" aria-label="Navigation">' + linksHTML + '</nav>' +
+          '<div class="nav-overlay-bottom">' +
+            '<a href="tel:+33688848145" class="btn btn-ghost">' +
+              '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.5 12.5 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.5 12.5 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>' +
+              '06 88 84 81 45' +
+            '</a>' +
+            '<a href="' + contactHref + '" class="btn btn-primary">' +
+              'Nous contacter' +
+              '<svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>' +
+            '</a>' +
+            '<p class="nav-overlay-location">' +
+              '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>' +
+              'Sarrebourg, Moselle' +
+            '</p>' +
+          '</div>' +
+        '</div>';
 
-    document.body.appendChild(overlay);
+      document.body.appendChild(overlay);
+      overlay.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', closeMenu);
+      });
+    }
 
     function openMenu() {
+      if (!overlay) buildOverlay();
       navToggle.setAttribute('aria-expanded', 'true');
       overlay.classList.add('open');
       document.body.classList.add('nav-open');
     }
     function closeMenu() {
       navToggle.setAttribute('aria-expanded', 'false');
-      overlay.classList.remove('open');
+      if (overlay) overlay.classList.remove('open');
       document.body.classList.remove('nav-open');
     }
 
     navToggle.addEventListener('click', function () {
       navToggle.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
-    });
-
-    overlay.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', closeMenu);
     });
 
     document.addEventListener('keydown', function (e) {
@@ -307,145 +297,6 @@
     'URL:https://digitaldreamsbox.com',
     'ADR;TYPE=WORK:;;Sarrebourg;;57400;;FR',
     'NOTE:Agence web & branding — Moselle · Grand Est',
-    'PHOTO;ENCODING=b;TYPE=JPEG:/9j/4AAQSkZJRgABAQABIAEgAAD/4QCARXhpZgAATU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAA',
-    ' UAAAABAAAARgEoAAMAAAABAAIAAIdpAAQAAAABAAAATgAAAAAAAAEgAAAAAQAAASAAAAABAAOg',
-    ' AQADAAAAAQABAACgAgAEAAAAAQAAAMigAwAEAAAAAQAAAMgAAAAA/+0AOFBob3Rvc2hvcCAzLj',
-    ' AAOEJJTQQEAAAAAAAAOEJJTQQlAAAAAAAQ1B2M2Y8AsgTpgAmY7PhCfv/AABEIAMgAyAMBIgAC',
-    ' EQEDEQH/xAAfAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgv/xAC1EAACAQMDAgQDBQUEBA',
-    ' AAAX0BAgMABBEFEiExQQYTUWEHInEUMoGRoQgjQrHBFVLR8CQzYnKCCQoWFxgZGiUmJygpKjQ1',
-    ' Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoOEhYaHiImKkpOUlZaXmJmaoq',
-    ' OkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4eLj5OXm5+jp6vHy8/T19vf4+fr/',
-    ' xAAfAQADAQEBAQEBAQEBAAAAAAAAAQIDBAUGBwgJCgv/xAC1EQACAQIEBAMEBwUEBAABAncAAQ',
-    ' IDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6',
-    ' Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpq',
-    ' eoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2wBDAAIC',
-    ' AgICAgMCAgMFAwMDBQYFBQUFBggGBgYGBggKCAgICAgICgoKCgoKCgoMDAwMDAwODg4ODg8PDw',
-    ' 8PDw8PDw//2wBDAQICAgQEBAcEBAcQCwkLEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ',
-    ' EBAQEBAQEBAQEBAQEBAQEBAQEBD/3QAEAA3/2gAMAwEAAhEDEQA/AP38ooooAKKKKACiiigAoo',
-    ' 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',
-    ' iigAooooAKKKKACiiigAooooAKKKKAP/2Q==',
     'END:VCARD'
   ].join('\r\n');
 
