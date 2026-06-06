@@ -621,24 +621,5 @@
     }, FADE_IN + 40);
   });
 
-  /* ── Arrivée : overlay redescend ── */
-  window.addEventListener('load', function () {
-    if (!sessionStorage.getItem('pt')) return;
-    sessionStorage.removeItem('pt');
-    var ov = document.getElementById('pt-overlay');
-    ov.style.transition = 'none';
-    ov.style.opacity    = '1';
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        ov.style.transition    = 'opacity ' + FADE_OUT + 'ms ease-out';
-        ov.style.opacity       = '0';
-        ov.style.pointerEvents = 'none';
-        setTimeout(function () {
-          ov.style.transition = '';
-          running = false;
-        }, FADE_OUT + 50);
-      });
-    });
-  });
 
 })();
