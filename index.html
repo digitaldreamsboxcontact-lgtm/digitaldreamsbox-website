@@ -50,21 +50,24 @@
         ]
       },
       {
-        "@type": "LocalBusiness",
+        "@type": ["LocalBusiness", "ProfessionalService"],
         "@id": "https://digitaldreamsbox.com/#localbusiness",
         "name": "Digital Dreamsbox",
         "image": "https://digitaldreamsbox.com/assets/logo-full.jpg",
         "url": "https://digitaldreamsbox.com/",
-        "telephone": "+33 6 88 84 81 45",
+        "telephone": "+33688848145",
+        "email": "contact@digitaldreamsbox.com",
         "priceRange": "€€€",
         "address": {
           "@type": "PostalAddress",
-          "addressLocality": "Sarrebourg",
+          "streetAddress": "",
+          "addressLocality": "Mittersheim",
           "addressRegion": "Moselle",
-          "postalCode": "57400",
+          "postalCode": "57930",
           "addressCountry": "FR"
         },
-        "areaServed": ["Moselle", "Bas-Rhin", "Meurthe-et-Moselle", "Grand Est"],
+        "areaServed": ["Moselle", "Bas-Rhin", "Meurthe-et-Moselle"],
+        "serviceType": ["Création de site web", "Branding", "Google Ads", "SEO local", "Identité visuelle"],
         "geo": {
           "@type": "GeoCoordinates",
           "latitude": 48.7376,
@@ -113,7 +116,7 @@
 </head>
 <body>
 <div id="pt-overlay"></div>
-<script>if(sessionStorage.getItem('pt')){sessionStorage.removeItem('pt');var _o=document.getElementById('pt-overlay');_o.style.opacity='1';_o.style.pointerEvents='all';document.addEventListener('DOMContentLoaded',function(){requestAnimationFrame(function(){requestAnimationFrame(function(){_o.style.transition='opacity 420ms ease-out';_o.style.opacity='0';_o.style.pointerEvents='none';});});});}</script>
+<script>if(sessionStorage.getItem('pt')){sessionStorage.removeItem('pt');var _o=document.getElementById('pt-overlay');_o.style.opacity='1';_o.style.pointerEvents='all';setTimeout(function(){_o.style.transition='opacity 150ms ease-out';_o.style.opacity='0';_o.style.pointerEvents='none';},60);}</script>
 
 <!-- ============================================================
      HEADER

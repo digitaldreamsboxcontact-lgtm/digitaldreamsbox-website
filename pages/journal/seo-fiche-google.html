@@ -43,7 +43,7 @@
 </head>
 <body>
 <div id="pt-overlay"></div>
-<script>if(sessionStorage.getItem('pt')){sessionStorage.removeItem('pt');var _o=document.getElementById('pt-overlay');_o.style.opacity='1';_o.style.pointerEvents='all';document.addEventListener('DOMContentLoaded',function(){requestAnimationFrame(function(){requestAnimationFrame(function(){_o.style.transition='opacity 420ms ease-out';_o.style.opacity='0';_o.style.pointerEvents='none';});});});}</script>
+<script>if(sessionStorage.getItem('pt')){sessionStorage.removeItem('pt');var _o=document.getElementById('pt-overlay');_o.style.opacity='1';_o.style.pointerEvents='all';setTimeout(function(){_o.style.transition='opacity 150ms ease-out';_o.style.opacity='0';_o.style.pointerEvents='none';},60);}</script>
 
 <header class="site-header" role="banner">
   <div class="shell-wide nav">
