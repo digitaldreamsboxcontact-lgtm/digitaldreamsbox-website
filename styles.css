@@ -2675,7 +2675,6 @@ html.js-ready .reveal.in {
   background: #0B1526;
   opacity: 0;
   pointer-events: none;
-  will-change: opacity;
 }
 .pt-star {
   position: fixed;
