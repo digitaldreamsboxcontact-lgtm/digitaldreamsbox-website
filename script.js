@@ -98,11 +98,6 @@
   var navLinks  = document.querySelector('.nav-links');
 
   if (navToggle) {
-    navToggle.innerHTML =
-      '<span class="line"></span>' +
-      '<span class="line"></span>' +
-      '<span class="line"></span>';
-
     var overlay = null;
 
     function buildOverlay() {
