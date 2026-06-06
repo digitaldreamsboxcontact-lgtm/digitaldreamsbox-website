@@ -610,6 +610,8 @@
     e.preventDefault();
     if (running) { window.location.href = link.href; return; }
     running = true;
+    /* Préchargement immédiat de la page cible pendant l'animation */
+    fetch(link.href, { credentials: 'same-origin' }).catch(function () {});
     var ov = document.getElementById('pt-overlay');
     ov.style.transition    = 'opacity ' + FADE_IN + 'ms ease-in';
     ov.style.opacity       = '1';
