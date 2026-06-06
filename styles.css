@@ -2667,51 +2667,11 @@ html.js-ready .reveal.in {
 }
 
 
-/* ── Page transition ──────────────────────────────────────────── */
-#pt-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 9998;
-  background: #0B1526;
-  transform: translateX(110%);
-  will-change: transform;
-  pointer-events: none;
-}
-#pt-overlay.pt-enter {
-  pointer-events: all;
-  animation: ptEnter 0.5s cubic-bezier(0.4, 0, 0.15, 1) forwards;
-}
-#pt-overlay.pt-exit {
-  transform: translateX(0);
-  animation: ptExit 0.5s cubic-bezier(0.85, 0, 0.6, 1) forwards;
-}
-@keyframes ptEnter {
-  from { transform: translateX(110%); }
-  to   { transform: translateX(0); }
-}
-@keyframes ptExit {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-110%); }
-}
+/* ── Page transition ─────────────────────────────────────── */
 .pt-star {
   position: fixed;
   z-index: 9999;
-  border-radius: 50%;
   pointer-events: none;
   opacity: 0;
   will-change: transform, opacity;
-}
-.pt-star.dot {
-  background: #1D9EE9;
-  box-shadow: 0 0 6px #1D9EE9, 0 0 14px rgba(29,158,233,0.5);
-}
-.pt-star.glyph {
-  color: #1D9EE9;
-  border-radius: 0;
-  background: transparent;
-  line-height: 1;
-  text-shadow: 0 0 8px #1D9EE9, 0 0 18px rgba(29,158,233,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }

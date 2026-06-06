@@ -549,83 +549,89 @@
 
 })();
 
-/* ── Page transition ──────────────────────────────────────────── */
+/* ── Page transition ─────────────────────────────────────── */
 (function () {
-  var STAR_COUNT = 32;
-  var running = false;
+  var STAR_URLS  = [
+    'data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMzQjgyRjYiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMEQ0RDQiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cGF0aCBkPSJNNTAgMEM1MiAyNSA3NSA0OCAxMDAgNTBDNzUgNTIgNTIgNzUgNTAgMTAwQzQ4IDc1IDI1IDUyIDAgNTBDMjUgNDggNDggMjUgNTAgMFoiIGZpbGw9InVybCgjZykiLz48L3N2Zz4=',
+    'data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNTAgMEM1MiAyNSA3NSA0OCAxMDAgNTBDNzUgNTIgNTIgNzUgNTAgMTAwQzQ4IDc1IDI1IDUyIDAgNTBDMjUgNDggNDggMjUgNTAgMFoiIGZpbGw9IiMwMEQ0RDQiLz48L3N2Zz4=',
+    'data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNTAgMEM1MiAyNSA3NSA0OCAxMDAgNTBDNzUgNTIgNTIgNzUgNTAgMTAwQzQ4IDc1IDI1IDUyIDAgNTBDMjUgNDggNDggMjUgNTAgMFoiIGZpbGw9IiMxRDlFRTkiLz48L3N2Zz4=',
+    'data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNTAgMEM1MiAyNSA3NSA0OCAxMDAgNTBDNzUgNTIgNTIgNzUgNTAgMTAwQzQ4IDc1IDI1IDUyIDAgNTBDMjUgNDggNDggMjUgNTAgMFoiIGZpbGw9IiMzQjVCREIiLz48L3N2Zz4='
+  ];
+  var STAR_COUNT = 26;
+  var SWEEP_MS   = 680;
+  var BLUR_IN    = 460;
+  var BLUR_OUT   = 420;
+  var MAX_BLUR   = 13;
+  var running    = false;
 
   function spawnStars() {
-    var stars = [];
     for (var i = 0; i < STAR_COUNT; i++) {
-      var isGlyph = Math.random() > 0.65;
-      var el = document.createElement('div');
-      el.classList.add('pt-star', isGlyph ? 'glyph' : 'dot');
-      var startX = window.innerWidth * (0.85 + Math.random() * 0.35);
-      var startY = window.innerHeight * (Math.random() * 0.95);
-      var travelX = -(window.innerWidth * (0.85 + Math.random() * 0.5));
-      var travelY = window.innerHeight * (0.04 + Math.random() * 0.18);
-      var size = isGlyph ? (Math.random() > 0.5 ? 14 : 10) : (Math.random() * 5 + 2);
-      var delay = Math.random() * 420;
-      var duration = 480 + Math.random() * 320;
-      el.style.cssText = 'left:' + startX + 'px;top:' + startY + 'px;' +
-        (isGlyph ? 'width:auto;height:auto;font-size:' + size + 'px;' : 'width:' + size + 'px;height:' + size + 'px;');
-      if (isGlyph) el.textContent = Math.random() > 0.5 ? '✶' : '✸';
-      document.body.appendChild(el);
-      stars.push({ el: el, travelX: travelX, travelY: travelY, delay: delay, duration: duration });
+      (function (i) {
+        var delay = (i / STAR_COUNT) * SWEEP_MS * 0.92;
+        setTimeout(function () {
+          var el = document.createElement('img');
+          el.src = STAR_URLS[i % 4];
+          el.classList.add('pt-star');
+          var size   = 10 + Math.random() * 18;
+          var startX = window.innerWidth + size + 5;
+          var startY = Math.random() * (window.innerHeight - size);
+          var rot    = Math.random() * 50 - 25;
+          var tx     = -(window.innerWidth + size * 2 + Math.random() * 60);
+          var ty     = window.innerHeight * (0.02 + Math.random() * 0.09);
+          var dur    = 350 + Math.random() * 250;
+          el.style.cssText = 'left:' + startX + 'px;top:' + startY + 'px;width:' + size + 'px;height:' + size + 'px;transform:rotate(' + rot + 'deg);';
+          document.body.appendChild(el);
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              el.style.transition = 'transform ' + dur + 'ms cubic-bezier(0.3,0.1,0.4,1),opacity ' + (dur * 0.7) + 'ms ease';
+              el.style.opacity    = '1';
+              el.style.transform  = 'translate(' + tx + 'px,' + ty + 'px) rotate(' + (rot + Math.random() * 24 - 12) + 'deg)';
+              setTimeout(function () {
+                el.style.opacity = '0';
+                setTimeout(function () { el.remove(); }, 350);
+              }, dur * 0.62);
+            });
+          });
+        }, delay);
+      })(i);
     }
-    return stars;
   }
 
-  function animateStar(s) {
-    setTimeout(function () {
-      s.el.style.transition = 'transform ' + s.duration + 'ms cubic-bezier(0.25,0.1,0.25,1), opacity ' + s.duration + 'ms ease';
-      s.el.style.opacity = '1';
-      s.el.style.transform = 'translate(' + s.travelX + 'px,' + s.travelY + 'px)';
-      setTimeout(function () { s.el.style.opacity = '0'; }, s.duration * 0.75);
-    }, s.delay);
-  }
-
-  function doTransition(href) {
-    if (running) return;
-    running = true;
-    var overlay = document.getElementById('pt-overlay');
-    if (!overlay) { window.location.href = href; return; }
-    overlay.className = '';
-    overlay.style.transform = 'translateX(110%)';
-    requestAnimationFrame(function () {
-      var stars = spawnStars();
-      stars.forEach(function (s) { animateStar(s); });
-      overlay.classList.add('pt-enter');
-      setTimeout(function () {
-        window.location.href = href;
-      }, 850);
-    });
+  function canTransition(link) {
+    var href = link.getAttribute('href');
+    if (!href) return false;
+    if (href.indexOf('http') === 0 || href.indexOf('mailto') === 0 || href.indexOf('tel') === 0 || href.indexOf('#') === 0 || link.target === '_blank') return false;
+    return true;
   }
 
   document.addEventListener('click', function (e) {
     var link = e.target.closest('a');
-    if (!link) return;
-    var href = link.getAttribute('href');
-    if (!href) return;
-    if (href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel') || href.startsWith('#') || link.target === '_blank') return;
+    if (!link || !canTransition(link)) return;
     e.preventDefault();
-    doTransition(href);
+    if (running) { window.location.href = link.href; return; }
+    running = true;
+    spawnStars();
+    document.body.style.transition = 'filter ' + BLUR_IN + 'ms ease-in';
+    document.body.style.filter     = 'blur(' + MAX_BLUR + 'px)';
+    setTimeout(function () {
+      sessionStorage.setItem('pt', '1');
+      window.location.href = link.href;
+    }, BLUR_IN + 40);
   });
 
   window.addEventListener('load', function () {
-    var overlay = document.getElementById('pt-overlay');
-    if (!overlay) return;
-    overlay.style.transform = 'translateX(0)';
-    overlay.style.transition = 'none';
+    if (!sessionStorage.getItem('pt')) return;
+    sessionStorage.removeItem('pt');
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
-        overlay.style.transition = '';
-        overlay.classList.add('pt-exit');
+        document.body.style.transition = 'filter ' + BLUR_OUT + 'ms ease-out';
+        document.body.style.filter     = 'blur(0px)';
         setTimeout(function () {
-          overlay.className = '';
-          overlay.style.transform = 'translateX(110%)';
-        }, 560);
+          document.body.style.filter = document.body.style.transition = '';
+          running = false;
+        }, BLUR_OUT + 50);
       });
     });
   });
+
 })();
