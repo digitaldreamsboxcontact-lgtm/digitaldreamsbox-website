@@ -48,6 +48,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   position: relative;
+  touch-action: manipulation;
 }
 
 /* ----- Animated blob background layer -----
