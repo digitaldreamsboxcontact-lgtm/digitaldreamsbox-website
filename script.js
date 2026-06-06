@@ -142,6 +142,8 @@
       });
     }
 
+    (window.requestIdleCallback || function (fn) { setTimeout(fn, 300); })(buildOverlay);
+
     function openMenu() {
       if (!overlay) buildOverlay();
       navToggle.setAttribute('aria-expanded', 'true');
