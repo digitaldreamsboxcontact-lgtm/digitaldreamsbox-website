@@ -443,6 +443,19 @@
   }
 
   /* ── Départ : overlay monte + étoiles ── */
+  /* Fix swipe retour iOS Safari : bfcache restaure la page sans re-exécuter les scripts */
+  window.addEventListener('pageshow', function (e) {
+    if (e.persisted) {
+      var ov = document.getElementById('pt-overlay');
+      if (ov) {
+        ov.style.transition    = 'none';
+        ov.style.opacity       = '0';
+        ov.style.pointerEvents = 'none';
+      }
+      running = false;
+    }
+  });
+
   document.addEventListener('click', function (e) {
     var link = e.target.closest('a');
     if (!link || !canTransition(link)) return;
