@@ -288,9 +288,15 @@
     'END:VCARD'
   ].join('\r\n');
 
+  var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
   document.querySelectorAll('[data-vcard]').forEach(function (el) {
     el.addEventListener('click', function (e) {
       e.preventDefault();
+      if (isIOS) {
+        window.location.href = 'digital-dreamsbox.vcf';
+        return;
+      }
       var blob = new Blob([vcardContent], { type: 'text/vcard' });
       var url  = URL.createObjectURL(blob);
       var a    = document.createElement('a');
