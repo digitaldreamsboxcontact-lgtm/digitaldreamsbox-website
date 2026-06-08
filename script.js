@@ -443,18 +443,20 @@
   }
 
   /* ── Départ : overlay monte + étoiles ── */
-  /* Fix swipe retour iOS Safari : bfcache restaure la page sans re-exécuter les scripts */
-  window.addEventListener('pageshow', function (e) {
-    if (e.persisted) {
-      var ov = document.getElementById('pt-overlay');
-      if (ov) {
-        ov.style.transition    = 'none';
-        ov.style.opacity       = '0';
-        ov.style.pointerEvents = 'none';
-      }
-      running = false;
+  function resetOverlay() {
+    var ov = document.getElementById('pt-overlay');
+    if (ov) {
+      ov.style.transition    = 'none';
+      ov.style.opacity       = '0';
+      ov.style.pointerEvents = 'none';
     }
-  });
+    running = false;
+  }
+
+  /* Réinitialise l'overlay AVANT que Safari prenne le snapshot bfcache */
+  window.addEventListener('pagehide', resetOverlay);
+  /* Réinitialise aussi à la restauration (filet de sécurité) */
+  window.addEventListener('pageshow', function (e) { if (e.persisted) resetOverlay(); });
 
   document.addEventListener('click', function (e) {
     var link = e.target.closest('a');
