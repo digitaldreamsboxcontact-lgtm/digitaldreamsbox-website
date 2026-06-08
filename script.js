@@ -294,7 +294,7 @@
     el.addEventListener('click', function (e) {
       e.preventDefault();
       if (isIOS) {
-        window.location.href = 'digital-dreamsbox.vcf';
+        window.location.href = 'https://digitaldreamsbox.com/digital-dreamsbox.vcf';
         return;
       }
       var blob = new Blob([vcardContent], { type: 'text/vcard' });
