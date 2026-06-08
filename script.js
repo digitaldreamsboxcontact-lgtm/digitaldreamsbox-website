@@ -444,6 +444,9 @@
   function canTransition(link) {
     var href = link.getAttribute('href');
     if (!href) return false;
+    if (link.hasAttribute('download')) return false;
+    if (href.indexOf('blob:') === 0) return false;
+    if (href.indexOf('data:') === 0) return false;
     if (href.indexOf('http') === 0 || href.indexOf('mailto') === 0 || href.indexOf('tel') === 0 || href.indexOf('#') === 0 || link.target === '_blank') return false;
     return true;
   }
