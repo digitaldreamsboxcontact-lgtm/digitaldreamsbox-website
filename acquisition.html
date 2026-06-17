@@ -1,21 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-T9M3KKHB');</script>
-<!-- End Google Tag Manager -->
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <meta name="theme-color" content="#0B1526" />
 
   <title>Agence web &amp; branding à Sarrebourg — Digital Dreamsbox</title>
-  <meta name="description" content="Création de site web et identité de marque pour les artisans et PME de Moselle. Studio indépendant basé à Sarrebourg. Premier échange gratuit, sans engagement." />
+  <meta name="description" content="Création de site web et identité de marque pour les artisans et PME de Moselle. Studio indépendant basé à Sarrebourg. Premier échange offert, sans engagement." />
+
+  <link rel="icon" type="image/png" href="mq02h9of-NVlogo-3d-d_d.png" />
+  <link rel="apple-touch-icon" href="mq02h9of-NVlogo-3d-d_d.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -97,19 +92,163 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       .services-stack .pills { display: none; }
     }
 
-    /* Process cards : hauteur réduite, contenu qui colle en haut */
+    /* Process cards : hauteur adaptée au contenu (4 bullets + paragraphe long), contenu qui colle en haut */
     .process-card {
-      min-height: clamp(300px, 38vh, 380px);
+      min-height: clamp(460px, 58vh, 560px);
       justify-content: flex-start;
       gap: 20px;
       flex: 0 0 clamp(300px, 36vw, 460px); /* force identique sur toutes les cartes */
       width: clamp(300px, 36vw, 460px);
       max-width: clamp(300px, 36vw, 460px);
-      scroll-snap-align: start;
+      scroll-snap-align: center;
     }
     /* Rail : scroll-snap pour que chaque carte s'aligne proprement */
     .section-process .process-rail {
+      --card-w: clamp(300px, 36vw, 460px);
+      padding-left: max(var(--pad-x), calc((100vw - var(--card-w)) / 2));
+      padding-right: max(var(--pad-x), calc((100vw - var(--card-w)) / 2));
       scroll-snap-type: x mandatory;
+    }
+    .section-process .process-progress { margin-top: 4px; }
+    .section-process { padding-bottom: 52px; }
+
+    /* ─── Carrousel section présentation (adapté des pages projet) ─── */
+    .acq-carousel-section {
+      padding: 80px 0 88px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .acq-carousel-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 55% 45% at 50% 42%, rgba(67,173,233,.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .acq-carousel-head {
+      width: 100%;
+      max-width: var(--shell);
+      margin: 0 auto 0;
+      padding: 0 var(--pad-x);
+      text-align: left;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 10;
+    }
+    .acq-carousel-head .eyebrow {
+      margin-bottom: 12px;
+    }
+    .acq-carousel-head h2 {
+      font-size: clamp(24px, 3.5vw, 40px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.15;
+      margin: 0;
+    }
+    .acq-carousel-stage {
+      position: relative;
+      width: 100%;
+      margin: 0;
+      padding: 100px 0 28px;
+      overflow-x: clip;
+      overflow-y: visible;
+      cursor: grab;
+      touch-action: pan-y;
+    }
+    .acq-carousel-stage.is-dragging { cursor: grabbing; }
+    .acq-carousel-track {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      position: relative;
+      height: 280px;
+      padding: 0;
+      width: max-content;
+      transform: translate3d(0, 0, 0);
+      transition: transform 0.42s cubic-bezier(.2,.8,.2,1);
+      will-change: transform;
+    }
+    .acq-carousel-track.is-dragging { transition: none; }
+    .acq-carousel-slide {
+      --t: 0;
+      flex: 0 0 auto;
+      position: relative;
+      user-select: none;
+      -webkit-user-drag: none;
+      height: 100%;
+      cursor: pointer;
+      z-index: 1;
+    }
+    .acq-carousel-slide.is-active { z-index: 5; }
+    .acq-carousel-slide img {
+      height: 100%;
+      width: auto;
+      display: block;
+      pointer-events: none;
+      -webkit-user-drag: none;
+      border-radius: 6px;
+      box-shadow: 0 14px 36px rgba(0,0,0,.25);
+      transform-origin: center center;
+      transform: scale(calc(0.78 + 0.82 * var(--t)));
+      opacity: calc(0.45 + 0.55 * var(--t));
+      transition: transform 0.42s cubic-bezier(.2,.8,.2,1), opacity 0.42s cubic-bezier(.2,.8,.2,1);
+    }
+    .acq-carousel-slide.is-active { cursor: grab; }
+    .acq-carousel-slide.is-active img {
+      box-shadow: 0 18px 44px rgba(0,0,0,.3);
+    }
+    .acq-carousel-pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      margin-top: 80px;
+      position: relative;
+      z-index: 20;
+    }
+    .acq-pag-bar {
+      display: inline-block;
+      height: 4px;
+      width: 24px;
+      background: rgba(40,55,77,.22);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      padding: 0;
+    }
+    .acq-pag-bar:hover { background: rgba(40,55,77,.4); }
+    .acq-pag-bar.active {
+      width: 44px;
+      background: #43ADE9;
+    }
+    .acq-pag-bar.active:hover { background: #43ADE9; }
+    @media (max-width: 1100px) {
+      .acq-carousel-section { padding: 64px 0 72px; }
+      .acq-carousel-stage { padding: 32px 0 22px; }
+      .acq-carousel-track { height: 240px; gap: 22px; }
+      .acq-carousel-pagination { margin-top: 64px; }
+    }
+    @media (max-width: 900px) {
+      .acq-carousel-section { padding: 52px 0 60px; }
+      .acq-carousel-stage { padding: 28px 0 18px; }
+      .acq-carousel-track { height: 200px; gap: 18px; }
+      .acq-carousel-pagination { margin-top: 52px; }
+    }
+    @media (max-width: 600px) {
+      .acq-carousel-section { padding: 40px 0 48px; }
+      .acq-carousel-stage { padding: 52px 0 12px; }
+      .acq-carousel-track { height: 150px; gap: 12px; }
+      .acq-carousel-slide img { transform: scale(calc(0.85 + 0.50 * var(--t))); }
+      .acq-carousel-pagination { margin-top: 40px; gap: 5px; }
+      .acq-pag-bar { width: 18px; height: 3px; }
+      .acq-pag-bar.active { width: 32px; }
+    }
+    @media (max-width: 400px) {
+      .acq-carousel-section { padding: 32px 0 40px; }
+      .acq-carousel-track { height: 130px; gap: 10px; }
+      .acq-carousel-pagination { margin-top: 32px; }
     }
   </style>
   <!-- Google tag (gtag.js) -->
@@ -119,27 +258,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-GNMMKY3BZB');
-    gtag('config', 'AW-18121297118');
   </script>
-  <link rel="icon" href="favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" href="favicon-light.png" />
-  <link rel="apple-touch-icon" href="favicon-light.png" />
-<meta property="og:image" content="https://digitaldreamsbox.com/og-image.jpg">
-  <meta name="twitter:image" content="https://digitaldreamsbox.com/og-image.jpg">
 </head>
-<body><!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T9M3KKHB"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+<body>
 <div id="pt-overlay"></div>
 <script>if(sessionStorage.getItem('pt')){sessionStorage.removeItem('pt');var _o=document.getElementById('pt-overlay');_o.style.opacity='1';_o.style.pointerEvents='all';setTimeout(function(){_o.style.transition='opacity 150ms ease-out';_o.style.opacity='0';_o.style.pointerEvents='none';},60);}</script>
+<div id="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
 
 <!-- ============================================================
      HEADER MINIMAL — logo uniquement
 ============================================================ -->
 <header class="site-header acq-header" role="banner">
   <div class="shell-wide nav">
-    <a href="/" class="brand" aria-label="Digital Dreamsbox — Accueil">
+    <a href="index.html" class="brand" aria-label="Digital Dreamsbox — Accueil">
       <img src="mq02h9of-NVlogo-3d-d_d.png" alt="Logo Digital Dreamsbox" width="46" height="46" />
       <span class="brand-text">
         <span class="b1">Digital</span>
@@ -172,7 +303,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       Création de site web et identité de marque pour les artisans et PME de Moselle qui veulent être pris au sérieux.
     </p>
     <div class="hero-ctas reveal" style="--rd:220ms;">
-      <a href="#contact" class="btn btn-ghost">Demander un devis gratuit</a>
+      <a href="#contact" class="btn btn-ghost">Demander un devis offert</a>
     </div>
     <div class="hero-meta reveal" style="--rd:320ms;">
       <div>
@@ -180,7 +311,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="v">Grand Est</span>
       </div>
       <div>
-        <span class="k">Premier appel gratuit</span>
+        <span class="k">Premier appel offert</span>
         <span class="v">20 min</span>
       </div>
       <div>
@@ -290,6 +421,47 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ============================================================
+     3bis. PRÉSENTATION — carrousel d'images
+============================================================ -->
+<section class="acq-carousel-section" data-od-id="acq-presentation-carousel" aria-label="Carrousel de présentation">
+  <div class="acq-carousel-head">
+    <span class="eyebrow">Réalisations</span>
+    <h2>Quelques exemples</h2>
+  </div>
+  <div class="acq-carousel-stage">
+    <div class="acq-carousel-track" role="region" aria-label="Carrousel de visuels Digital Dreamsbox">
+      <div class="acq-carousel-slide is-active">
+        <img src="mqe70lce-Image-AC-1.webp" alt="Présentation Digital Dreamsbox — image 1" loading="lazy" />
+      </div>
+      <div class="acq-carousel-slide">
+        <img src="mqe70lcq-Image-AC-2.webp" alt="Présentation Digital Dreamsbox — image 2" loading="lazy" />
+      </div>
+      <div class="acq-carousel-slide">
+        <img src="mqe70lct-Image-AC-3.webp" alt="Présentation Digital Dreamsbox — image 3" loading="lazy" />
+      </div>
+      <div class="acq-carousel-slide">
+        <img src="mqe70lcl-Image-AC-4.webp" alt="Présentation Digital Dreamsbox — image 4" loading="lazy" />
+      </div>
+      <div class="acq-carousel-slide">
+        <img src="mqe70lcp-Image-AC-5.webp" alt="Présentation Digital Dreamsbox — image 5" loading="lazy" />
+      </div>
+      <div class="acq-carousel-slide">
+        <img src="mqe70lcj-Image-AC-6.webp" alt="Présentation Digital Dreamsbox — image 6" loading="lazy" />
+      </div>
+    </div>
+  </div>
+
+  <div class="acq-carousel-pagination" role="tablist" aria-label="Indicateur de page">
+    <span class="acq-pag-bar active"></span>
+    <span class="acq-pag-bar"></span>
+    <span class="acq-pag-bar"></span>
+    <span class="acq-pag-bar"></span>
+    <span class="acq-pag-bar"></span>
+    <span class="acq-pag-bar"></span>
+  </div>
+</section>
+
+<!-- ============================================================
      4. MÉTHODE — process rail
 ============================================================ -->
 <section class="section-process" id="methode" aria-labelledby="process-title">
@@ -322,15 +494,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <article class="process-card is-active">
         <div>
           <span class="step-num">01</span>
-          <span class="duration"><span style="width:6px;height:6px;background:currentColor;border-radius:999px;display:inline-block;"></span>Gratuit — 20 min</span>
+          <span class="duration"><span style="width:6px;height:6px;background:currentColor;border-radius:999px;display:inline-block;"></span>Offert — 20 min</span>
           <h3>Appel découverte</h3>
         </div>
         <div>
-          <p>On comprend votre métier, vos clients, vos objectifs. Aucun engagement.</p>
+          <p>On apprend votre activité, vos clients, vos enjeux. Ce n'est pas un appel de vente, c'est un vrai diagnostic : on cherche à comprendre votre entreprise avant de proposer quoi que ce soit.</p>
           <ul>
-            <li>On écoute avant de parler</li>
-            <li>Pas de jargon</li>
-            <li>Bilan honnête</li>
+            <li>Votre activité, ce que vous vendez, ce qui vous distingue</li>
+            <li>Vos difficultés actuelles et leurs conséquences</li>
+            <li>Vos objectifs de croissance</li>
+            <li>Bilan honnête, sans engagement</li>
           </ul>
         </div>
       </article>
@@ -342,10 +515,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <h3>Proposition sur mesure</h3>
         </div>
         <div>
-          <p>Devis clair, délais précis, aucune mauvaise surprise.</p>
+          <p>On revient avec une proposition commerciale complète, pas juste un devis. Elle s'appuie sur un audit de positionnement poussé : analyse de vos concurrents locaux et de votre visibilité Google &amp; IA.</p>
           <ul>
-            <li>Prix transparent</li>
-            <li>Calendrier défini</li>
+            <li>Audit concurrentiel &amp; visibilité Search &amp; IA</li>
+            <li>Stratégie adaptée à vos objectifs</li>
+            <li>Investissement clair, calendrier défini</li>
             <li>Aucun extra caché</li>
           </ul>
         </div>
@@ -358,11 +532,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <h3>On crée ensemble</h3>
         </div>
         <div>
-          <p>Vous validez, on ajuste. Vous restez décideur à chaque étape.</p>
+          <p>On conçoit votre site ou votre identité à partir de ce qu'on a appris. Pas un modèle standard, un écosystème pensé pour votre secteur, vos clients et vos objectifs.</p>
           <ul>
-            <li>Points réguliers</li>
-            <li>Vous gardez la main</li>
-            <li>Itérations rapides</li>
+            <li>Design 100% sur mesure</li>
+            <li>Vous validez, on ajuste à chaque étape</li>
+            <li>Vous restez décideur à tout moment</li>
           </ul>
         </div>
       </article>
@@ -374,11 +548,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <h3>Livraison &amp; suivi</h3>
         </div>
         <div>
-          <p>On vous livre un outil que vous maîtrisez. On reste disponibles.</p>
+          <p>On vous livre, on vous forme, et on ne disparaît pas. Vous avez toujours un interlocuteur joignable, par téléphone, en présentiel ou par email.</p>
           <ul>
-            <li>Formation incluse</li>
-            <li>Accès remis</li>
-            <li>Support continu</li>
+            <li>Formation incluse, accès remis</li>
+            <li>Joignable par téléphone, email et en présentiel</li>
+            <li>Optimisation SEO disponible</li>
+            <li>Accompagnement long terme pour aller plus loin</li>
           </ul>
         </div>
       </article>
@@ -453,7 +628,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </h2>
       <p class="body-md reveal" style="--rd:140ms;">On préfère être transparents dès le départ.</p>
       <div class="ctas reveal" style="--rd:220ms;">
-        <a href="#contact" class="btn btn-ghost">Demander un devis gratuit</a>
+        <a href="#contact" class="btn btn-ghost">Demander un devis offert</a>
       </div>
     </aside>
 
@@ -465,7 +640,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
         </button>
         <div class="faq-a">
-          <div class="faq-a-inner">Un site crédible qui convertit commence à partir de <strong>800 €</strong>. Pour un site premium avec identité visuelle soignée, on se situe autour de <strong>2 000 €</strong>. Chaque projet est cadré sur mesure — on vous remet un devis clair après un premier échange gratuit, sans engagement.</div>
+          <div class="faq-a-inner">Un site crédible qui convertit commence à partir de <strong>800 €</strong>. Pour un site premium avec identité visuelle soignée, on se situe autour de <strong>1 900 €</strong>. Chaque projet est cadré sur mesure, on vous remet un devis clair après un premier échange offert, sans engagement.</div>
         </div>
       </div>
 
@@ -525,10 +700,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="blue">voient en premier ?</span>
       </h2>
       <p class="ctxt reveal" style="--rd:140ms;">
-        Premier échange gratuit, sans engagement. En 20 minutes, on voit si on peut vous aider.
+        Premier échange offert, sans engagement. En 20 minutes, on voit si on peut vous aider.
       </p>
       <div class="contact-actions reveal" style="--rd:220ms;">
-        <a href="#contact-form" class="btn btn-ghost">Demander un devis gratuit</a>
+        <a href="#contact-form" class="btn btn-ghost">Demander un devis offert</a>
       </div>
       <div class="contact-list reveal" style="--rd:300ms;">
         <div class="contact-item">
@@ -545,7 +720,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="contact-item">
           <div class="k">Premier contact</div>
-          <div class="v">Gratuit &amp; sans engagement</div>
+          <div class="v">Offert &amp; sans engagement</div>
         </div>
       </div>
     </div>
@@ -574,7 +749,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <label>Ne pas remplir<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
         </div>
         <div class="form-actions">
-          <small>Gratuit — sans engagement</small>
+          <small>Offert — sans engagement</small>
           <button type="submit" class="btn btn-primary">
             Envoyer
             <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
@@ -615,5 +790,179 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <script src="script.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  function initAcqCarousel() {
+    var stage = document.querySelector('.acq-carousel-stage');
+    var track = document.querySelector('.acq-carousel-track');
+    if (!stage || !track) return;
+
+    var slides = Array.prototype.slice.call(track.querySelectorAll('.acq-carousel-slide'));
+    var bars = Array.prototype.slice.call(document.querySelectorAll('.acq-carousel-pagination .acq-pag-bar'));
+    if (!slides.length) return;
+
+    var activeIndex = 0;
+    var slideCenters = [];
+    var stageCenter = 0;
+
+    function computeLayout() {
+      var stageRect = stage.getBoundingClientRect();
+      stageCenter = stageRect.width / 2;
+      slideCenters = slides.map(function (s) {
+        var w = s.getBoundingClientRect().width;
+        return { el: s, w: w };
+      });
+    }
+
+    function setActive(idx) {
+      if (idx < 0) idx = 0;
+      if (idx >= slides.length) idx = slides.length - 1;
+      activeIndex = idx;
+
+      var cs = getComputedStyle(track);
+      var gap = parseFloat(cs.columnGap || cs.gap) || 28;
+      var offset = 0;
+      for (var i = 0; i < idx; i++) {
+        offset += slideCenters[i].w + gap;
+      }
+      offset += slideCenters[idx].w / 2;
+      var translateX = stageCenter - offset;
+      track.style.transform = 'translate3d(' + translateX + 'px, 0, 0)';
+
+      slides.forEach(function (s, i) {
+        var dist = Math.abs(i - idx);
+        var t = Math.max(0, 1 - dist * 0.55);
+        s.style.setProperty('--t', t.toFixed(3));
+        if (i === idx) s.classList.add('is-active');
+        else s.classList.remove('is-active');
+      });
+
+      bars.forEach(function (b, i) {
+        if (i === idx) b.classList.add('active');
+        else b.classList.remove('active');
+      });
+    }
+
+    // Click sur slide → l'activer
+    slides.forEach(function (s, i) {
+      s.addEventListener('click', function () {
+        if (i !== activeIndex) setActive(i);
+      });
+    });
+
+    // Click sur indicateur → aller à la slide
+    bars.forEach(function (b, i) {
+      b.addEventListener('click', function () { setActive(i); });
+    });
+
+    // Wheel trackpad horizontal
+    var wheelLock = false;
+    stage.addEventListener('wheel', function (e) {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        e.preventDefault();
+        if (wheelLock) return;
+        if (e.deltaX > 10) {
+          wheelLock = true;
+          setActive(activeIndex + 1);
+          setTimeout(function () { wheelLock = false; }, 380);
+        } else if (e.deltaX < -10) {
+          wheelLock = true;
+          setActive(activeIndex - 1);
+          setTimeout(function () { wheelLock = false; }, 380);
+        }
+      }
+    }, { passive: false });
+
+    // Touch swipe
+    var touchStartX = 0;
+    var touchStartY = 0;
+    var touchDragging = false;
+    stage.addEventListener('touchstart', function (e) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchDragging = true;
+    }, { passive: true });
+    stage.addEventListener('touchmove', function (e) {
+      if (!touchDragging) return;
+      var dx = e.touches[0].clientX - touchStartX;
+      var dy = e.touches[0].clientY - touchStartY;
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 8) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+    stage.addEventListener('touchend', function (e) {
+      if (!touchDragging) return;
+      touchDragging = false;
+      var dx = (e.changedTouches[0].clientX) - touchStartX;
+      if (dx < -40) setActive(activeIndex + 1);
+      else if (dx > 40) setActive(activeIndex - 1);
+    });
+
+    // Drag souris
+    var mouseDown = false;
+    var mouseStartX = 0;
+    stage.addEventListener('mousedown', function (e) {
+      mouseDown = true;
+      mouseStartX = e.clientX;
+      stage.classList.add('is-dragging');
+    });
+    window.addEventListener('mousemove', function (e) {
+      if (!mouseDown) return;
+      e.preventDefault();
+    });
+    window.addEventListener('mouseup', function (e) {
+      if (!mouseDown) return;
+      mouseDown = false;
+      stage.classList.remove('is-dragging');
+      var dx = e.clientX - mouseStartX;
+      if (dx < -40) setActive(activeIndex + 1);
+      else if (dx > 40) setActive(activeIndex - 1);
+    });
+
+    // Resize
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        computeLayout();
+        setActive(activeIndex);
+      }, 120);
+    });
+
+    // Init après chargement des images
+    var imgs = track.querySelectorAll('img');
+    var loaded = 0;
+    var total = imgs.length;
+    function imgReady() {
+      loaded++;
+      if (loaded >= total) {
+        computeLayout();
+        setActive(0);
+      }
+    }
+    if (total === 0) {
+      computeLayout();
+      setActive(0);
+    } else {
+      imgs.forEach(function (img) {
+        if (img.complete && img.naturalWidth > 0) imgReady();
+        else {
+          img.addEventListener('load', imgReady);
+          img.addEventListener('error', imgReady);
+        }
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAcqCarousel);
+  } else {
+    initAcqCarousel();
+  }
+})();
+</script>
 </body>
 </html>

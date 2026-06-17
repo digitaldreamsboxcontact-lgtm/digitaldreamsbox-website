@@ -6,9 +6,11 @@
 (function () {
   'use strict';
 
-  /* ── 0. Blob scroll-speed acceleration ──────────────────────── */
-  /* Les blobs sont dans le HTML — seule l'accélération au scroll est différée */
-  (window.requestIdleCallback || function (fn) { setTimeout(fn, 200); })(function () {
+  /* ── 0. Animated blob background + scroll-speed acceleration ─ */
+  /* Les blobs sont dans le HTML — seule l'accélération au scroll est gérée ici */
+  (function () {
+    /* Scroll velocity → WAAPI playbackRate.
+       Faster scroll = faster blobs. When scroll stops, rate decays back to 1. */
     var lastScrollY = window.scrollY;
     var decayTimer  = null;
     var MAX_RATE    = 6.5;
@@ -26,12 +28,15 @@
     }
 
     function decayToNormal() {
-      var steps = 4;
-      var delay = 100;
+      /* Smooth 400ms decay: step down 4 times */
+      var steps  = 4;
+      var delay  = 100;
+      var current = MAX_RATE;
       for (var s = 1; s <= steps; s++) {
         (function (step) {
           setTimeout(function () {
-            setRate(1 + (MAX_RATE - 1) * (1 - step / steps));
+            var r = 1 + (MAX_RATE - 1) * (1 - step / steps);
+            setRate(r);
           }, delay * step);
         })(s);
       }
@@ -41,11 +46,15 @@
       var y     = window.scrollY;
       var delta = Math.abs(y - lastScrollY);
       lastScrollY = y;
-      setRate(Math.min(1 + delta / 6.5, MAX_RATE));
+
+      /* Map pixel delta per event to rate: ~25px → max */
+      var rate = Math.min(1 + delta / 6.5, MAX_RATE);
+      setRate(rate);
+
       clearTimeout(decayTimer);
       decayTimer = setTimeout(decayToNormal, 120);
     }, { passive: true });
-  });
+  })();
 
   /* ── 1. Year update ──────────────────────────────────────── */
   document.querySelectorAll('[data-year]').forEach(function (el) {
@@ -82,73 +91,71 @@
   }
 
   /* ── 4. Mobile nav — premium overlay ────────────────────────── */
-  /* L'overlay est construit au PREMIER clic : le listener est
-     enregistré immédiatement, le DOM lourd est créé seulement
-     quand l'utilisateur en a besoin.                            */
   var navToggle = document.querySelector('.nav-toggle');
   var navLinks  = document.querySelector('.nav-links');
 
   if (navToggle) {
-    var overlay = null;
+    // Collect page links from desktop nav
+    var pageLinks = navLinks ? Array.from(navLinks.querySelectorAll('a')) : [];
+    var nums = ['01', '02', '03', '04', '05'];
 
-    function buildOverlay() {
-      var pageLinks  = navLinks ? Array.from(navLinks.querySelectorAll('a')) : [];
-      var nums       = ['01', '02', '03', '04', '05'];
-      var isSubPage  = window.location.pathname.indexOf('/pages/') !== -1;
-      var contactHref = isSubPage ? 'contact.html' : 'pages/contact.html';
+    // Build overlay links HTML
+    var linksHTML = pageLinks.map(function (a, i) {
+      return '<a href="' + a.getAttribute('href') + '" style="--i:' + i + '">' +
+             '<span class="nav-num">' + (nums[i] || '') + '</span>' +
+             a.textContent.trim() +
+             '</a>';
+    }).join('');
 
-      var linksHTML = pageLinks.map(function (a, i) {
-        return '<a href="' + a.getAttribute('href') + '" style="--i:' + i + '">' +
-               '<span class="nav-num">' + (nums[i] || '') + '</span>' +
-               a.textContent.trim() + '</a>';
-      }).join('');
+    // Determine path prefix (pages/contact.html vs contact.html)
+    var isSubPage = window.location.pathname.indexOf('/pages/') !== -1;
+    var contactHref = isSubPage ? 'contact.html' : 'pages/contact.html';
+    var telLink = 'tel:+33688848145';
 
-      overlay = document.createElement('div');
-      overlay.className = 'nav-overlay';
-      overlay.setAttribute('role', 'dialog');
-      overlay.setAttribute('aria-modal', 'true');
-      overlay.setAttribute('aria-label', 'Navigation principale');
-      overlay.innerHTML =
-        '<div class="nav-overlay-inner">' +
-          '<nav class="nav-overlay-links" aria-label="Navigation">' + linksHTML + '</nav>' +
-          '<div class="nav-overlay-bottom">' +
-            '<a href="tel:+33688848145" class="btn btn-ghost">' +
-              '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.5 12.5 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.5 12.5 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>' +
-              '06 88 84 81 45' +
-            '</a>' +
-            '<a href="' + contactHref + '" class="btn btn-primary">' +
-              'Nous contacter' +
-              '<svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>' +
-            '</a>' +
-            '<p class="nav-overlay-location">' +
-              '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>' +
-              'Sarrebourg, Moselle' +
-            '</p>' +
-          '</div>' +
-        '</div>';
+    // Create overlay
+    var overlay = document.createElement('div');
+    overlay.className = 'nav-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', 'Navigation principale');
+    overlay.innerHTML =
+      '<div class="nav-overlay-inner">' +
+        '<nav class="nav-overlay-links" aria-label="Navigation">' + linksHTML + '</nav>' +
+        '<div class="nav-overlay-bottom">' +
+          '<a href="' + telLink + '" class="btn btn-ghost">' +
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.5 12.5 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.5 12.5 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>' +
+            '06 88 84 81 45' +
+          '</a>' +
+          '<a href="' + contactHref + '" class="btn btn-primary">' +
+            'Nous contacter' +
+            '<svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>' +
+          '</a>' +
+          '<p class="nav-overlay-location">' +
+            '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>' +
+            'Sarrebourg, Moselle' +
+          '</p>' +
+        '</div>' +
+      '</div>';
 
-      document.body.appendChild(overlay);
-      overlay.querySelectorAll('a').forEach(function (a) {
-        a.addEventListener('click', closeMenu);
-      });
-    }
-
-    (window.requestIdleCallback || function (fn) { setTimeout(fn, 300); })(buildOverlay);
+    document.body.appendChild(overlay);
 
     function openMenu() {
-      if (!overlay) buildOverlay();
       navToggle.setAttribute('aria-expanded', 'true');
       overlay.classList.add('open');
       document.body.classList.add('nav-open');
     }
     function closeMenu() {
       navToggle.setAttribute('aria-expanded', 'false');
-      if (overlay) overlay.classList.remove('open');
+      overlay.classList.remove('open');
       document.body.classList.remove('nav-open');
     }
 
     navToggle.addEventListener('click', function () {
       navToggle.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu();
+    });
+
+    overlay.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', closeMenu);
     });
 
     document.addEventListener('keydown', function (e) {
@@ -288,15 +295,9 @@
     'END:VCARD'
   ].join('\r\n');
 
-  var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-
   document.querySelectorAll('[data-vcard]').forEach(function (el) {
     el.addEventListener('click', function (e) {
       e.preventDefault();
-      if (isIOS) {
-        window.location.href = 'https://digitaldreamsbox.com/digital-dreamsbox.vcf';
-        return;
-      }
       var blob = new Blob([vcardContent], { type: 'text/vcard' });
       var url  = URL.createObjectURL(blob);
       var a    = document.createElement('a');
@@ -367,10 +368,7 @@
       })
       .then(function (r) { return r.json(); })
       .then(function () {
-        form.reset();
-        if (success) success.classList.add('show');
-        submit.disabled    = false;
-        submit.textContent = 'Envoyer';
+        window.location.href = 'merci.html';
       })
       .catch(function () {
         submit.disabled    = false;
@@ -405,7 +403,6 @@
   var STAR_COUNT = 26;
   var SWEEP_MS   = 680;
   var FADE_IN    = 350;
-  var FADE_OUT   = 340;
   var running    = false;
 
   function spawnStars() {
@@ -444,28 +441,9 @@
   function canTransition(link) {
     var href = link.getAttribute('href');
     if (!href) return false;
-    if (link.hasAttribute('download')) return false;
-    if (href.indexOf('blob:') === 0) return false;
-    if (href.indexOf('data:') === 0) return false;
     if (href.indexOf('http') === 0 || href.indexOf('mailto') === 0 || href.indexOf('tel') === 0 || href.indexOf('#') === 0 || link.target === '_blank') return false;
     return true;
   }
-
-  /* ── Départ : overlay monte + étoiles ── */
-  function resetOverlay() {
-    var ov = document.getElementById('pt-overlay');
-    if (ov) {
-      ov.style.transition    = 'none';
-      ov.style.opacity       = '0';
-      ov.style.pointerEvents = 'none';
-    }
-    running = false;
-  }
-
-  /* Réinitialise l'overlay AVANT que Safari prenne le snapshot bfcache */
-  window.addEventListener('pagehide', resetOverlay);
-  /* Réinitialise aussi à la restauration (filet de sécurité) */
-  window.addEventListener('pageshow', function (e) { if (e.persisted) resetOverlay(); });
 
   document.addEventListener('click', function (e) {
     var link = e.target.closest('a');
@@ -473,7 +451,6 @@
     e.preventDefault();
     if (running) { window.location.href = link.href; return; }
     running = true;
-    /* Préchargement immédiat de la page cible pendant l'animation */
     fetch(link.href, { credentials: 'same-origin' }).catch(function () {});
     var ov = document.getElementById('pt-overlay');
     ov.style.transition    = 'opacity ' + FADE_IN + 'ms ease-in';
@@ -485,6 +462,4 @@
       window.location.href = link.href;
     }, FADE_IN + 40);
   });
-
-
 })();
