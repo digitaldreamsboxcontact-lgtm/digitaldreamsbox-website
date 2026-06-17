@@ -368,7 +368,8 @@
       })
       .then(function (r) { return r.json(); })
       .then(function () {
-        window.location.href = 'merci.html';
+        var inSubdir = window.location.pathname.indexOf('/pages/') !== -1;
+        window.location.href = inSubdir ? 'merci.html' : 'pages/merci.html';
       })
       .catch(function () {
         submit.disabled    = false;
