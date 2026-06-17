@@ -366,7 +366,6 @@
         body:    data,
         headers: { 'Accept': 'application/json' }
       })
-      .then(function (r) { return r.json(); })
       .then(function () {
         var inSubdir = window.location.pathname.indexOf('/pages/') !== -1;
         window.location.href = inSubdir ? 'merci.html' : 'pages/merci.html';
