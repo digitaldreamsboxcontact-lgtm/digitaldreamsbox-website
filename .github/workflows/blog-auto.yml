@@ -1,0 +1,39 @@
+name: Blog automatique hebdomadaire
+
+on:
+  schedule:
+    - cron: '0 7 * * 1'  # Chaque lundi à 9h (Paris = UTC+2)
+  workflow_dispatch:       # Déclenchement manuel depuis GitHub si besoin
+
+permissions:
+  contents: write
+
+jobs:
+  generate-article:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout du repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Installer les dépendances
+        run: pip install google-generativeai
+
+      - name: Générer l'article
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/generate_article.py
+
+      - name: Commit et push
+        run: |
+          git config user.name "Jarvis Digital Dreamsbox"
+          git config user.email "contact@digitaldreamsbox.com"
+          git add pages/journal/ pages/journal.html scripts/blog_state.json
+          git diff --staged --quiet || (git commit -m "Article auto : $(date '+%d/%m/%Y')" && git push)
