@@ -118,8 +118,8 @@ def thumb_variant(n):
 def generate_content(topic):
     api_key = os.environ['GEMINI_API_KEY']
     url = (
-        "https://generativelanguage.googleapis.com/v1/models/"
-        f"gemini-1.5-flash:generateContent?key={api_key}"
+        "https://generativelanguage.googleapis.com/v1beta/models/"
+        f"gemini-2.0-flash:generateContent?key={api_key}"
     )
 
     prompt = f"""Tu es le rédacteur de Digital Dreamsbox, agence web & branding à Sarrebourg (Moselle, Grand Est, France).
