@@ -2243,6 +2243,7 @@ html.js-ready .reveal.in {
 .article-body strong { color: var(--white); font-weight: 700; }
 .article-body em { color: var(--sky); font-style: normal; }
 .article-body a { color: var(--sky); text-decoration: underline; text-underline-offset: 3px; }
+.article-body .article-cta a.btn { color: var(--white); text-decoration: none; }
 .article-body blockquote {
   margin: 28px 0;
   padding: 22px 26px;
