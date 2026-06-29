@@ -118,7 +118,7 @@ def thumb_variant(n):
 # ── Appel Gemini ───────────────────────────────────────────────────────────
 def generate_content(topic):
     genai.configure(api_key=os.environ['GEMINI_API_KEY'])
-    model = genai.GenerativeModel('gemini-2.0-flash')
+    model = genai.GenerativeModel('gemini-1.5-flash-8b')
 
     prompt = f"""Tu es le rédacteur de Digital Dreamsbox, agence web & branding à Sarrebourg (Moselle, Grand Est, France).
 Tu écris des articles de blog professionnels en français pour des artisans et PME locales.
