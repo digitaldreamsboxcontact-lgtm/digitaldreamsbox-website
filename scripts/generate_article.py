@@ -123,7 +123,16 @@ ARTICLES_DATA = {
         ],
         "blockquote": "\"Les entreprises avec une fiche Google complète ont 70% plus de chances d'attirer des visites.\" (Google Business Profile, 2024)",
         "cta_title": "On audite votre présence Google ?",
-        "cta_text": "On analyse votre fiche locale en 30 minutes et on vous dit exactement ce qui vous fait perdre des appels. Gratuit et sans engagement."
+        "cta_text": "On analyse votre fiche locale en 30 minutes et on vous dit exactement ce qui vous fait perdre des appels. Gratuit et sans engagement.",
+        "faq": [
+            {"q": "Combien de temps faut-il pour apparaître dans le Local Pack Google ?", "a": "Avec une fiche Google Business Profile complète et optimisée, vous pouvez apparaître dans le Local Pack en 2 à 6 semaines. Le délai dépend de la concurrence dans votre zone et de la qualité de votre fiche. Les premiers avis clients accélèrent significativement le processus."},
+            {"q": "Google Maps peut-il remplacer un site web pour un artisan ?", "a": "Non, les deux sont complémentaires. Google Maps capte les prospects qui cherchent activement un artisan en urgence. Le site web rassure et convertit ceux qui veulent vérifier votre sérieux avant d'appeler. Sans site, vous perdez jusqu'à 40% des prospects qualifiés."},
+            {"q": "Comment créer sa fiche Google Business Profile gratuitement ?", "a": "Rendez-vous sur business.google.com, cliquez sur \"Gérer maintenant\" et suivez les étapes. Vous devrez vérifier votre entreprise par courrier (code reçu en 5 à 14 jours) ou par téléphone. La fiche est entièrement gratuite et sans abonnement."}
+        ],
+        "related": [
+            {"slug": "avis-google-comment-en-obtenir", "title": "Avis Google : comment en obtenir plus sans y passer des heures"},
+            {"slug": "seo-local-sans-agence", "title": "SEO local : 6 actions gratuites qu'un artisan peut faire seul"}
+        ]
     },
     "site-web-artisan-2026": {
         "meta_description": "Fiche Google ou site web ? Pour un artisan en 2026, les deux sont complémentaires. Voici pourquoi négliger l'un coûte des clients chaque mois.",
@@ -161,7 +170,16 @@ ARTICLES_DATA = {
         ],
         "blockquote": "\"75% des internautes jugent la crédibilité d'une entreprise à travers la qualité de son site web.\" (Stanford Web Credibility Research)",
         "cta_title": "Votre site attire-t-il vraiment des clients ?",
-        "cta_text": "On analyse votre site gratuitement et on vous dit ce qui bloque vos prospects. Résultat en 48h, sans engagement."
+        "cta_text": "On analyse votre site gratuitement et on vous dit ce qui bloque vos prospects. Résultat en 48h, sans engagement.",
+        "faq": [
+            {"q": "Un site Wix ou Jimdo est-il suffisant pour un artisan en 2026 ?", "a": "Pour débuter, oui. Pour être compétitif en SEO local, non. Les constructeurs en ligne ont des limitations techniques (vitesse, structure des URLs, balises) qui freinent le référencement. Si votre objectif est de générer des contacts depuis Google, un site professionnel optimisé sera plus efficace à moyen terme."},
+            {"q": "Faut-il un site web si j'ai déjà une bonne fiche Google ?", "a": "Oui. La fiche Google génère des appels rapides, mais le site web convertit les prospects qui veulent vérifier votre sérieux avant de vous contacter. Les deux se complètent : 70% des prospects visitent le site web avant d'appeler, même s'ils vous ont trouvé via Google Maps."},
+            {"q": "Combien de temps avant qu'un site génère ses premiers contacts ?", "a": "Entre 2 et 6 mois pour les premiers résultats organiques (SEO). En parallèle, un site bien conçu génère des contacts dès le premier jour via Google Ads ou vos partages sur les réseaux sociaux. Le SEO est un investissement long terme, la publicité donne des résultats immédiats."}
+        ],
+        "related": [
+            {"slug": "budget-site-web-artisan", "title": "Combien coûte un vrai site web pour un artisan en 2026"},
+            {"slug": "site-web-qui-convertit", "title": "Pourquoi votre site web ne génère pas de contacts"}
+        ]
     },
     "reseaux-sociaux-pme-moselle": {
         "meta_description": "Instagram, Facebook, LinkedIn : quels réseaux sociaux choisir pour une PME en Moselle ? Le guide concret pour ne pas perdre du temps sur les mauvaises plateformes.",
@@ -199,7 +217,16 @@ ARTICLES_DATA = {
         ],
         "blockquote": "\"67% des consommateurs affirment que les réseaux sociaux influencent leurs décisions d'achat locales.\" (BrightLocal, 2024)",
         "cta_title": "On définit votre stratégie réseaux ?",
-        "cta_text": "On vous aide à choisir les bonnes plateformes et le bon type de contenu pour votre activité. Un échange de 30 minutes suffit pour y voir clair."
+        "cta_text": "On vous aide à choisir les bonnes plateformes et le bon type de contenu pour votre activité. Un échange de 30 minutes suffit pour y voir clair.",
+        "faq": [
+            {"q": "Instagram ou Facebook : quel réseau choisir en priorité pour un artisan en Moselle ?", "a": "Facebook reste le réseau numéro un pour les artisans en Moselle. La tranche 35-60 ans, qui représente l'essentiel des clients particuliers, y est très active. Instagram est pertinent si votre métier est visuel (décoration, menuiserie, paysagisme). Commencez par Facebook avant d'ouvrir un Instagram."},
+            {"q": "Faut-il vraiment être sur tous les réseaux sociaux ?", "a": "Non, c'est même contre-productif. Mieux vaut être très actif sur un ou deux réseaux que présent partout mais invisible. Choisissez une plateforme principale selon votre clientèle cible, maîtrisez-la, puis envisagez une deuxième plateforme uniquement si vous avez du temps disponible."},
+            {"q": "Combien de fois par semaine faut-il publier sur les réseaux pour être efficace ?", "a": "Une à deux fois par semaine est suffisant pour un artisan, à condition d'être régulier. La régularité prime sur la fréquence. Un post par semaine pendant 6 mois vaut mieux que 5 posts par semaine pendant 3 semaines puis plus rien."}
+        ],
+        "related": [
+            {"slug": "identite-visuelle-pme", "title": "Identité visuelle pour PME : paraître ou convaincre"},
+            {"slug": "prospection-digitale-locale", "title": "Prospection digitale : trouver des clients locaux sans démarchage"}
+        ]
     },
     "avis-google-comment-en-obtenir": {
         "meta_description": "Les avis Google sont le facteur numéro 1 de confiance pour les clients locaux. Voici la méthode simple pour en obtenir régulièrement sans y passer des heures.",
@@ -237,7 +264,16 @@ ARTICLES_DATA = {
         ],
         "blockquote": "\"88% des consommateurs font autant confiance aux avis en ligne qu'à une recommandation personnelle.\" (BrightLocal Local Consumer Review Survey)",
         "cta_title": "On optimise votre présence Google ensemble ?",
-        "cta_text": "Audit de votre fiche Google Business gratuit et sans engagement. On vous dit exactement ce qui freine vos prospects avant qu'ils appellent."
+        "cta_text": "Audit de votre fiche Google Business gratuit et sans engagement. On vous dit exactement ce qui freine vos prospects avant qu'ils appellent.",
+        "faq": [
+            {"q": "Peut-on demander à sa famille ou ses amis de laisser des avis Google ?", "a": "Non. Google le détecte et filtre ces avis, voire les supprime. Les avis doivent provenir de vrais clients ayant eu une interaction avec votre entreprise. Des avis suspects peuvent aussi déclencher une suspension de votre fiche, ce qui est très difficile à résoudre."},
+            {"q": "Comment réagir face à un faux avis négatif ?", "a": "Répondez calmement et professionnellement en expliquant que vous n'avez pas de trace de cette intervention. Signalez l'avis à Google via le bouton \"Signaler un avis\" en précisant qu'il ne concerne pas un vrai client. Google supprime environ 30% des avis signalés pour faux témoignage."},
+            {"q": "Combien d'avis Google faut-il viser en priorité ?", "a": "L'objectif minimal pour être compétitif dans le Local Pack est de 30 à 50 avis avec une note supérieure à 4,5/5. En dessous de 15 avis, votre fiche est perçue comme peu établie. Visez 4 à 5 nouveaux avis par mois pour maintenir votre fiche active aux yeux de Google."}
+        ],
+        "related": [
+            {"slug": "vitrine-google-maps-artisan", "title": "Google Maps pour artisans : apparaître en premier dans votre ville"},
+            {"slug": "seo-local-sans-agence", "title": "SEO local : 6 actions gratuites qu'un artisan peut faire seul"}
+        ]
     },
     "budget-site-web-artisan": {
         "meta_description": "Combien coûte un site web pour un artisan en 2026 ? De 0 à 5 000 euros selon les options. Voici ce que chaque budget vous apporte vraiment.",
@@ -275,7 +311,16 @@ ARTICLES_DATA = {
         ],
         "blockquote": "\"Les PME qui investissent dans un site web professionnel génèrent en moyenne 39% de chiffre d'affaires supplémentaire sur 3 ans.\" (Étude Deloitte, Digital maturity & SMB growth)",
         "cta_title": "Quel budget pour votre projet ?",
-        "cta_text": "On vous donne une estimation claire et transparente pour votre site, adaptée à votre activité et vos objectifs. Sans engagement et sans surprise."
+        "cta_text": "On vous donne une estimation claire et transparente pour votre site, adaptée à votre activité et vos objectifs. Sans engagement et sans surprise.",
+        "faq": [
+            {"q": "Existe-t-il des aides pour financer la création d'un site web pour un artisan ?", "a": "Oui. Le chèque numérique France Num peut couvrir jusqu'à 500 euros de dépenses numériques pour les TPE. Certaines régions proposent aussi des aides spécifiques. En Moselle et Grand Est, rapprochez-vous de votre CMA ou de la CCI pour connaître les dispositifs disponibles."},
+            {"q": "Un site web à 300 euros peut-il vraiment fonctionner ?", "a": "Visuellement oui, commercialement rarement. Un site à 300 euros est généralement réalisé sans travail SEO, sans optimisation mobile approfondie et sans stratégie de conversion. Il peut exister, mais il ne génèrera probablement aucun contact depuis Google. Le coût réel, c'est le manque à gagner."},
+            {"q": "Faut-il payer une maintenance mensuelle après la création ?", "a": "Ce n'est pas obligatoire mais recommandé pour les sites sous WordPress (mises à jour de sécurité, sauvegardes). Prévoyez entre 30 et 80 euros par mois si vous souhaitez une maintenance complète. Si votre site est statique (HTML/CSS), la maintenance est quasi nulle."}
+        ],
+        "related": [
+            {"slug": "site-web-artisan-2026", "title": "Pourquoi un site web reste indispensable pour un artisan en 2026"},
+            {"slug": "site-web-qui-convertit", "title": "Pourquoi votre site web ne génère pas de contacts"}
+        ]
     },
     "seo-local-sans-agence": {
         "meta_description": "6 actions SEO local gratuites qu'un artisan peut faire seul ce week-end pour améliorer son référencement Google et décrocher plus d'appels.",
@@ -318,7 +363,16 @@ ARTICLES_DATA = {
         ],
         "blockquote": "\"46% de toutes les recherches Google ont une intention locale.\" (Google Internal Data)",
         "cta_title": "On va plus loin ensemble ?",
-        "cta_text": "Ces 6 actions sont un bon début. Pour un référencement complet et durable, notre équipe prend en charge votre SEO local de A à Z. Demandez un audit gratuit."
+        "cta_text": "Ces 6 actions sont un bon début. Pour un référencement complet et durable, notre équipe prend en charge votre SEO local de A à Z. Demandez un audit gratuit.",
+        "faq": [
+            {"q": "Le SEO local est-il vraiment gratuit pour un artisan ?", "a": "Les actions de base sont gratuites : optimiser votre fiche Google Business, collecter des avis, améliorer vos textes. En revanche, le temps est un coût réel. Si vous ne pouvez pas y consacrer 2 à 3 heures par mois, déléguer à une agence peut être plus rentable."},
+            {"q": "Combien de temps faut-il attendre pour voir des résultats en SEO local ?", "a": "Les premières améliorations (meilleur classement local, plus d'appels) se voient généralement en 2 à 4 mois si vous appliquez plusieurs actions simultanément. Le SEO est un investissement progressif : les résultats s'accumulent et durent, contrairement à la publicité payante."},
+            {"q": "Peut-on faire son SEO local sans agence ni expert ?", "a": "Oui, pour les bases. Un artisan motivé peut améliorer significativement sa visibilité locale en 3 mois en suivant les 6 actions de cet article. Pour aller plus loin (pages locales, netlinking, audit technique), l'aide d'un professionnel accélère les résultats."}
+        ],
+        "related": [
+            {"slug": "vitrine-google-maps-artisan", "title": "Google Maps pour artisans : apparaître en premier dans votre ville"},
+            {"slug": "avis-google-comment-en-obtenir", "title": "Avis Google : comment en obtenir plus sans y passer des heures"}
+        ]
     },
     "identite-visuelle-pme": {
         "meta_description": "Logo, couleurs, typographie : votre identité visuelle dit tout de votre sérieux avant même que vous parliez. Voici pourquoi et comment construire une image qui convainc.",
@@ -356,7 +410,16 @@ ARTICLES_DATA = {
         ],
         "blockquote": "\"Il faut 0,05 seconde aux utilisateurs pour se forger une opinion sur votre site et donc sur votre entreprise.\" (Étude Google / Université de Bâle)",
         "cta_title": "Votre image reflète-t-elle votre vraie valeur ?",
-        "cta_text": "On réalise un audit visuel gratuit de votre identité actuelle et on vous dit ce qui peut être amélioré pour renforcer la confiance de vos prospects."
+        "cta_text": "On réalise un audit visuel gratuit de votre identité actuelle et on vous dit ce qui peut être amélioré pour renforcer la confiance de vos prospects.",
+        "faq": [
+            {"q": "Quelle est la différence entre un logo et une identité visuelle ?", "a": "Le logo est un élément de l'identité visuelle, pas l'identité visuelle entière. Une identité visuelle complète comprend le logo, une palette de couleurs définie, une ou deux typographies cohérentes, un style photographique et des règles d'utilisation sur tous les supports. Le logo seul ne suffit pas à créer une image mémorable."},
+            {"q": "Combien coûte une identité visuelle complète pour une PME ou un artisan ?", "a": "Entre 500 et 2 000 euros pour une identité professionnelle complète (logo, charte, déclinaisons). En dessous de 500 euros, attendez-vous à un logo simple sans charte complète. Les plateformes comme Canva permettent de faire quelque chose de convenable gratuitement, mais sans l'originalité d'une création sur-mesure."},
+            {"q": "Peut-on faire son identité visuelle soi-même avec Canva ?", "a": "Oui, pour démarrer. Canva propose des modèles professionnels accessibles sans compétences en design. La limite : vous utilisez les mêmes modèles que des milliers d'autres entreprises. Pour vous démarquer vraiment, une identité sur-mesure créée par un professionnel est plus efficace à long terme."}
+        ],
+        "related": [
+            {"slug": "branding-artisan-moselle", "title": "Branding pour artisans en Moselle : construire une image qui rassure"},
+            {"slug": "site-web-artisan-2026", "title": "Pourquoi un site web reste indispensable pour un artisan en 2026"}
+        ]
     },
     "google-ads-budget-minimum": {
         "meta_description": "Google Ads pour artisan en Grand Est : quel budget minimum pour que ça soit rentable ? Les vrais chiffres et la bonne stratégie pour démarrer.",
@@ -394,7 +457,16 @@ ARTICLES_DATA = {
         ],
         "blockquote": "\"Les annonces Google génèrent en moyenne 2 euros de revenu pour chaque euro dépensé.\" (Google Economic Impact Report)",
         "cta_title": "On calcule votre potentiel Google Ads ?",
-        "cta_text": "On estime votre coût par lead et votre potentiel de retour sur investissement selon votre activité et votre zone. Gratuit, sans engagement, en 48h."
+        "cta_text": "On estime votre coût par lead et votre potentiel de retour sur investissement selon votre activité et votre zone. Gratuit, sans engagement, en 48h.",
+        "faq": [
+            {"q": "Peut-on faire Google Ads avec seulement 100 euros par mois ?", "a": "Techniquement oui, mais les résultats seront très limités. Avec 100 euros, vous obtenez environ 40 à 60 clics par mois selon votre secteur. C'est insuffisant pour optimiser les campagnes et générer un flux régulier de contacts. Le seuil minimal efficace pour un artisan local est de 300 euros par mois."},
+            {"q": "Google Ads ou SEO : que choisir en priorité pour un artisan ?", "a": "Les deux ont leur rôle. Google Ads donne des résultats immédiats mais s'arrête quand vous stoppez le budget. Le SEO est plus lent mais génère du trafic durable et gratuit. La stratégie idéale : commencer par Google Ads pour générer des contacts rapidement, et investir en parallèle dans le SEO pour réduire progressivement votre dépendance à la publicité."},
+            {"q": "Faut-il confier la gestion de ses Google Ads à un professionnel ?", "a": "Pour un budget de 300 euros ou plus par mois, oui. Une campagne mal gérée peut gaspiller 50% du budget. Un professionnel identifie les mots-clés pertinents, exclut les requêtes inutiles et optimise les enchères. Les frais de gestion (150 à 300 euros/mois) sont souvent rentabilisés dès le premier mois grâce aux économies réalisées."}
+        ],
+        "related": [
+            {"slug": "seo-local-sans-agence", "title": "SEO local : 6 actions gratuites qu'un artisan peut faire seul"},
+            {"slug": "site-web-qui-convertit", "title": "Pourquoi votre site web ne génère pas de contacts"}
+        ]
     },
     "site-web-qui-convertit": {
         "meta_description": "Votre site reçoit des visites mais génère peu de contacts ? Voici les 5 raisons les plus fréquentes et comment les corriger pour transformer vos visiteurs en clients.",
@@ -432,7 +504,16 @@ ARTICLES_DATA = {
         ],
         "blockquote": "\"Un site bien optimisé pour la conversion peut générer 3 fois plus de contacts avec le même trafic.\" (Baymard Institute, UX Research)",
         "cta_title": "On diagnostique votre site gratuitement ?",
-        "cta_text": "On identifie exactement ce qui freine vos conversions et on vous propose les corrections prioritaires. Audit offert, résultat en 48h."
+        "cta_text": "On identifie exactement ce qui freine vos conversions et on vous propose les corrections prioritaires. Audit offert, résultat en 48h.",
+        "faq": [
+            {"q": "Comment savoir si mon site génère vraiment des contacts ?", "a": "Installez Google Analytics 4 (gratuit) et activez le suivi des conversions : soumission de formulaire, clic sur le numéro de téléphone. Google Business Profile indique aussi les appels générés directement depuis votre fiche. Sans ces mesures, vous pilotez à l'aveugle."},
+            {"q": "Mon site est beau mais ne génère pas d'appels. Pourquoi ?", "a": "Un site esthétique et un site qui convertit sont deux choses différentes. Les causes les plus fréquentes : pas assez de boutons d'appel visibles, proposition de valeur floue, formulaire trop long, pas de preuve sociale (avis, photos de chantiers), ou site trop lent sur mobile. Un audit de conversion identifie le problème exact."},
+            {"q": "Quel taux de conversion est normal pour un site artisan ?", "a": "Entre 3% et 8% des visiteurs en contact direct est un bon objectif pour un site artisan local. En dessous de 2%, il y a clairement un problème de conversion à résoudre. Au-dessus de 10%, votre site est excellent. Ces chiffres varient selon le secteur et la qualité du trafic entrant."}
+        ],
+        "related": [
+            {"slug": "refonte-site-web-quand", "title": "Refonte de site web : les 5 signes qu'il est temps de tout recommencer"},
+            {"slug": "budget-site-web-artisan", "title": "Combien coûte un vrai site web pour un artisan en 2026"}
+        ]
     },
     "branding-artisan-moselle": {
         "meta_description": "Construire une image de marque forte en Moselle quand on est artisan : pourquoi c'est possible, comment commencer, et ce que ça change sur vos tarifs et votre clientèle.",
@@ -470,7 +551,16 @@ ARTICLES_DATA = {
         ],
         "blockquote": "\"Les entreprises avec une image de marque forte génèrent en moyenne 23% de revenus supplémentaires.\" (Forbes Brand Consistency Report)",
         "cta_title": "On construit votre image ensemble ?",
-        "cta_text": "Audit de votre identité actuelle, recommandations concrètes, plan d'action. On commence par un échange gratuit de 30 minutes."
+        "cta_text": "Audit de votre identité actuelle, recommandations concrètes, plan d'action. On commence par un échange gratuit de 30 minutes.",
+        "faq": [
+            {"q": "Le branding est-il vraiment utile pour un artisan local en Moselle ?", "a": "Oui, et souvent plus qu'il ne le pense. En Moselle, les artisans sont nombreux dans tous les corps de métier. Un artisan avec une image forte, cohérente et professionnelle se distingue immédiatement de la concurrence et peut pratiquer des tarifs 10 à 20% plus élevés sans perdre de clients."},
+            {"q": "Comment se différencier de la concurrence artisanale dans le Grand Est ?", "a": "Choisissez un angle précis : spécialité technique (renovation énergétique, matériaux écologiques), engagement (devis sous 24h, garantie étendue), ou territoire (artisan 100% local de Sarrebourg). Un positionnement clair, même simple, vaut mieux qu'une communication générique qui dit la même chose que tout le monde."},
+            {"q": "Peut-on construire une vraie image de marque sans gros budget ?", "a": "Oui, avec de la régularité et de la cohérence. Un logo professionnel (300 à 600 euros), un site soigné, des photos de qualité de vos chantiers et une présence réseaux régulière : c'est suffisant pour construire une image forte localement. Le secret n'est pas le budget, c'est la constance."}
+        ],
+        "related": [
+            {"slug": "identite-visuelle-pme", "title": "Identité visuelle pour PME : la différence entre paraître et convaincre"},
+            {"slug": "prospection-digitale-locale", "title": "Prospection digitale : trouver des clients locaux sans démarchage"}
+        ]
     },
     "prospection-digitale-locale": {
         "meta_description": "Trouver des clients locaux sans démarchage téléphonique ni porte-à-porte : les méthodes digitales qui fonctionnent pour les artisans et PME en Moselle.",
@@ -508,7 +598,16 @@ ARTICLES_DATA = {
         ],
         "blockquote": "\"Les leads générés par l'inbound marketing coûtent en moyenne 61% moins cher que ceux générés par l'outbound.\" (HubSpot State of Marketing Report)",
         "cta_title": "On met en place votre système de prospection ?",
-        "cta_text": "On analyse votre situation actuelle et on vous propose un plan d'action personnalisé pour générer des prospects réguliers. Premier échange offert."
+        "cta_text": "On analyse votre situation actuelle et on vous propose un plan d'action personnalisé pour générer des prospects réguliers. Premier échange offert.",
+        "faq": [
+            {"q": "Quelle est la meilleure façon de prospecter pour un artisan local en 2026 ?", "a": "La combinaison la plus efficace : fiche Google optimisée (pour les recherches actives), présence Facebook locale (pour la recommandation), et demande d'avis systématique (pour la crédibilité). Ces trois actions combinées génèrent un flux continu de prospects sans démarchage actif."},
+            {"q": "Les groupes Facebook locaux fonctionnent-ils vraiment pour trouver des clients ?", "a": "Oui, particulièrement en zone rurale et semi-urbaine comme la Moselle. Les groupes type 'Bon plan Sarrebourg' ou 'Entraide Phalsbourg' regroupent des milliers de résidents actifs. La clé est d'y être présent comme expert, pas comme vendeur : répondez aux questions, partagez des conseils, et les recommandations viendront naturellement."},
+            {"q": "Combien de temps avant de voir les premiers résultats d'une prospection digitale ?", "a": "Les premiers contacts arrivent généralement en 4 à 8 semaines si vous appliquez plusieurs actions simultanément (fiche Google, réseaux, avis). La prospection digitale est un système cumulatif : chaque action renforce les autres. Au bout de 6 mois de régularité, le flux de prospects devient prévisible."}
+        ],
+        "related": [
+            {"slug": "reseaux-sociaux-pme-moselle", "title": "Réseaux sociaux pour PME locales : ce qui marche en Moselle"},
+            {"slug": "vitrine-google-maps-artisan", "title": "Google Maps pour artisans : apparaître en premier dans votre ville"}
+        ]
     },
     "refonte-site-web-quand": {
         "meta_description": "Votre site web a vieilli ? Voici les 5 signes qui indiquent qu'il est temps de refondre votre site plutôt que de continuer à le rafistoler.",
@@ -546,7 +645,16 @@ ARTICLES_DATA = {
         ],
         "blockquote": "\"Un site web vieillissant peut coûter jusqu'à 30% du chiffre d'affaires potentiel en prospects perdus.\" (Estimation Forrester Research, Digital Experience Impact)",
         "cta_title": "Votre site a besoin d'une refonte ?",
-        "cta_text": "On analyse votre site actuel gratuitement et on vous dit honnêtement si une refonte est nécessaire, et ce qu'elle peut vous rapporter. Sans engagement."
+        "cta_text": "On analyse votre site actuel gratuitement et on vous dit honnêtement si une refonte est nécessaire, et ce qu'elle peut vous rapporter. Sans engagement.",
+        "faq": [
+            {"q": "Combien coûte une refonte de site web pour un artisan ou une PME ?", "a": "Entre 1 500 et 3 500 euros pour une refonte complète incluant nouvelle identité, nouveau contenu et optimisation SEO. Si seul le design change sans refonte du contenu et de la structure, comptez 800 à 1 500 euros. Une refonte mal planifiée peut coûter plus cher qu'une création from scratch."},
+            {"q": "La refonte d'un site web va-t-elle faire perdre mon référencement actuel ?", "a": "Pas si elle est bien gérée. La clé : conserver les URLs existantes (ou mettre en place des redirections 301), ne pas supprimer les pages qui génèrent du trafic, et migrer le contenu qui fonctionne. Une refonte technique bien exécutée améliore généralement le SEO à moyen terme."},
+            {"q": "Peut-on moderniser un site ancien sans le recréer entièrement ?", "a": "Oui, parfois. Si la structure du site est saine et que seul le design vieillit, un reskin (habillage graphique) est possible sans tout reconstruire. En revanche, si le site est lent, non mobile-friendly ou construit sur une technologie abandonnée, la reconstruction complète est souvent plus rapide et moins chère que le rafistolage."}
+        ],
+        "related": [
+            {"slug": "site-web-qui-convertit", "title": "Pourquoi votre site web ne génère pas de contacts"},
+            {"slug": "budget-site-web-artisan", "title": "Combien coûte un vrai site web pour un artisan en 2026"}
+        ]
     }
 }
 
@@ -584,19 +692,28 @@ def build_article_html(topic, data, pub_date, pub_date_fr):
     for s in data['sections']:
         sections_html += f'\n        <h2>{s["h2"]}</h2>\n        {s["html"]}\n'
 
+    # FAQ inline HTML
+    faq_items = data.get('faq', [])
+    if faq_items:
+        faq_html = '\n        <h2>Questions fréquentes</h2>\n'
+        for item in faq_items:
+            faq_html += f'        <h3>{item["q"]}</h3>\n        <p>{item["a"]}</p>\n'
+        sections_html += faq_html
+
     sommaire_items = '\n'.join(f'            <li>{item}</li>' for item in data['sommaire'])
 
-    related = [
-        ('<a href="seo-fiche-google.html" style="color:var(--sky);">Fiche Google Business : 5 erreurs qui coûtent des appels</a>'
-         if topic['slug'] != 'seo-fiche-google' else
-         '<a href="branding-logo-identite.html" style="color:var(--sky);">Logo vs identité visuelle</a>'),
-        ('<a href="google-ads-plombier.html" style="color:var(--sky);">Google Ads pour un plombier : combien investir ?</a>'
-         if topic['slug'] != 'google-ads-plombier' else
-         '<a href="branding-logo-identite.html" style="color:var(--sky);">Logo vs identité visuelle</a>'),
-    ]
-    related_html = '\n'.join(f'            <li>{r}</li>' for r in related)
+    # Liens internes dynamiques depuis les données de l'article
+    raw_related = data.get('related', [])
+    if raw_related:
+        related_html = '\n'.join(
+            f'            <li><a href="{r["slug"]}.html" style="color:var(--sky);">{r["title"]}</a></li>'
+            for r in raw_related
+        )
+    else:
+        related_html = '            <li><a href="vitrine-google-maps-artisan.html" style="color:var(--sky);">Google Maps pour artisans</a></li>'
 
-    schema = json.dumps({
+    # Schema Article
+    article_schema = {
         "@context": "https://schema.org",
         "@type": "Article",
         "headline": topic['title'],
@@ -606,7 +723,22 @@ def build_article_html(topic, data, pub_date, pub_date_fr):
         "author": {"@type": "Organization", "name": "Digital Dreamsbox"},
         "publisher": {"@type": "Organization", "name": "Digital Dreamsbox",
                       "logo": {"@type": "ImageObject", "url": "https://digitaldreamsbox.com/assets/logo-full.jpg"}}
-    }, ensure_ascii=False, indent=4)
+    }
+
+    # Schema FAQPage si FAQ présente
+    schemas = [article_schema]
+    if faq_items:
+        schemas.append({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {"@type": "Question", "name": item["q"],
+                 "acceptedAnswer": {"@type": "Answer", "text": item["a"]}}
+                for item in faq_items
+            ]
+        })
+
+    schema = json.dumps(schemas if len(schemas) > 1 else schemas[0], ensure_ascii=False, indent=4)
 
     return f'''<!DOCTYPE html>
 <html lang="fr">
