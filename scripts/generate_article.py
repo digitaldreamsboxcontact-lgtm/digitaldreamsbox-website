@@ -10,6 +10,7 @@ ROOT          = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 JOURNAL_DIR   = os.path.join(ROOT, 'pages', 'journal')
 JOURNAL_INDEX = os.path.join(ROOT, 'pages', 'journal.html')
 STATE_FILE    = os.path.join(ROOT, 'scripts', 'blog_state.json')
+SITEMAP_FILE  = os.path.join(ROOT, 'sitemap.xml')
 
 TOPICS = [
     {
@@ -908,6 +909,20 @@ def update_journal_index(topic, data, article_count):
     with open(JOURNAL_INDEX, 'w', encoding='utf-8') as f:
         f.write(html)
 
+def update_sitemap(topic, pub_date):
+    with open(SITEMAP_FILE, 'r', encoding='utf-8') as f:
+        xml = f.read()
+
+    url = f"https://digitaldreamsbox.com/pages/journal/{topic['slug']}.html"
+    if url in xml:
+        return
+
+    entry = f'  <url><loc>{url}</loc><lastmod>{pub_date}</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>\n'
+    xml = xml.replace('</urlset>', entry + '</urlset>')
+
+    with open(SITEMAP_FILE, 'w', encoding='utf-8') as f:
+        f.write(xml)
+
 # ── Main ───────────────────────────────────────────────────────────────────
 def main():
     state = load_state()
@@ -931,6 +946,9 @@ def main():
 
     update_journal_index(topic, data, state['article_count'])
     print("journal.html mis à jour.")
+
+    update_sitemap(topic, pub_date)
+    print("sitemap.xml mis à jour.")
 
     state['used_slugs'].append(topic['slug'])
     state['article_count'] += 1

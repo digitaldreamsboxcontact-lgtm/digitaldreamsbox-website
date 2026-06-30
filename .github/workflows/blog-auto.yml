@@ -25,5 +25,5 @@ jobs:
         run: |
           git config user.name "Jarvis Digital Dreamsbox"
           git config user.email "contact@digitaldreamsbox.com"
-          git add pages/journal/ pages/journal.html scripts/blog_state.json
+          git add pages/journal/ pages/journal.html scripts/blog_state.json sitemap.xml
           git diff --staged --quiet || (git commit -m "Article auto : $(date '+%d/%m/%Y')" && git push)
