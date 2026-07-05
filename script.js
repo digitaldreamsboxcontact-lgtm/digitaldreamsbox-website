@@ -298,6 +298,11 @@
   document.querySelectorAll('[data-vcard]').forEach(function (el) {
     el.addEventListener('click', function (e) {
       e.preventDefault();
+      var isIOSSafari = /iP(hone|od|ad)/.test(navigator.userAgent) && /Safari/.test(navigator.userAgent) && !/CriOS|FxiOS/.test(navigator.userAgent);
+      if (isIOSSafari) {
+        window.location.href = 'https://digitaldreamsbox.com/digital-dreamsbox.vcf';
+        return;
+      }
       var blob = new Blob([vcardContent], { type: 'text/vcard' });
       var url  = URL.createObjectURL(blob);
       var a    = document.createElement('a');
@@ -441,7 +446,7 @@
   function canTransition(link) {
     var href = link.getAttribute('href');
     if (!href) return false;
-    if (href.indexOf('http') === 0 || href.indexOf('mailto') === 0 || href.indexOf('tel') === 0 || href.indexOf('#') === 0 || link.target === '_blank') return false;
+    if (href.indexOf('http') === 0 || href.indexOf('mailto') === 0 || href.indexOf('tel') === 0 || href.indexOf('#') === 0 || href.indexOf('blob:') === 0 || href.indexOf('data:') === 0 || link.hasAttribute('download') || link.target === '_blank') return false;
     return true;
   }
 
