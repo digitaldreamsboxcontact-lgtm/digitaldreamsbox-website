@@ -4,11 +4,15 @@ Génère les pages SEO locales pour toutes les villes cibles de Digital Dreamsbo
 Exécuter depuis la racine du site : python3 scripts/generate_villes.py
 """
 
-import os
+import os, json
 from datetime import date
 
 SITE_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TODAY = date.today().isoformat()
+
+_CFG_FILE = os.path.join(os.path.dirname(__file__), 'config_digitaldreamsbox.json')
+with open(_CFG_FILE, encoding='utf-8') as _f:
+    CFG = json.load(_f)
 
 VILLES = [
     {
@@ -764,7 +768,7 @@ def generate_page(v):
     html = f'''<!doctype html>
 <html lang="fr"><head>
 <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){{w[l]=w[l]||[];w[l].push({{'gtm.start':new Date().getTime(),event:'gtm.js'}});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);}})(window,document,'script','dataLayer','GTM-T9M3KKHB');</script>
+<script>(function(w,d,s,l,i){{w[l]=w[l]||[];w[l].push({{'gtm.start':new Date().getTime(),event:'gtm.js'}});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);}})(window,document,'script','dataLayer','{CFG["gtm_id"]}');</script>
 <!-- End Google Tag Manager -->
 
   <meta charset="UTF-8">
@@ -773,22 +777,22 @@ def generate_page(v):
 
   <title>Agence web à {nom} — Digital Dreamsbox | {dept}</title>
   <meta name="description" content="{v['desc_meta']}">
-  <link rel="canonical" href="https://digitaldreamsbox.com/agence-web-{slug}.html">
+  <link rel="canonical" href="https://{CFG["domain"]}/agence-web-{slug}.html">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:title" content="Agence web à {nom} — Digital Dreamsbox">
   <meta property="og:description" content="{v['og_desc']}">
-  <meta property="og:url" content="https://digitaldreamsbox.com/agence-web-{slug}.html">
-  <meta property="og:image" content="https://digitaldreamsbox.com/assets/logo-full.jpg">
+  <meta property="og:url" content="https://{CFG["domain"]}/agence-web-{slug}.html">
+  <meta property="og:image" content="https://{CFG["domain"]}/{CFG["og_image"]}">
   <meta property="og:site_name" content="Digital Dreamsbox">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Agence web à {nom} — Digital Dreamsbox">
   <meta name="twitter:description" content="{v['og_desc']}">
-  <meta name="twitter:image" content="https://digitaldreamsbox.com/assets/logo-full.jpg">
+  <meta name="twitter:image" content="https://{CFG["domain"]}/{CFG["og_image"]}">
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico" /><link rel="icon" type="image/png" href="favicon-light.png">
@@ -797,7 +801,8 @@ def generate_page(v):
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Phudu:wght@400;500;600;700&family=Righteous&family=Baloo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Poppins:wght@400;500;600;700&amp;family=Phudu:wght@400;500;600;700&amp;family=Righteous&amp;family=Baloo+2:wght@400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Phudu:wght@400;500;600;700&family=Righteous&family=Baloo+2:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
@@ -809,13 +814,13 @@ def generate_page(v):
       "@context": "https://schema.org",
       "@type": "WebPage",
       "name": "Agence web à {nom} — Digital Dreamsbox",
-      "url": "https://digitaldreamsbox.com/agence-web-{slug}.html",
+      "url": "https://{CFG["domain"]}/agence-web-{slug}.html",
       "description": "Digital Dreamsbox intervient à {nom} pour créer des sites web, identités visuelles et campagnes Google Ads pour les artisans et PME de la zone.",
       "inLanguage": "fr",
       "breadcrumb": {{
         "@type": "BreadcrumbList",
         "itemListElement": [
-          {{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://digitaldreamsbox.com/"}},
+          {{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://{CFG["domain"]}/"}},
           {{"@type": "ListItem", "position": 2, "name": "Agence web à {nom}"}}
         ]
       }}
@@ -824,17 +829,17 @@ def generate_page(v):
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Digital Dreamsbox",
-      "url": "https://digitaldreamsbox.com/",
-      "telephone": "+33688848145",
-      "email": "contact@digitaldreamsbox.com",
+      "url": "https://{CFG["domain"]}/",
+      "telephone": "{CFG["phone"]}",
+      "email": "{CFG["email"]}",
       "priceRange": "€€€",
       "address": {{
         "@type": "PostalAddress",
-        "streetAddress": "16 Rue d'Insviller",
-        "addressLocality": "Mittersheim",
-        "addressRegion": "Moselle",
-        "postalCode": "57930",
-        "addressCountry": "FR"
+        "streetAddress": "{CFG["address"]["street"]}",
+        "addressLocality": "{CFG["address"]["city"]}",
+        "addressRegion": "{CFG["address"]["region"]}",
+        "postalCode": "{CFG["address"]["postal"]}",
+        "addressCountry": "{CFG["address"]["country"]}"
       }},
       "areaServed": {area_served_json}
     }},
@@ -849,18 +854,18 @@ def generate_page(v):
   </script>
 
   <!-- Google tag -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GNMMKY3BZB"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id={CFG["ga_id"]}"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){{dataLayer.push(arguments);}}
     gtag('js', new Date());
-    gtag('config', 'G-GNMMKY3BZB');
-    gtag('config', 'AW-18121297118');
+    gtag('config', '{CFG["ga_id"]}');
+    gtag('config', '{CFG["gads_id"]}');
   </script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T9M3KKHB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={CFG["gtm_id"]}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <div id="pt-overlay"></div>
@@ -886,7 +891,7 @@ def generate_page(v):
     </nav>
 
     <div class="nav-cta">
-      <a href="tel:+33688848145" class="btn btn-ghost nav-call" aria-label="Appeler Digital Dreamsbox">
+      <a href="tel:{CFG["phone"]}" class="btn btn-ghost nav-call" aria-label="Appeler Digital Dreamsbox">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.5 12.5 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.5 12.5 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"></path></svg>
         Appeler
       </a>
@@ -1318,8 +1323,8 @@ def generate_page(v):
       <div class="footer-col">
         <h5>Contact</h5>
         <ul>
-          <li><a href="tel:+33688848145">06 88 84 81 45</a></li>
-          <li><a href="mailto:contact@digitaldreamsbox.com">contact@digitaldreamsbox.com</a></li>
+          <li><a href="tel:{CFG["phone"]}">{CFG["phone_display"]}</a></li>
+          <li><a href="mailto:{CFG["email"]}">{CFG["email"]}</a></li>
         </ul>
       </div>
     </div>
@@ -1351,7 +1356,7 @@ def update_sitemap(slugs):
 
     new_urls = []
     for slug in slugs:
-        url = f"https://digitaldreamsbox.com/agence-web-{slug}.html"
+        url = f"https://{CFG['domain']}/agence-web-{slug}.html"
         if url not in content:
             new_urls.append(f'  <url><loc>{url}</loc><lastmod>{TODAY}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>')
 

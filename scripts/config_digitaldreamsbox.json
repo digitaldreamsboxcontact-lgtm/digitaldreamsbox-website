@@ -1,0 +1,25 @@
+{
+  "brand_name": "Digital Dreamsbox",
+  "domain": "digitaldreamsbox.com",
+  "phone": "+33688848145",
+  "phone_display": "06 88 84 81 45",
+  "email": "contact@digitaldreamsbox.com",
+  "gtm_id": "GTM-T9M3KKHB",
+  "ga_id": "G-GNMMKY3BZB",
+  "gads_id": "AW-18121297118",
+  "og_image": "assets/og-image.webp",
+  "logo_3d": "mq02h9of-NVlogo-3d-d_d.png",
+  "logo_full": "assets/logo-full.jpg",
+  "address": {
+    "street": "16 Rue d'Insviller",
+    "city": "Mittersheim",
+    "postal": "57930",
+    "region": "Moselle",
+    "country": "FR"
+  },
+  "social": {
+    "youtube": "https://www.youtube.com/@DigitalDreamsbox",
+    "instagram": "https://www.instagram.com/digital_dreamsbox/",
+    "linkedin": "https://www.linkedin.com/in/digital-dreamsbox-749b29371"
+  }
+}

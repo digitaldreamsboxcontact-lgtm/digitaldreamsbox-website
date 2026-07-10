@@ -5,12 +5,17 @@ Publie chaque semaine le prochain article pré-rédigé.
 """
 
 import os, re, json, datetime, unicodedata
+from html import escape as html_escape
 
 ROOT          = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 JOURNAL_DIR   = os.path.join(ROOT, 'pages', 'journal')
 JOURNAL_INDEX = os.path.join(ROOT, 'pages', 'journal.html')
 STATE_FILE    = os.path.join(ROOT, 'scripts', 'blog_state.json')
 SITEMAP_FILE  = os.path.join(ROOT, 'sitemap.xml')
+
+_CFG_FILE = os.path.join(os.path.dirname(__file__), 'config_digitaldreamsbox.json')
+with open(_CFG_FILE, encoding='utf-8') as _f:
+    CFG = json.load(_f)
 
 TOPICS = [
     {
@@ -719,11 +724,11 @@ def build_article_html(topic, data, pub_date, pub_date_fr):
         "@type": "Article",
         "headline": topic['title'],
         "description": data['meta_description'],
-        "image": "https://digitaldreamsbox.com/assets/logo-full.jpg",
+        "image": f"https://{CFG['domain']}/{CFG['og_image']}",
         "datePublished": pub_date,
-        "author": {"@type": "Organization", "name": "Digital Dreamsbox"},
-        "publisher": {"@type": "Organization", "name": "Digital Dreamsbox",
-                      "logo": {"@type": "ImageObject", "url": "https://digitaldreamsbox.com/assets/logo-full.jpg"}}
+        "author": {"@type": "Organization", "name": CFG["brand_name"]},
+        "publisher": {"@type": "Organization", "name": CFG["brand_name"],
+                      "logo": {"@type": "ImageObject", "url": f"https://{CFG['domain']}/{CFG['logo_full']}"}}
     }
 
     # Schema FAQPage si FAQ présente
@@ -748,31 +753,32 @@ def build_article_html(topic, data, pub_date, pub_date_fr):
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
   <meta name="theme-color" content="#1a2536" />
 
-  <title>{topic['title']} · Digital Dreamsbox</title>
-  <meta name="description" content="{data['meta_description']}" />
-  <link rel="canonical" href="https://digitaldreamsbox.com/pages/journal/{topic['slug']}.html" />
+  <title>{html_escape(topic['title'])} · Digital Dreamsbox</title>
+  <meta name="description" content="{html_escape(data['meta_description'])}" />
+  <link rel="canonical" href="https://{CFG["domain"]}/pages/journal/{topic['slug']}.html" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="{topic['title']}" />
-  <meta property="og:description" content="{data['og_description']}" />
-  <meta property="og:image" content="https://digitaldreamsbox.com/assets/logo-full.jpg" />
+  <meta property="og:title" content="{html_escape(topic['title'])}" />
+  <meta property="og:description" content="{html_escape(data['og_description'])}" />
+  <meta property="og:image" content="https://{CFG["domain"]}/{CFG["og_image"]}" />
   <link rel="icon" type="image/x-icon" href="../../favicon.ico" />
   <link rel="icon" type="image/png" href="../../favicon-light.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Phudu:wght@400;500;600;700&family=Righteous&family=Baloo+2:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Poppins:wght@400;500;600;700&amp;family=Phudu:wght@400;500;600;700&amp;family=Righteous&amp;family=Baloo+2:wght@400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Phudu:wght@400;500;600;700&family=Righteous&family=Baloo+2:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
   <link rel="stylesheet" href="../../styles.css" />
 
   <script type="application/ld+json">
   {schema}
   </script>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GNMMKY3BZB"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id={CFG["ga_id"]}"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){{dataLayer.push(arguments);}}
     gtag('js', new Date());
-    gtag('config', 'G-GNMMKY3BZB');
+    gtag('config', '{CFG["ga_id"]}');
   </script>
 </head>
 <body>
@@ -790,7 +796,7 @@ def build_article_html(topic, data, pub_date, pub_date_fr):
       <a href="../journal.html" aria-current="page">Journal</a>
     </nav>
     <div class="nav-cta">
-      <a href="tel:+33688848145" class="btn btn-ghost nav-call"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.5 12.5 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.5 12.5 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>Appeler</a>
+      <a href="tel:{CFG["phone"]}" class="btn btn-ghost nav-call"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.5 12.5 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.5 12.5 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>Appeler</a>
       <a href="../contact.html" class="btn btn-primary" data-magnet>Nous contacter<svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
     </div>
     <button class="nav-toggle" aria-expanded="false" aria-label="Menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
@@ -865,8 +871,8 @@ def build_article_html(topic, data, pub_date, pub_date_fr):
       <div><div class="brand"><img src="../../mq02h9of-NVlogo-3d-d_d.png" alt="" width="46" height="46" /><span class="brand-text"><span class="b1">Digital</span><span class="b2">Dreamsbox</span></span></div><p class="footer-blurb">Agence de marque &amp; design visuel.</p></div>
       <div class="footer-col"><h5>Services</h5><ul><li><a href="../services.html#branding">Branding</a></li><li><a href="../services.html#sites-web">Sites web</a></li><li><a href="../services.html#google-ads">Google Ads</a></li></ul></div>
       <div class="footer-col"><h5>Agence</h5><ul><li><a href="../agence.html">Qui sommes-nous</a></li><li><a href="../galerie.html">Galerie</a></li><li><a href="../journal.html">Journal</a></li><li><a href="../../index.html#faq">FAQ</a></li></ul></div>
-      <div class="footer-col"><h5>Contact</h5><ul><li><a href="tel:+33688848145">06 88 84 81 45</a></li><li><a href="mailto:contact@digitaldreamsbox.com">contact@digitaldreamsbox.com</a></li></ul></div>
-      <div class="footer-col"><h5>Réseaux</h5><ul><li><a href="https://www.youtube.com/@DigitalDreamsbox" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://www.instagram.com/digital_dreamsbox/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.linkedin.com/in/digital-dreamsbox-749b29371" target="_blank" rel="noopener">LinkedIn</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li><a href="tel:{CFG["phone"]}">{CFG["phone_display"]}</a></li><li><a href="mailto:{CFG["email"]}">{CFG["email"]}</a></li></ul></div>
+      <div class="footer-col"><h5>Réseaux</h5><ul><li><a href="{CFG["social"]["youtube"]}" target="_blank" rel="noopener">YouTube</a></li><li><a href="{CFG["social"]["instagram"]}" target="_blank" rel="noopener">Instagram</a></li><li><a href="{CFG["social"]["linkedin"]}" target="_blank" rel="noopener">LinkedIn</a></li></ul></div>
     </div>
     <div class="footer-bottom"><span>&copy; <span data-year>2026</span> Digital Dreamsbox &mdash; Tous droits réservés.</span><span><a href="../mentions-legales.html">Mentions légales</a> &middot; <a href="../confidentialite.html">Politique de confidentialité</a> &middot; <a href="../cgv.html">CGV</a></span></div>
   </div>
