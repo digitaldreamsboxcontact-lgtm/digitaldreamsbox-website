@@ -4,3 +4,4 @@ __pycache__/
 *_DS_Store
 *.artifact.json
 assets/_src/
+*.vcf
