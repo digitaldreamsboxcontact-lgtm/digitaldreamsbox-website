@@ -1,0 +1,546 @@
+#!/usr/bin/env python3
+"""
+Génère les pages d'automatisation par ville pour digitaldreamsbox.com
+Usage: python3 scripts/generate_automatisation.py
+"""
+import json, os, html
+
+OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "..")
+
+VILLES = [
+    {
+        "slug": "forbach",
+        "nom": "Forbach",
+        "region": "Moselle",
+        "zone": "Forbach, Freyming-Merlebach, Stiring-Wendel et tout le bassin houiller mosellan",
+        "contexte": "À Forbach et dans le bassin houiller, les artisans et PME travaillent dur dans une zone économique dense, à 15 km de Saarbrücken. Pourtant, la plupart gèrent encore leur administratif manuellement : relances à la main, WhatsApp non suivi, devis sans retour. Le temps perdu chaque semaine sur ces tâches est du temps qui ne génère rien.",
+        "contexte2": "On intervient à Forbach pour changer ça. Des outils concrets, pensés pour les réalités d'un artisan ou d'une PME locale, qui font le travail à votre place pendant que vous faites le vôtre.",
+        "secteurs": "plombiers, électriciens, maçons, peintres et artisans du bâtiment",
+        "secteurs_detail": "Dans le bassin houiller, la majorité de nos clients sont des artisans du bâtiment et des prestataires de services aux particuliers. Les besoins les plus fréquents : relances de devis non signés, confirmation automatique de chantiers, assistant WhatsApp pour les demandes entrantes en dehors des heures ouvrées.",
+        "faq_q": "Vous intervenez bien sur Forbach et le secteur du bassin houiller ?",
+        "faq_r": "Oui. On intervient sur Forbach, Freyming-Merlebach, Stiring-Wendel, Farebersviller et toute la zone du bassin houiller mosellan. On se déplace pour l'audit si vous préférez, ou on travaille entièrement à distance selon ce qui vous convient.",
+    },
+    {
+        "slug": "sarreguemines",
+        "nom": "Sarreguemines",
+        "region": "Moselle",
+        "zone": "Sarreguemines, Sarralbe, Puttelange et le secteur de la Sarre",
+        "contexte": "À Sarreguemines, le tissu économique mêle industrie, artisanat et commerces de proximité. Une zone active, mais où peu d'entreprises ont encore franchi le pas de l'automatisation. Les concurrents qui s'y mettent maintenant prennent une avance qui sera difficile à rattraper dans 2 ans.",
+        "contexte2": "On déploie des outils sur mesure pour les artisans et PME de Sarreguemines : relances automatiques, assistant WhatsApp, tableaux de bord. En 1 à 3 semaines, vous récupérez des heures chaque semaine.",
+        "secteurs": "artisans, commerces de proximité et PME industrielles",
+        "secteurs_detail": "Les entreprises de Sarreguemines qu'on accompagne le plus sont des artisans du bâtiment, des garages, des prestataires de services et des PME industrielles. Pour chaque type d'activité, on identifie les tâches répétitives les plus chronophages et on les automatise en priorité.",
+        "faq_q": "Vous intervenez bien sur Sarreguemines et les communes autour ?",
+        "faq_r": "Oui. On couvre Sarreguemines, Sarralbe, Puttelange-aux-Lacs et toute la zone de la Sarre mosellane. On se déplace si besoin ou on travaille à distance selon votre préférence.",
+    },
+    {
+        "slug": "sarrebourg",
+        "nom": "Sarrebourg",
+        "region": "Moselle",
+        "zone": "Sarrebourg, Mittersheim, Phalsbourg et l'arrondissement de Sarrebourg",
+        "contexte": "Sarrebourg et son arrondissement concentrent un tissu d'artisans et de PME locales qui travaillent bien, mais qui font encore tout manuellement. Relances oubliées, WhatsApp sans réponse le soir, devis qui partent sans suivi. Ce sont des heures perdues chaque semaine qui ne rapportent rien.",
+        "contexte2": "On est basés en Moselle, à deux pas de Sarrebourg. Nos outils d'automatisation sont pensés pour la réalité d'une entreprise locale : pas de budget illimité, pas d'équipe technique, pas de temps à perdre en formation.",
+        "secteurs": "artisans du bâtiment, prestataires de services et commerces locaux",
+        "secteurs_detail": "À Sarrebourg, on travaille principalement avec des artisans du bâtiment, des prestataires de services aux particuliers et des commerces locaux. Les demandes les plus fréquentes : relances de devis, assistant WhatsApp pour les demandes entrantes, et tableaux de bord pour suivre l'activité en temps réel.",
+        "faq_q": "Vous intervenez sur Sarrebourg et les communes de l'arrondissement ?",
+        "faq_r": "Oui. On est basés à Mittersheim, à deux pas de Sarrebourg. On connaît bien le tissu économique local et on se déplace facilement sur toute la zone. Audit en présentiel ou à distance selon ce qui vous convient.",
+    },
+    {
+        "slug": "saint-avold",
+        "nom": "Saint-Avold",
+        "region": "Moselle",
+        "zone": "Saint-Avold, L'Hôpital, Carling et le secteur de Saint-Avold",
+        "contexte": "Saint-Avold et sa zone regroupent des entreprises de tailles variées, des artisans indépendants aux PME industrielles. Dans tous les cas, le constat est le même : des tâches répétitives qui prennent trop de temps, des relances oubliées, des clients qui n'ont pas de réponse assez vite.",
+        "contexte2": "On déploie des outils d'automatisation adaptés à chaque type d'activité. Le point de départ, c'est toujours le même : un audit gratuit de 30 minutes pour identifier précisément où vous perdez du temps.",
+        "secteurs": "artisans, garages, PME et prestataires de services",
+        "secteurs_detail": "Dans le secteur de Saint-Avold, on accompagne des artisans du bâtiment, des garages auto, des prestataires de services et des PME industrielles de taille intermédiaire. Pour chaque type d'activité, on part de vos problèmes réels avant de proposer quoi que ce soit.",
+        "faq_q": "Vous intervenez bien sur Saint-Avold et les communes autour ?",
+        "faq_r": "Oui. On couvre Saint-Avold, L'Hôpital, Carling, Farebersviller et tout le secteur. On se déplace pour l'audit sur demande, ou on travaille entièrement à distance si vous préférez.",
+    },
+    {
+        "slug": "nancy",
+        "nom": "Nancy",
+        "region": "Meurthe-et-Moselle",
+        "zone": "Nancy, Vandoeuvre, Laxou, Essey et l'agglomération du Grand Nancy",
+        "contexte": "Nancy concentre une densité de PME, de prestataires de services et de professions libérales parmi les plus importantes du Grand Est. La concurrence y est plus forte, les clients plus exigeants, et le temps de réponse attendu plus court. C'est précisément là où l'automatisation fait la différence entre une entreprise qui capte les opportunités et une autre qui les laisse filer.",
+        "contexte2": "On déploie des outils sur mesure pour les entreprises du Grand Nancy : relances automatiques, assistant WhatsApp, tableaux de bord, traitement d'emails. Des solutions qui s'adaptent à votre activité, pas l'inverse.",
+        "secteurs": "PME, prestataires de services, professions libérales et artisans",
+        "secteurs_detail": "À Nancy, on travaille avec des profils variés : agences, cabinets, prestataires de services, artisans spécialisés, commerces. La diversité des activités fait qu'il n'y a pas de solution standard. Chaque outil est construit à partir de votre réalité.",
+        "faq_q": "Vous intervenez bien sur Nancy et l'agglomération du Grand Nancy ?",
+        "faq_r": "Oui. On couvre Nancy et toute l'agglomération : Vandoeuvre, Laxou, Essey, Maxéville, Jarville. On travaille principalement à distance mais on peut se déplacer sur rendez-vous selon la nature du projet.",
+    },
+    {
+        "slug": "saverne",
+        "nom": "Saverne",
+        "region": "Bas-Rhin",
+        "zone": "Saverne, Dettwiller, Marmoutier et le secteur de Saverne en Alsace",
+        "contexte": "Saverne et son secteur, à mi-chemin entre Strasbourg et la Moselle, rassemblent un tissu d artisans et de PME locales dans un contexte à la fois alsacien et frontalier. Des entreprises sérieuses, souvent à la tête de leur marché local, mais qui n'ont pas encore les outils pour automatiser ce qui peut l'être.",
+        "contexte2": "On intervient à Saverne pour déployer des outils concrets : relances automatiques, assistant numérique, tableaux de bord personnalisés. En s'adaptant à votre secteur d'activité et à vos clients.",
+        "secteurs": "artisans, commerces et PME locales",
+        "secteurs_detail": "Dans le secteur de Saverne, on accompagne principalement des artisans du bâtiment, des commerçants et des PME de services. Le financement Grand Est (jusqu'à 50% du projet) est accessible pour la majorité des entreprises de la zone.",
+        "faq_q": "Vous intervenez bien sur Saverne et les communes du secteur ?",
+        "faq_r": "Oui. On couvre Saverne, Dettwiller, Marmoutier, Steinbourg et les communes alentour. On travaille à distance ou en présentiel selon votre préférence. Le financement Grand Est s'applique aux entreprises du Bas-Rhin.",
+    },
+    {
+        "slug": "morhange",
+        "nom": "Morhange",
+        "region": "Moselle",
+        "zone": "Morhange, Faulquemont et le secteur de Morhange",
+        "contexte": "Morhange et sa zone regroupent des artisans et PME locales qui font tourner leur activité à bout de bras. Dans ces petites structures, chaque heure compte doublement. Ce qu'on peut automatiser représente souvent une part significative du temps hebdomadaire.",
+        "contexte2": "Des outils simples, déployés vite, qui font la différence dès la première semaine. On commence toujours par un audit gratuit pour identifier le point qui vous fera gagner le plus de temps.",
+        "secteurs": "artisans locaux, prestataires de services et petites PME",
+        "secteurs_detail": "Dans le secteur de Morhange, on accompagne des artisans du bâtiment, des prestataires de services aux particuliers et de petites PME. La priorité est toujours la même : identifier ce qui prend le plus de temps et l'automatiser en premier.",
+        "faq_q": "Vous intervenez bien sur Morhange et les communes autour ?",
+        "faq_r": "Oui. On couvre Morhange, Faulquemont et les communes du secteur. On travaille entièrement à distance pour la plupart des projets, ce qui nous permet d'intervenir rapidement sans contrainte géographique.",
+    },
+    {
+        "slug": "dieuze",
+        "nom": "Dieuze",
+        "region": "Moselle",
+        "zone": "Dieuze, Vic-sur-Seille et le secteur du Saulnois",
+        "contexte": "Dieuze et le Saulnois concentrent des artisans et entreprises locales dans un secteur rural actif. Moins de concurrence ici qu'à Metz ou Nancy, mais les mêmes problèmes : des heures perdues sur des tâches répétitives, des clients sans réponse rapide, des devis sans suivi.",
+        "contexte2": "On déploie des outils d'automatisation adaptés aux petites structures : rapides à mettre en place, simples à utiliser, et qui font une vraie différence dès les premières semaines.",
+        "secteurs": "artisans ruraux, prestataires de services et agriculteurs",
+        "secteurs_detail": "Dans le secteur de Dieuze, on accompagne principalement des artisans ruraux, des prestataires de services aux particuliers et des petites PME locales. Pour ce type de structure, on commence toujours par l'outil le plus simple qui fait gagner le plus de temps.",
+        "faq_q": "Vous intervenez bien sur Dieuze et le secteur du Saulnois ?",
+        "faq_r": "Oui. On couvre Dieuze, Vic-sur-Seille et les communes du Saulnois. On travaille principalement à distance, ce qui nous permet d'intervenir sur toute la Moselle sans délai.",
+    },
+]
+
+TEMPLATE = """<!doctype html>
+<html lang="fr"><head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta name="theme-color" content="#0B1526">
+
+  <title>Automatisation entreprises {nom} — Digital Dreamsbox | {region}</title>
+  <meta name="description" content="Gagnez 10 à 15 heures par semaine grâce à des outils automatisés sur mesure à {nom}. Relances clients, assistant WhatsApp, tableaux de bord. Audit gratuit sans engagement. Artisans et PME de {nom}, {region}.">
+  <link rel="canonical" href="https://digitaldreamsbox.com/automatisation-{slug}.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Automatisation entreprises {nom} — Digital Dreamsbox">
+  <meta property="og:description" content="Gagnez 10 à 15 heures par semaine. Relances auto, assistant WhatsApp, devis automatisé. Audit gratuit sans engagement. {nom}, {region}.">
+  <meta property="og:url" content="https://digitaldreamsbox.com/automatisation-{slug}.html">
+  <meta property="og:image" content="https://digitaldreamsbox.com/assets/og-image.webp">
+  <meta property="og:site_name" content="Digital Dreamsbox">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Automatisation entreprises {nom} — Digital Dreamsbox">
+  <meta name="twitter:description" content="Gagnez 10 à 15 heures par semaine. Audit gratuit sans engagement. {nom}, {region}.">
+  <meta name="twitter:image" content="https://digitaldreamsbox.com/assets/og-image.webp">
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico" /><link rel="icon" type="image/png" href="favicon-light.png">
+  <link rel="apple-touch-icon" href="favicon-light.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Phudu:wght@400;500;600;700&family=Righteous&family=Baloo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <script type="application/ld+json">
+  [
+    {{
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Automatisation entreprises {nom} — Digital Dreamsbox",
+      "url": "https://digitaldreamsbox.com/automatisation-{slug}.html",
+      "description": "Digital Dreamsbox déploie des outils d'automatisation sur mesure pour les artisans et PME de {nom}. Relances clients, assistant WhatsApp, tableaux de bord. Audit gratuit sans engagement.",
+      "inLanguage": "fr",
+      "breadcrumb": {{
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://digitaldreamsbox.com/"}},
+          {{"@type": "ListItem", "position": 2, "name": "Automatisation PME", "item": "https://digitaldreamsbox.com/automatisation-pme-artisan.html"}},
+          {{"@type": "ListItem", "position": 3, "name": "Automatisation {nom}"}}
+        ]
+      }}
+    }},
+    {{
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Digital Dreamsbox",
+      "url": "https://digitaldreamsbox.com/",
+      "telephone": "+33688848145",
+      "email": "contact@digitaldreamsbox.com",
+      "address": {{
+        "@type": "PostalAddress",
+        "addressLocality": "Mittersheim",
+        "addressRegion": "Moselle",
+        "postalCode": "57930",
+        "addressCountry": "FR"
+      }},
+      "areaServed": ["{nom}", "{region}", "Grand Est"]
+    }},
+    {{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {{
+          "@type": "Question",
+          "name": "{faq_q}",
+          "acceptedAnswer": {{"@type": "Answer", "text": "{faq_r}"}}
+        }},
+        {{
+          "@type": "Question",
+          "name": "En quoi consiste l'audit gratuit ?",
+          "acceptedAnswer": {{"@type": "Answer", "text": "Un échange de 30 minutes pour regarder ensemble comment tourne votre entreprise. On identifie les tâches qui vous prennent le plus de temps, et on vous dit précisément combien d'heures on peut vous faire récupérer. Pas de présentation commerciale, pas de proposition imposée."}}
+        }},
+        {{
+          "@type": "Question",
+          "name": "Le Grand Est finance-t-il ce type de projet à {nom} ?",
+          "acceptedAnswer": {{"@type": "Answer", "text": "Oui. Le Parcours Modernisation des PME Grand Est finance jusqu'à 50% du coût d'un projet d'automatisation, plafonné à 12 000€. Selon votre situation, vous pouvez diviser par deux le coût de votre outil. On vous accompagne dans les démarches."}}
+        }}
+      ]
+    }}
+  ]
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GNMMKY3BZB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){{dataLayer.push(arguments);}}
+    gtag('js', new Date());
+    gtag('config', 'G-GNMMKY3BZB');
+    gtag('config', 'AW-18121297118');
+  </script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T9M3KKHB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div id="pt-overlay"></div>
+<script>if(sessionStorage.getItem('pt')){{sessionStorage.removeItem('pt');var _o=document.getElementById('pt-overlay');_o.style.opacity='1';_o.style.pointerEvents='all';setTimeout(function(){{_o.style.transition='opacity 150ms ease-out';_o.style.opacity='0';_o.style.pointerEvents='none';}},60);}}</script>
+<div id="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
+
+<header class="site-header" role="banner">
+  <div class="shell-wide nav">
+    <a href="index.html" class="brand" aria-label="Digital Dreamsbox — Accueil">
+      <img src="mq02h9of-NVlogo-3d-d_d.png" alt="Logo Digital Dreamsbox" width="46" height="46">
+      <span class="brand-text"><span class="b1">Digital</span><span class="b2">Dreamsbox</span></span>
+    </a>
+    <nav class="nav-links" role="navigation" aria-label="Navigation principale">
+      <a href="pages/agence.html">Agence</a>
+      <a href="pages/services.html">Services</a>
+      <a href="pages/galerie.html">Galerie</a>
+      <a href="pages/journal.html">Journal</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="tel:+33688848145" class="btn btn-ghost nav-call" aria-label="Appeler Digital Dreamsbox">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.5 12.5 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.5 12.5 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"></path></svg>
+        Appeler
+      </a>
+      <a href="#audit" class="btn btn-primary" data-magnet="">Audit gratuit <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="shell hero-shell">
+    <span class="eyebrow reveal">Automatisation · {nom}, {region}</span>
+    <h1 id="hero-title" class="hero-title reveal" style="--rd:60ms;">
+      Des outils qui travaillent<br>
+      à votre place<br>
+      à <span class="accent">{nom}.</span>
+    </h1>
+    <p class="hero-sub reveal" style="--rd:140ms;">
+      Relances automatiques, assistant WhatsApp, tableaux de bord sur mesure.<br class="brk-md">
+      Pour les {secteurs} de {nom} et {zone}.<br class="brk-md">
+      Audit gratuit de 30 minutes, sans engagement.
+    </p>
+    <div class="hero-ctas reveal" style="--rd:220ms;">
+      <a href="#audit" class="btn btn-primary" data-magnet="">
+        Réserver mon audit gratuit
+        <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+      </a>
+      <a href="automatisation-pme-artisan.html" class="btn btn-ghost">
+        Voir tous les outils
+        <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+      </a>
+    </div>
+    <div class="hero-meta reveal" style="--rd:320ms;">
+      <div><span class="k">Zone couverte</span><span class="v">{nom} &amp; {region}</span></div>
+      <div><span class="k">Temps récupéré</span><span class="v">10 à 15 h/semaine</span></div>
+      <div><span class="k">Premier résultat</span><span class="v">Dès la première semaine</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-problem" aria-labelledby="context-title-{slug}">
+  <div class="shell problem-grid">
+    <div>
+      <span class="eyebrow reveal">Le contexte à {nom}</span>
+      <h2 id="context-title-{slug}" class="problem-quote reveal" style="--rd:80ms;">
+        Des heures perdues chaque semaine sur des tâches qui pourraient se faire toutes seules.
+      </h2>
+      <p class="body-md reveal" style="--rd:160ms; margin-top:24px; max-width:46ch;">{contexte}</p>
+      <p class="body-md reveal" style="--rd:200ms; margin-top:16px; max-width:46ch;">{contexte2}</p>
+      <div style="margin-top:32px;" class="reveal" style="--rd:260ms;">
+        <a href="#audit" class="btn btn-solid">
+          Identifier ce qu'on peut automatiser chez vous
+          <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="problem-stack">
+      <article class="problem-card reveal from-r">
+        <span class="num">01</span>
+        <div>
+          <h4>Des relances qui ne se font jamais.</h4>
+          <p>Un devis envoyé sans retour, un client qu'on voulait rappeler et qu'on a oublié. 30% des devis non relancés ne débouchent sur aucun contrat. Un système automatique les relance à votre place, au bon moment.</p>
+        </div>
+      </article>
+      <article class="problem-card reveal from-r" style="--rd:80ms;">
+        <span class="num">02</span>
+        <div>
+          <h4>Des messages WhatsApp qui attendent une réponse.</h4>
+          <p>Les clients envoient des messages le soir, le week-end, entre deux chantiers. Un assistant qui répond automatiquement aux questions fréquentes évite de perdre ces contacts avant même d'avoir pu leur parler.</p>
+        </div>
+      </article>
+      <article class="problem-card reveal from-r" style="--rd:160ms;">
+        <span class="num">03</span>
+        <div>
+          <h4>Pas de vue d'ensemble sur votre activité.</h4>
+          <p>Combien de devis sont en attente ce mois-ci ? Quels clients n'ont pas été relancés ? Un tableau de bord simple vous donne ces réponses en 30 secondes, sans ouvrir 4 fichiers différents.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section style="padding:64px 0; border-top:1px solid var(--rule);">
+  <div class="shell">
+    <div style="text-align:center; max-width:52ch; margin:0 auto 48px;">
+      <span class="eyebrow reveal">Pour quels secteurs à {nom}</span>
+      <h2 class="h-section reveal" style="--rd:60ms;">Un outil pensé<br>pour votre activité.</h2>
+      <p class="body-md reveal" style="--rd:120ms; margin-top:16px;">{secteurs_detail}</p>
+    </div>
+    <div class="about-facts">
+      <div class="about-fact reveal">
+        <div class="v">15 h</div>
+        <div class="k">Récupérées/semaine</div>
+        <div class="d">Temps moyen gagné par les entreprises qui automatisent leurs tâches répétitives.</div>
+      </div>
+      <div class="about-fact reveal" style="--rd:80ms;">
+        <div class="v">30%</div>
+        <div class="k">Des devis perdus</div>
+        <div class="d">Sans relance automatique, 30% des devis envoyés ne reçoivent jamais de suivi.</div>
+      </div>
+      <div class="about-fact reveal" style="--rd:160ms;">
+        <div class="v">50%</div>
+        <div class="k">Financement Grand Est</div>
+        <div class="d">Le Parcours Modernisation PME finance jusqu'à la moitié de votre projet. Plafonné à 12 000€.</div>
+      </div>
+      <div class="about-fact reveal" style="--rd:240ms;">
+        <div class="v">3 sem.</div>
+        <div class="k">Mise en place</div>
+        <div class="d">Délai moyen entre l'audit et le déploiement d'un premier outil opérationnel.</div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:40px;" class="reveal">
+      <a href="automatisation-pme-artisan.html" class="btn btn-ghost">
+        Voir tous les outils disponibles
+        <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section-faq" id="faq" aria-labelledby="faq-title-{slug}">
+  <div class="shell faq-grid">
+    <aside class="faq-side">
+      <span class="eyebrow reveal">FAQ</span>
+      <h2 id="faq-title-{slug}" class="h-section reveal" style="--rd:60ms;">Questions<br>fréquentes.</h2>
+      <p class="body-md reveal" style="--rd:140ms;">Une question sur l'automatisation à {nom} ? On répond sous 24 h.</p>
+      <div class="ctas reveal" style="--rd:220ms;">
+        <a href="#audit" class="btn btn-solid">Réserver l'audit gratuit</a>
+        <a href="tel:+33688848145" class="btn btn-ghost">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.5 12.5 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.5 12.5 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"></path></svg>
+          Appeler
+        </a>
+      </div>
+    </aside>
+    <div class="faq-list reveal" style="--rd:120ms;">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>{faq_q}</span>
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">{faq_r}</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>En quoi consiste l'audit gratuit ?</span>
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Un échange de 30 minutes pour regarder ensemble comment tourne votre entreprise. On identifie les tâches qui vous prennent le plus de temps, et on vous dit précisément combien d'heures on peut vous faire récupérer. Pas de présentation commerciale, pas de proposition imposée. Juste un diagnostic honnête.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Le Grand Est finance-t-il ce type de projet à {nom} ?</span>
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Oui. Le Parcours Modernisation des PME Grand Est finance jusqu'à 50% du coût de votre projet d'automatisation, plafonné à 12 000€ de subvention. Selon votre situation, vous pouvez diviser par deux le coût de votre outil. On vous accompagne dans les démarches si vous souhaitez activer ce financement.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Est-ce que c'est adapté pour une petite structure ?</span>
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">C'est précisément pour les petites structures que c'est le plus utile. Une grande entreprise a une équipe pour gérer les relances et les communications. Un artisan ou une PME fait tout ça seul. L'automatisation vous donne les mêmes capacités qu'une grande structure, sans les effectifs.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-contact" id="audit" aria-labelledby="audit-title-{slug}">
+  <div class="shell contact-grid">
+    <div class="contact-side">
+      <span class="eyebrow reveal">Première étape</span>
+      <h2 id="audit-title-{slug}" class="reveal" style="--rd:60ms;">
+        30 minutes pour savoir<br>ce qu'on peut faire<br><span class="blue">pour vous à {nom}.</span>
+      </h2>
+      <p class="ctxt reveal" style="--rd:140ms;">Audit gratuit, sans engagement. On regarde votre activité et on vous dit honnêtement si et comment on peut vous aider.</p>
+      <div class="contact-actions reveal" style="--rd:220ms;">
+        <a href="tel:+33688848145" class="btn btn-primary" data-magnet="">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.07 2h3a2 2 0 0 1 2 1.72 12.5 12.5 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.5 12.5 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"></path></svg>
+          Appeler directement
+        </a>
+        <a href="#" class="btn btn-ghost" data-vcard="">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Ajouter au contact
+        </a>
+      </div>
+    </div>
+    <div class="contact-card reveal" style="--rd:200ms;">
+      <h3>Réserver l'audit gratuit à {nom}</h3>
+      <p class="sub">30 minutes. Sans engagement. Réponse sous 24 h ouvrées.</p>
+      <form id="contact-form" class="form" novalidate action="https://formspree.io/f/xaqzyzgk" method="POST">
+        <div class="field"><label for="f-name">Nom &amp; prénom</label><input id="f-name" name="name" type="text" required autocomplete="name"></div>
+        <div class="field"><label for="f-company">Entreprise &amp; activité</label><input id="f-company" name="company" type="text" autocomplete="organization"></div>
+        <div class="field"><label for="f-phone">Téléphone</label><input id="f-phone" name="phone" type="tel" required autocomplete="tel"></div>
+        <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email"></div>
+        <div class="field">
+          <label for="f-need">Ce qui vous prend le plus de temps</label>
+          <select id="f-need" name="need" required>
+            <option value="">Sélectionner</option>
+            <option>Relances clients et devis</option>
+            <option>Réponses aux messages et emails</option>
+            <option>Suivi des chantiers ou projets</option>
+            <option>Gestion des rendez-vous</option>
+            <option>Plusieurs de ces points</option>
+            <option>Je ne sais pas encore</option>
+          </select>
+        </div>
+        <input type="hidden" name="source_page" value="automatisation-{slug}">
+        <input type="hidden" name="ville" value="{nom}">
+        <input type="hidden" name="_next" value="https://digitaldreamsbox.com/pages/merci.html">
+        <div class="honeypot" aria-hidden="true"><label>Ne pas remplir<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <div class="form-actions">
+          <small>En envoyant, vous acceptez notre politique de confidentialité.</small>
+          <button type="submit" class="btn btn-primary">Réserver l'audit <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></button>
+        </div>
+        <div class="form-success" role="status">Demande reçue. On vous recontacte sous 24 h ouvrées.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section style="padding:48px 0; border-top:1px solid var(--rule);">
+  <div class="shell" style="text-align:center;">
+    <span class="eyebrow">Nos autres zones</span>
+    <p style="color:var(--muted); margin:12px 0 28px; font-size:0.95rem;">On intervient dans tout le Grand Est, en présentiel ou à distance.</p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <a href="automatisation-pme-artisan.html" class="btn btn-ghost">Voir tous les outils</a>
+      <a href="agence-web-{slug}.html" class="btn btn-ghost">Agence web à {nom}</a>
+      <a href="index.html" class="btn btn-ghost">Retour à l'accueil</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="shell">
+    <div class="footer-top">
+      <div>
+        <div class="brand"><img src="mq02h9of-NVlogo-3d-d_d.png" alt="" width="46" height="46"></div>
+        <p class="footer-blurb">Agence de marque &amp; design visuel.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="pages/services.html#branding">Branding</a></li>
+          <li><a href="pages/services.html#sites-web">Sites web</a></li>
+          <li><a href="fiche-google-business-artisan.html">Google Business</a></li>
+          <li><a href="automatisation-pme-artisan.html">Automatisation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Agence</h5>
+        <ul>
+          <li><a href="pages/agence.html">Qui sommes-nous</a></li>
+          <li><a href="pages/galerie.html">Galerie</a></li>
+          <li><a href="pages/journal.html">Journal</a></li>
+          <li><a href="pages/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Automatisation</h5>
+        <ul>
+          <li><a href="automatisation-forbach.html">Forbach</a></li>
+          <li><a href="automatisation-sarreguemines.html">Sarreguemines</a></li>
+          <li><a href="automatisation-saint-avold.html">Saint-Avold</a></li>
+          <li><a href="automatisation-sarrebourg.html">Sarrebourg</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Digital Dreamsbox. Tous droits réservés.</p>
+      <div class="footer-legal">
+        <a href="pages/mentions-legales.html">Mentions légales</a>
+        <a href="pages/cgv.html">CGV</a>
+        <a href="pages/confidentialite.html">Confidentialité</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>"""
+
+
+def generate():
+    generated = []
+    for v in VILLES:
+        content = TEMPLATE.format(
+            slug=v["slug"],
+            nom=v["nom"],
+            region=v["region"],
+            zone=v["zone"],
+            contexte=v["contexte"],
+            contexte2=v["contexte2"],
+            secteurs=v["secteurs"],
+            secteurs_detail=v["secteurs_detail"],
+            faq_q=v["faq_q"],
+            faq_r=v["faq_r"],
+        )
+        filename = f"automatisation-{v['slug']}.html"
+        filepath = os.path.join(OUTPUT_DIR, filename)
+        with open(filepath, "w", encoding="utf-8") as f:
+            f.write(content)
+        generated.append(filename)
+        print(f"  OK  {filename}")
+    print(f"\n{len(generated)} pages générées.")
+    return generated
+
+
+if __name__ == "__main__":
+    print("Génération des pages automatisation par ville...")
+    generate()
