@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.DS_Store
+*_DS_Store
+*.artifact.json
+assets/_src/

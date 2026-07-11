@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /pages/merci.html
 
 Sitemap: https://digitaldreamsbox.com/sitemap.xml
