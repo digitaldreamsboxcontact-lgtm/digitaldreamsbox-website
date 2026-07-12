@@ -486,4 +486,17 @@
       window.location.href = link.href;
     }, FADE_IN + 40);
   });
+
+  /* Bouton retour navigateur : la page peut être restaurée depuis le
+     bfcache sans rechargement, donc le voile ne se réinitialise jamais
+     via le script inline (qui ne s'exécute qu'au chargement complet). */
+  window.addEventListener('pageshow', function (e) {
+    if (!e.persisted) return;
+    running = false;
+    var ov = document.getElementById('pt-overlay');
+    if (!ov) return;
+    ov.style.transition    = 'none';
+    ov.style.opacity       = '0';
+    ov.style.pointerEvents = 'none';
+  });
 })();
