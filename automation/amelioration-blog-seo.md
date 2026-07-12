@@ -23,7 +23,7 @@ Ne jamais basculer soi-même de VALIDATION vers AUTONOME.
   - `https://github.com/digitaldreamsboxcontact-lgtm/digitaldreamsbox-website` (le site, public — celui-ci)
   - `https://github.com/digitaldreamsboxcontact-lgtm/digitaldreamsbox-automation-secrets` (privé — contient `gsc-service-account.json`)
 - Ne jamais afficher le contenu du fichier de clé dans une réponse, un commit ou un rapport. Le lire uniquement pour authentifier l'appel API.
-- Interroger l'API Search Console (`searchanalytics.query`) sur la propriété `digitaldreamsbox.com`, filtrée sur les pages dont l'URL contient `/pages/journal/`, sur les 28 derniers jours, dimensions `page` + `query`.
+- Interroger l'API Search Console (`searchanalytics.query`) sur la propriété **`sc-domain:digitaldreamsbox.com`** (propriété de type "domaine" — utiliser exactement cette chaîne comme `siteUrl`), filtrée sur les pages dont l'URL contient `/pages/journal/`, sur les 28 derniers jours, dimensions `page` + `query`.
 - Si l'authentification échoue : ne pas inventer de données. Écrire un rapport signalant le blocage technique et s'arrêter.
 
 ### 2. Analyser
