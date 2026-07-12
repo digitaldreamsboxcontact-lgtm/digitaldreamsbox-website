@@ -50,6 +50,11 @@ Limites strictes dans les deux modes :
 
 Toujours produire `rapports-seo/[YYYY-MM-DD].md` : résumé 3 lignes, tableau par article (URL, impressions, clics, CTR, position, verdict), actions faites ou proposées avec justification par les données. Aucune affirmation sans donnée réelle à l'appui.
 
+Toujours écrire aussi `rapports-seo/digest-gbp.txt` (écraser à chaque passage) : 2-4 lignes texte brut résumant les thématiques qui performent vraiment cette semaine (ou vide si rien d'exploitable). Lu automatiquement par le scénario Make GBP pour orienter ses posts. Exemple :
+```
+Cette semaine, les recherches réelles qui ramènent du monde sur le blog concernent : SEO local pour artisans, obtention d'avis Google, budget site web artisan. Les métiers/thèmes à privilégier si pertinent : plombier, électricien, service local.
+```
+
 ---
 
 ## Garde-fous absolus
