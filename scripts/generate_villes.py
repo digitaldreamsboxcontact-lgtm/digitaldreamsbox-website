@@ -79,7 +79,7 @@ VILLES = [
         ],
         "faq_intro": "Les questions qu'on entend à Phalsbourg. Une réponse vous manque ? Posez-la directement, on répond sous 24 h.",
         "contact_p": "Un échange de 30 minutes, sans engagement. On comprend votre activité à Phalsbourg, vous repartez avec une recommandation claire. Si on n'est pas la bonne agence pour vous, on le dit.",
-        "autres_zones": [("index.html", "Sarrebourg"), ("agence-web-forbach.html", "Forbach"), ("agence-web-sarreguemines.html", "Sarreguemines"), ("agence-web-saint-avold.html", "Saint-Avold")],
+        "autres_zones": [("agence-web-sarrebourg.html", "Sarrebourg"), ("agence-web-forbach.html", "Forbach"), ("agence-web-sarreguemines.html", "Sarreguemines"), ("agence-web-saint-avold.html", "Saint-Avold")],
     },
     {
         "nom": "Saint-Avold",
@@ -112,7 +112,7 @@ VILLES = [
         ],
         "faq_intro": "Les questions qu'on entend à Saint-Avold. Une réponse vous manque ? Posez-la directement, on répond sous 24 h.",
         "contact_p": "Un échange de 30 minutes, sans engagement. On comprend votre activité à Saint-Avold, vous repartez avec une recommandation claire. Si on n'est pas la bonne agence pour vous, on le dit.",
-        "autres_zones": [("index.html", "Sarrebourg"), ("agence-web-forbach.html", "Forbach"), ("agence-web-sarreguemines.html", "Sarreguemines"), ("agence-web-phalsbourg.html", "Phalsbourg")],
+        "autres_zones": [("agence-web-sarrebourg.html", "Sarrebourg"), ("agence-web-forbach.html", "Forbach"), ("agence-web-sarreguemines.html", "Sarreguemines"), ("agence-web-phalsbourg.html", "Phalsbourg")],
     },
     {
         "nom": "Lunéville",
@@ -145,7 +145,7 @@ VILLES = [
         ],
         "faq_intro": "Les questions qu'on entend à Lunéville. Une réponse vous manque ? Posez-la directement, on répond sous 24 h.",
         "contact_p": "Un échange de 30 minutes, sans engagement. On comprend votre activité à Lunéville, vous repartez avec une recommandation claire. Si on n'est pas la bonne agence pour vous, on le dit.",
-        "autres_zones": [("index.html", "Sarrebourg"), ("agence-web-phalsbourg.html", "Phalsbourg"), ("agence-web-saint-avold.html", "Saint-Avold"), ("agence-web-dieuze.html", "Dieuze")],
+        "autres_zones": [("agence-web-sarrebourg.html", "Sarrebourg"), ("agence-web-phalsbourg.html", "Phalsbourg"), ("agence-web-saint-avold.html", "Saint-Avold"), ("agence-web-dieuze.html", "Dieuze")],
     },
     {
         "nom": "Dieuze",
@@ -178,7 +178,7 @@ VILLES = [
         ],
         "faq_intro": "Les questions qu'on entend à Dieuze. Une réponse vous manque ? Posez-la directement, on répond sous 24 h.",
         "contact_p": "Un échange de 30 minutes, sans engagement. On comprend votre activité à Dieuze, vous repartez avec une recommandation claire. Si on n'est pas la bonne agence pour vous, on le dit.",
-        "autres_zones": [("index.html", "Sarrebourg"), ("agence-web-chateau-salins.html", "Château-Salins"), ("agence-web-morhange.html", "Morhange"), ("agence-web-saint-avold.html", "Saint-Avold")],
+        "autres_zones": [("agence-web-sarrebourg.html", "Sarrebourg"), ("agence-web-chateau-salins.html", "Château-Salins"), ("agence-web-morhange.html", "Morhange"), ("agence-web-saint-avold.html", "Saint-Avold")],
     },
     {
         "nom": "Morhange",
@@ -211,7 +211,7 @@ VILLES = [
         ],
         "faq_intro": "Les questions qu'on entend à Morhange. Une réponse vous manque ? Posez-la directement, on répond sous 24 h.",
         "contact_p": "Un échange de 30 minutes, sans engagement. On comprend votre activité à Morhange, vous repartez avec une recommandation claire. Si on n'est pas la bonne agence pour vous, on le dit.",
-        "autres_zones": [("index.html", "Sarrebourg"), ("agence-web-dieuze.html", "Dieuze"), ("agence-web-chateau-salins.html", "Château-Salins"), ("agence-web-saint-avold.html", "Saint-Avold")],
+        "autres_zones": [("agence-web-sarrebourg.html", "Sarrebourg"), ("agence-web-dieuze.html", "Dieuze"), ("agence-web-chateau-salins.html", "Château-Salins"), ("agence-web-saint-avold.html", "Saint-Avold")],
     },
     {
         "nom": "Saverne",
@@ -244,7 +244,7 @@ VILLES = [
         ],
         "faq_intro": "Les questions qu'on entend à Saverne. Une réponse vous manque ? Posez-la directement, on répond sous 24 h.",
         "contact_p": "Un échange de 30 minutes, sans engagement. On comprend votre activité à Saverne, vous repartez avec une recommandation claire. Si on n'est pas la bonne agence pour vous, on le dit.",
-        "autres_zones": [("index.html", "Sarrebourg"), ("agence-web-phalsbourg.html", "Phalsbourg"), ("agence-web-forbach.html", "Forbach"), ("agence-web-saint-avold.html", "Saint-Avold")],
+        "autres_zones": [("agence-web-sarrebourg.html", "Sarrebourg"), ("agence-web-phalsbourg.html", "Phalsbourg"), ("agence-web-forbach.html", "Forbach"), ("agence-web-saint-avold.html", "Saint-Avold")],
     },
     {
         "nom": "Sarralbe",
@@ -277,7 +277,7 @@ VILLES = [
         ],
         "faq_intro": "Les questions qu'on entend à Sarralbe. Une réponse vous manque ? Posez-la directement, on répond sous 24 h.",
         "contact_p": "Un échange de 30 minutes, sans engagement. On comprend votre activité à Sarralbe, vous repartez avec une recommandation claire. Si on n'est pas la bonne agence pour vous, on le dit.",
-        "autres_zones": [("index.html", "Sarrebourg"), ("agence-web-sarreguemines.html", "Sarreguemines"), ("agence-web-saint-avold.html", "Saint-Avold"), ("agence-web-puttelange.html", "Puttelange-aux-Lacs")],
+        "autres_zones": [("agence-web-sarrebourg.html", "Sarrebourg"), ("agence-web-sarreguemines.html", "Sarreguemines"), ("agence-web-saint-avold.html", "Saint-Avold"), ("agence-web-puttelange.html", "Puttelange-aux-Lacs")],
     },
     {
         "nom": "Château-Salins",
@@ -310,7 +310,7 @@ VILLES = [
         ],
         "faq_intro": "Les questions qu'on entend à Château-Salins. Une réponse vous manque ? Posez-la directement, on répond sous 24 h.",
         "contact_p": "Un échange de 30 minutes, sans engagement. On comprend votre activité à Château-Salins, vous repartez avec une recommandation claire. Si on n'est pas la bonne agence pour vous, on le dit.",
-        "autres_zones": [("index.html", "Sarrebourg"), ("agence-web-dieuze.html", "Dieuze"), ("agence-web-morhange.html", "Morhange"), ("agence-web-saint-avold.html", "Saint-Avold")],
+        "autres_zones": [("agence-web-sarrebourg.html", "Sarrebourg"), ("agence-web-dieuze.html", "Dieuze"), ("agence-web-morhange.html", "Morhange"), ("agence-web-saint-avold.html", "Saint-Avold")],
     },
     {
         "nom": "Bitche",
@@ -343,7 +343,7 @@ VILLES = [
         ],
         "faq_intro": "Les questions qu'on entend à Bitche. Une réponse vous manque ? Posez-la directement, on répond sous 24 h.",
         "contact_p": "Un échange de 30 minutes, sans engagement. On comprend votre activité à Bitche, vous repartez avec une recommandation claire. Si on n'est pas la bonne agence pour vous, on le dit.",
-        "autres_zones": [("index.html", "Sarrebourg"), ("agence-web-sarreguemines.html", "Sarreguemines"), ("agence-web-saint-avold.html", "Saint-Avold"), ("agence-web-puttelange.html", "Puttelange-aux-Lacs")],
+        "autres_zones": [("agence-web-sarrebourg.html", "Sarrebourg"), ("agence-web-sarreguemines.html", "Sarreguemines"), ("agence-web-saint-avold.html", "Saint-Avold"), ("agence-web-puttelange.html", "Puttelange-aux-Lacs")],
     },
     {
         "nom": "Puttelange-aux-Lacs",
@@ -376,7 +376,7 @@ VILLES = [
         ],
         "faq_intro": "Les questions qu'on entend à Puttelange-aux-Lacs. Une réponse vous manque ? Posez-la directement, on répond sous 24 h.",
         "contact_p": "Un échange de 30 minutes, sans engagement. On comprend votre activité à Puttelange-aux-Lacs, vous repartez avec une recommandation claire. Si on n'est pas la bonne agence pour vous, on le dit.",
-        "autres_zones": [("index.html", "Sarrebourg"), ("agence-web-sarralbe.html", "Sarralbe"), ("agence-web-bitche.html", "Bitche"), ("agence-web-sarreguemines.html", "Sarreguemines")],
+        "autres_zones": [("agence-web-sarrebourg.html", "Sarrebourg"), ("agence-web-sarralbe.html", "Sarralbe"), ("agence-web-bitche.html", "Bitche"), ("agence-web-sarreguemines.html", "Sarreguemines")],
     },
     {
         "nom": "Mittersheim",
@@ -409,7 +409,7 @@ VILLES = [
         ],
         "faq_intro": "Les questions qu'on entend dans le Pays de Sarrebourg. Une réponse vous manque ? On est juste à côté.",
         "contact_p": "On est à Mittersheim. Un échange de 30 minutes, sans engagement. On comprend votre activité, vous repartez avec une recommandation claire. On peut aussi se retrouver en face à face si vous le souhaitez.",
-        "autres_zones": [("index.html", "Sarrebourg"), ("agence-web-dieuze.html", "Dieuze"), ("agence-web-sarralbe.html", "Sarralbe"), ("agence-web-morhange.html", "Morhange")],
+        "autres_zones": [("agence-web-sarrebourg.html", "Sarrebourg"), ("agence-web-dieuze.html", "Dieuze"), ("agence-web-sarralbe.html", "Sarralbe"), ("agence-web-morhange.html", "Morhange")],
     },
     {
         "nom": "Sarre-Union",
@@ -442,7 +442,7 @@ VILLES = [
         ],
         "faq_intro": "Les questions qu'on entend en Alsace Bossue. Une réponse vous manque ? Posez-la directement, on répond sous 24 h.",
         "contact_p": "Un échange de 30 minutes, sans engagement. On comprend votre activité à Sarre-Union, vous repartez avec une recommandation claire. Si on n'est pas la bonne agence pour vous, on le dit.",
-        "autres_zones": [("index.html", "Sarrebourg"), ("agence-web-phalsbourg.html", "Phalsbourg"), ("agence-web-bitche.html", "Bitche"), ("agence-web-sarreguemines.html", "Sarreguemines")],
+        "autres_zones": [("agence-web-sarrebourg.html", "Sarrebourg"), ("agence-web-phalsbourg.html", "Phalsbourg"), ("agence-web-bitche.html", "Bitche"), ("agence-web-sarreguemines.html", "Sarreguemines")],
     },
     {
         "nom": "Sélestat",
@@ -574,7 +574,7 @@ VILLES = [
         ],
         "faq_intro": "Les questions qu'on entend à Épinal et dans les Vosges. Une réponse vous manque ? Posez-la directement, on répond sous 24 h.",
         "contact_p": "Un échange de 30 minutes en visio, sans engagement. On comprend votre activité à Épinal, vous repartez avec une recommandation claire. Tout se fait à distance, sans friction.",
-        "autres_zones": [("agence-web-remiremont.html", "Remiremont"), ("agence-web-saint-die.html", "Saint-Dié-des-Vosges"), ("agence-web-luneville.html", "Lunéville"), ("index.html", "Sarrebourg")],
+        "autres_zones": [("agence-web-remiremont.html", "Remiremont"), ("agence-web-saint-die.html", "Saint-Dié-des-Vosges"), ("agence-web-luneville.html", "Lunéville"), ("agence-web-sarrebourg.html", "Sarrebourg")],
     },
     {
         "nom": "Saint-Dié-des-Vosges",
@@ -640,7 +640,7 @@ VILLES = [
         ],
         "faq_intro": "Les questions qu'on entend à Remiremont. Une réponse vous manque ? Posez-la directement, on répond sous 24 h.",
         "contact_p": "Un échange de 30 minutes en visio, sans engagement. On comprend votre activité à Remiremont, vous repartez avec une recommandation claire.",
-        "autres_zones": [("agence-web-epinal.html", "Épinal"), ("agence-web-saint-die.html", "Saint-Dié-des-Vosges"), ("agence-web-luneville.html", "Lunéville"), ("index.html", "Sarrebourg")],
+        "autres_zones": [("agence-web-epinal.html", "Épinal"), ("agence-web-saint-die.html", "Saint-Dié-des-Vosges"), ("agence-web-luneville.html", "Lunéville"), ("agence-web-sarrebourg.html", "Sarrebourg")],
     },
     {
         "nom": "Verdun",
@@ -673,7 +673,7 @@ VILLES = [
         ],
         "faq_intro": "Les questions qu'on entend à Verdun. Une réponse vous manque ? Posez-la directement, on répond sous 24 h.",
         "contact_p": "Un échange de 30 minutes en visio, sans engagement. On comprend votre activité à Verdun, vous repartez avec une recommandation claire.",
-        "autres_zones": [("agence-web-bar-le-duc.html", "Bar-le-Duc"), ("agence-web-luneville.html", "Lunéville"), ("agence-web-saint-die.html", "Saint-Dié-des-Vosges"), ("index.html", "Sarrebourg")],
+        "autres_zones": [("agence-web-bar-le-duc.html", "Bar-le-Duc"), ("agence-web-luneville.html", "Lunéville"), ("agence-web-saint-die.html", "Saint-Dié-des-Vosges"), ("agence-web-sarrebourg.html", "Sarrebourg")],
     },
     {
         "nom": "Bar-le-Duc",
@@ -706,7 +706,7 @@ VILLES = [
         ],
         "faq_intro": "Les questions qu'on entend à Bar-le-Duc. Une réponse vous manque ? Posez-la directement, on répond sous 24 h.",
         "contact_p": "Un échange de 30 minutes en visio, sans engagement. On comprend votre activité à Bar-le-Duc, vous repartez avec une recommandation claire.",
-        "autres_zones": [("agence-web-verdun.html", "Verdun"), ("agence-web-luneville.html", "Lunéville"), ("agence-web-epinal.html", "Épinal"), ("index.html", "Sarrebourg")],
+        "autres_zones": [("agence-web-verdun.html", "Verdun"), ("agence-web-luneville.html", "Lunéville"), ("agence-web-epinal.html", "Épinal"), ("agence-web-sarrebourg.html", "Sarrebourg")],
     },
 ]
 
@@ -744,13 +744,16 @@ def build_autres_zones(autres_zones, nom):
 
 
 def build_footer_zones(autres_zones, nom, slug):
-    items = [f'<li><a href="index.html">Sarrebourg</a></li>',
-             f'<li><a href="agence-web-forbach.html">Forbach</a></li>',
-             f'<li><a href="agence-web-sarreguemines.html">Sarreguemines</a></li>']
     current = f'agence-web-{slug}.html'
+    core = [("agence-web-sarrebourg.html", "Sarrebourg"),
+            ("agence-web-forbach.html", "Forbach"),
+            ("agence-web-sarreguemines.html", "Sarreguemines")]
+    items = [f'<li><a href="{href}">{label}</a></li>' for href, label in core if href != current]
+    seen_hrefs = {href for href, _ in core}
     for href, label in autres_zones:
-        if href != "index.html" and href != "agence-web-forbach.html" and href != "agence-web-sarreguemines.html" and href != current:
+        if href not in seen_hrefs and href != current:
             items.append(f'<li><a href="{href}">{label}</a></li>')
+            seen_hrefs.add(href)
     return "\n          ".join(items[:5])
 
 
@@ -1299,7 +1302,7 @@ def generate_page(v):
         <ul>
           <li><a href="pages/services.html#branding">Branding</a></li>
           <li><a href="pages/services.html#sites-web">Sites web</a></li>
-          <li><a href="pages/services.html#google-ads">Google Ads</a></li>
+          <li><a href="pages/services.html#acquisition-payante">Google Ads</a></li>
         </ul>
       </div>
       <div class="footer-col">
