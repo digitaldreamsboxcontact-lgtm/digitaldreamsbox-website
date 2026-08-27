@@ -36,6 +36,22 @@
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
 
+  <!-- Skeleton loader (critical CSS inline, indépendant de styles.css) -->
+  <style>
+    #skeleton-loader{position:fixed;inset:0;z-index:9997;background:#0B1526;display:flex;align-items:center;justify-content:center;transition:opacity .4s ease;}
+    #skeleton-loader.sk-hide{opacity:0;pointer-events:none;}
+    .sk-col{display:flex;flex-direction:column;align-items:center;gap:16px;width:min(560px,86vw);}
+    .sk-bar{border-radius:8px;background:linear-gradient(90deg,rgba(255,255,255,.05) 25%,rgba(29,158,233,.18) 50%,rgba(255,255,255,.05) 75%);background-size:200% 100%;animation:sk-shimmer 1.4s ease-in-out infinite;}
+    .sk-logo{width:52px;height:52px;border-radius:14px;margin-bottom:6px;}
+    .sk-eyebrow{width:180px;height:13px;}
+    .sk-title1{width:78%;height:30px;margin-top:8px;}
+    .sk-title2{width:56%;height:30px;}
+    .sk-sub{width:64%;height:13px;margin-top:8px;}
+    .sk-cta{width:150px;height:42px;border-radius:999px;margin-top:12px;}
+    @keyframes sk-shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+    @media (prefers-reduced-motion: reduce){.sk-bar{animation:none;}}
+  </style>
+
   <!-- JSON-LD : Organization + LocalBusiness -->
   <script type="application/ld+json">
   {
@@ -119,6 +135,31 @@
   </script>
 </head>
 <body>
+<div id="skeleton-loader" aria-hidden="true">
+  <div class="sk-col">
+    <div class="sk-bar sk-logo"></div>
+    <div class="sk-bar sk-eyebrow"></div>
+    <div class="sk-bar sk-title1"></div>
+    <div class="sk-bar sk-title2"></div>
+    <div class="sk-bar sk-sub"></div>
+    <div class="sk-bar sk-cta"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var sk = document.getElementById('skeleton-loader');
+  if(!sk) return;
+  var done = false;
+  function hide(){
+    if(done) return;
+    done = true;
+    sk.classList.add('sk-hide');
+    setTimeout(function(){ if(sk.parentNode) sk.parentNode.removeChild(sk); }, 450);
+  }
+  window.addEventListener('load', hide);
+  setTimeout(hide, 2500); /* garde-fou : jamais bloqué plus de 2.5s */
+})();
+</script>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T9M3KKHB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
