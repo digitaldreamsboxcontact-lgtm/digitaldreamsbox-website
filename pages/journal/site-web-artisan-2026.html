@@ -20,6 +20,39 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Phudu:wght@400;500;600;700&family=Righteous&family=Baloo+2:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../../styles.css" />
 
+  <!-- Skeleton loader (critique, inline, independant de styles.css) -->
+  <style>
+    #skeleton-loader{position:fixed;inset:0;z-index:9997;background:#0B1526;overflow:hidden;transition:opacity .4s ease;}
+    #skeleton-loader.sk-hide{opacity:0;pointer-events:none;}
+    .sk-bar{border-radius:8px;background:linear-gradient(90deg,rgba(255,255,255,.05) 25%,rgba(29,158,233,.18) 50%,rgba(255,255,255,.05) 75%);background-size:200% 100%;animation:sk-shimmer 1.4s ease-in-out infinite;}
+    @keyframes sk-shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+    @media (prefers-reduced-motion: reduce){.sk-bar{animation:none;}}
+
+    .sk-header{position:absolute;top:0;left:0;right:0;padding:18px 0;}
+    .sk-header-row{max-width:1480px;margin:0 auto;padding:0 clamp(20px,4vw,56px);display:flex;align-items:center;justify-content:space-between;gap:24px;}
+    .sk-logo{width:36px;height:36px;border-radius:9px;flex:none;}
+    .sk-navlinks{display:flex;gap:6px;}
+    .sk-navlink{width:64px;height:34px;border-radius:999px;}
+    .sk-navlink:nth-child(2){width:72px;}
+    .sk-cta-row{display:flex;gap:10px;}
+    .sk-btn-ghost{width:92px;height:38px;border-radius:999px;}
+    .sk-btn-primary{width:150px;height:38px;border-radius:999px;}
+    @media (max-width:900px){ .sk-navlinks,.sk-cta-row{display:none;} }
+
+    .sk-ph-hero{position:absolute;top:0;left:0;right:0;padding:160px 0 0;}
+    .sk-ph-shell{max-width:1480px;margin:0 auto;padding:0 clamp(20px,4vw,56px);display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:end;}
+    .sk-ph-crumbs{width:130px;height:10px;margin-bottom:24px;}
+    .sk-ph-eyebrow{width:230px;height:13px;margin-bottom:14px;}
+    .sk-ph-title-line{height:clamp(48px,6.4vw,92px);border-radius:10px;margin-bottom:8px;}
+    .sk-ph-title-line.l1{width:70%;}
+    .sk-ph-title-line.l2{width:55%;}
+    .sk-ph-lede-line{height:18px;margin-bottom:12px;}
+    .sk-ph-lede-line.w1{width:90%;}
+    .sk-ph-lede-line.w2{width:60%;}
+    @media (max-width:900px){ .sk-ph-shell{grid-template-columns:1fr;gap:24px;} .sk-ph-hero{padding:130px 0 0;} }
+  </style>
+
+
   <script type="application/ld+json">
   [
     {
@@ -84,6 +117,52 @@
   </script>
 </head>
 <body>
+<div id="skeleton-loader" aria-hidden="true">
+  <div class="sk-header">
+    <div class="sk-header-row">
+      <div class="sk-bar sk-logo"></div>
+      <div class="sk-navlinks">
+        <div class="sk-bar sk-navlink"></div>
+        <div class="sk-bar sk-navlink"></div>
+        <div class="sk-bar sk-navlink"></div>
+        <div class="sk-bar sk-navlink"></div>
+      </div>
+      <div class="sk-cta-row">
+        <div class="sk-bar sk-btn-ghost"></div>
+        <div class="sk-bar sk-btn-primary"></div>
+      </div>
+    </div>
+  </div>
+  <div class="sk-ph-hero">
+    <div class="sk-ph-shell">
+      <div>
+        <div class="sk-bar sk-ph-crumbs"></div>
+        <div class="sk-bar sk-ph-eyebrow"></div>
+        <div class="sk-bar sk-ph-title-line l1"></div>
+        <div class="sk-bar sk-ph-title-line l2"></div>
+      </div>
+      <div>
+        <div class="sk-bar sk-ph-lede-line w1"></div>
+        <div class="sk-bar sk-ph-lede-line w2"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var sk = document.getElementById('skeleton-loader');
+  if(!sk) return;
+  var done = false;
+  function hide(){
+    if(done) return;
+    done = true;
+    sk.classList.add('sk-hide');
+    setTimeout(function(){ if(sk.parentNode) sk.parentNode.removeChild(sk); }, 450);
+  }
+  window.addEventListener('load', hide);
+  setTimeout(hide, 2500); /* garde-fou : jamais bloque plus de 2.5s */
+})();
+</script>
 <div id="pt-overlay"></div>
 <script>if(sessionStorage.getItem('pt')){sessionStorage.removeItem('pt');var _o=document.getElementById('pt-overlay');_o.style.opacity='1';_o.style.pointerEvents='all';setTimeout(function(){_o.style.transition='opacity 150ms ease-out';_o.style.opacity='0';_o.style.pointerEvents='none';},60);}</script>
 <div id="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>

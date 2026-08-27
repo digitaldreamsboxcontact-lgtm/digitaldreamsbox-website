@@ -36,6 +36,46 @@
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
 
+  <!-- Skeleton loader (critique, inline, independant de styles.css) -->
+  <style>
+    #skeleton-loader{position:fixed;inset:0;z-index:9997;background:#0B1526;overflow:hidden;transition:opacity .4s ease;}
+    #skeleton-loader.sk-hide{opacity:0;pointer-events:none;}
+    .sk-bar{border-radius:8px;background:linear-gradient(90deg,rgba(255,255,255,.05) 25%,rgba(29,158,233,.18) 50%,rgba(255,255,255,.05) 75%);background-size:200% 100%;animation:sk-shimmer 1.4s ease-in-out infinite;}
+    @keyframes sk-shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+    @media (prefers-reduced-motion: reduce){.sk-bar{animation:none;}}
+
+    .sk-header{position:absolute;top:0;left:0;right:0;padding:18px 0;}
+    .sk-header-row{max-width:1480px;margin:0 auto;padding:0 clamp(20px,4vw,56px);display:flex;align-items:center;justify-content:space-between;gap:24px;}
+    .sk-logo{width:36px;height:36px;border-radius:9px;flex:none;}
+    .sk-navlinks{display:flex;gap:6px;}
+    .sk-navlink{width:64px;height:34px;border-radius:999px;}
+    .sk-navlink:nth-child(2){width:72px;}
+    .sk-cta-row{display:flex;gap:10px;}
+    .sk-btn-ghost{width:92px;height:38px;border-radius:999px;}
+    .sk-btn-primary{width:150px;height:38px;border-radius:999px;}
+    @media (max-width:900px){ .sk-navlinks,.sk-cta-row{display:none;} }
+
+    .sk-hero{position:absolute;top:0;left:0;right:0;padding:170px 0 0;}
+    .sk-hero-shell{max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,56px);}
+    .sk-eyebrow{width:230px;height:13px;margin-bottom:38px;}
+    .sk-title-line{height:clamp(40px,6.2vw,84px);border-radius:10px;}
+    .sk-title-line.l1{width:78%;margin-bottom:14px;}
+    .sk-title-line.l2{width:92%;margin-bottom:30px;}
+    .sk-sub-line{height:16px;margin-bottom:10px;}
+    .sk-sub-line.w1{width:min(600px,68%);}
+    .sk-sub-line.w2{width:min(560px,62%);}
+    .sk-sub-line.w3{width:min(220px,26%);margin-bottom:36px;}
+    .sk-hero-ctas{display:flex;gap:14px;margin-bottom:56px;}
+    .sk-hero-btn{width:165px;height:44px;border-radius:999px;}
+    .sk-hero-btn.ghost{width:155px;}
+    .sk-hero-meta{display:flex;gap:clamp(40px,6vw,80px);padding-top:32px;border-top:1px solid rgba(255,255,255,.10);max-width:760px;}
+    .sk-meta-col{display:flex;flex-direction:column;gap:8px;}
+    .sk-meta-k{width:100px;height:9px;}
+    .sk-meta-v{width:130px;height:14px;}
+    @media (max-width:720px){ .sk-hero{padding-top:130px;} .sk-title-line{height:clamp(34px,9vw,52px);} .sk-hero-meta{display:none;} }
+  </style>
+
+
   <!-- JSON-LD : WebPage + LocalBusiness + FAQPage -->
   <script type="application/ld+json">
   [
@@ -122,6 +162,57 @@
   </script>
 </head>
 <body>
+<div id="skeleton-loader" aria-hidden="true">
+  <div class="sk-header">
+    <div class="sk-header-row">
+      <div class="sk-bar sk-logo"></div>
+      <div class="sk-navlinks">
+        <div class="sk-bar sk-navlink"></div>
+        <div class="sk-bar sk-navlink"></div>
+        <div class="sk-bar sk-navlink"></div>
+        <div class="sk-bar sk-navlink"></div>
+      </div>
+      <div class="sk-cta-row">
+        <div class="sk-bar sk-btn-ghost"></div>
+        <div class="sk-bar sk-btn-primary"></div>
+      </div>
+    </div>
+  </div>
+  <div class="sk-hero">
+    <div class="sk-hero-shell">
+      <div class="sk-bar sk-eyebrow"></div>
+      <div class="sk-bar sk-title-line l1"></div>
+      <div class="sk-bar sk-title-line l2"></div>
+      <div class="sk-bar sk-sub-line w1"></div>
+      <div class="sk-bar sk-sub-line w2"></div>
+      <div class="sk-bar sk-sub-line w3"></div>
+      <div class="sk-hero-ctas">
+        <div class="sk-bar sk-hero-btn"></div>
+        <div class="sk-bar sk-hero-btn ghost"></div>
+      </div>
+      <div class="sk-hero-meta">
+        <div class="sk-meta-col"><div class="sk-bar sk-meta-k"></div><div class="sk-bar sk-meta-v"></div></div>
+        <div class="sk-meta-col"><div class="sk-bar sk-meta-k"></div><div class="sk-bar sk-meta-v"></div></div>
+        <div class="sk-meta-col"><div class="sk-bar sk-meta-k"></div><div class="sk-bar sk-meta-v"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var sk = document.getElementById('skeleton-loader');
+  if(!sk) return;
+  var done = false;
+  function hide(){
+    if(done) return;
+    done = true;
+    sk.classList.add('sk-hide');
+    setTimeout(function(){ if(sk.parentNode) sk.parentNode.removeChild(sk); }, 450);
+  }
+  window.addEventListener('load', hide);
+  setTimeout(hide, 2500); /* garde-fou : jamais bloque plus de 2.5s */
+})();
+</script>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T9M3KKHB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
