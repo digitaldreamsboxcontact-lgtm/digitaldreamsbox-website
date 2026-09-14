@@ -437,6 +437,29 @@ body.nav-open { overflow: hidden; }
   .nav-toggle { display: inline-flex; }
 }
 
+/* Pages acq-header (pas de hamburger, logo + CTA forcés visibles à toute largeur,
+   voir override .acq-header .nav-cta) : jamais dimensionné pour le mobile étroit,
+   déborde sous ~420px. Corrigé le 2026-09-14. */
+@media (max-width: 420px) {
+  /* Vraie cause du débordement : le fichier logo (mq02h9of-NVlogo-3d-d_d.png,
+     1154x352px) contient le mot "digital dreamsbox" dessiné en pixels dans
+     l'image elle-même (pas du texte HTML, .brand-text est deja display:none
+     partout et n'y est pour rien). A largeur egale a la hauteur (36px -> 36px
+     au lieu de 36px -> ~118px), object-fit:cover + object-position:left ne
+     garde que le cote gauche de l'image (icone "dd" + étincelle), le mot
+     "dreamsbox" ecrit dans les pixels sort du cadre et est coupe proprement. */
+  .acq-header .brand img {
+    width: 34px !important;
+    height: 34px !important;
+    object-fit: cover;
+    object-position: left center;
+  }
+  .acq-header .brand-text { display: none !important; }
+  .acq-header .nav { gap: 10px; }
+  .acq-call-btn { padding: 8px 13px !important; font-size: 12px !important; gap: 5px !important; }
+  .acq-call-btn .arr { display: none !important; }
+}
+
 /* ============================================================
    QUICK CONTACT — collapsed pills that expand on hover
    ============================================================ */
