@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#0B1526" />
+
+<title>Un site qui vous ramène des clients, prix annoncé — Digital Dreamsbox</title>
+<meta name="description" content="Création de site pour artisans et PME de Sarrebourg et alentours. Prix fixe à partir de 1 790€. Audit de rentabilité gratuit avant de commencer." />
+<meta property="og:image" content="https://digitaldreamsbox.com/assets/og-image.webp" />
+
+<link rel="icon" type="image/x-icon" href="favicon.ico" /><link rel="icon" type="image/png" href="favicon-192.png" />
+<link rel="apple-touch-icon" href="favicon-180.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="https://fonts.gstatic.com/s/phudu/v6/0FlaVPSHk0ya-5mYUB4uZw8h.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Phudu:wght@400;500;600;700&family=Righteous&family=Baloo+2:wght@400;500;600;700&family=Barlow+Condensed:wght@700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Phudu:wght@400;500;600;700&family=Righteous&family=Baloo+2:wght@400;500;600;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet"></noscript>
+
+<link rel="stylesheet" href="styles.css" />
+
+<style>
+  /* ── lp-site-web : header minimal, un seul CTA ── */
+  .acq-header .nav-links,
+  .acq-header .nav-toggle { display: none !important; }
+  @media (max-width: 920px) {
+    .acq-header .nav-cta { display: flex !important; }
+  }
+  .acq-call-btn { font-size: 13px; padding: 9px 16px; }
+  @media (max-width: 420px) {
+    .acq-header .brand-text { display: none !important; }
+  }
+
+  /* ── Section générique : rythme vertical large ── */
+  .lpw-section { padding: clamp(64px, 9vw, 120px) 0; position: relative; }
+  .lpw-section + .lpw-section { border-top: 1px solid var(--rule); }
+  .lpw-narrow { max-width: 760px; }
+  .lpw-kicker-none { margin-top: 0; }
+  .lpw-subhead {
+    font-family: var(--f-sf);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--white-55);
+    margin: 0 0 10px;
+  }
+
+  /* ── Problème : message unique, empilé ── */
+  .lpw-problem p.body-md { max-width: 62ch; margin-top: 18px; }
+  .lpw-problem p.body-md + p.body-md { margin-top: 14px; }
+
+  /* ── Méthode : reprend .process-rail existant, rien de neuf ── */
+
+  /* ── Prix : 3 cartes, la centrale mise en avant (Good-Better-Best) ── */
+  .lpw-pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 48px;
+    align-items: stretch;
+  }
+  @media (max-width: 860px) {
+    .lpw-pricing-grid { grid-template-columns: 1fr; max-width: 460px; margin-left: auto; margin-right: auto; }
+  }
+  .lpw-price-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--rule);
+    border-radius: 20px;
+    padding: 32px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .lpw-price-card.is-reco {
+    background: linear-gradient(180deg, rgba(29,158,233,0.10), rgba(29,158,233,0.03));
+    border-color: var(--sky-30);
+    transform: translateY(-10px);
+  }
+  @media (max-width: 860px) { .lpw-price-card.is-reco { transform: none; } }
+  .lpw-price-badge {
+    align-self: flex-start;
+    font-family: var(--f-sf);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--navy-deep);
+    background: var(--sky);
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+  .lpw-price-name {
+    font-family: var(--f-phudu);
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--white);
+    margin: 0;
+  }
+  .lpw-price-amount {
+    font-family: var(--f-phudu);
+    font-weight: 500;
+    font-size: clamp(34px, 4vw, 44px);
+    color: var(--white);
+    line-height: 1;
+  }
+  .lpw-price-amount span { font-family: var(--f-body); font-weight: 500; font-size: 15px; color: var(--white-55); }
+  .lpw-price-desc { font-family: var(--f-body); font-size: 14.5px; line-height: 1.6; color: var(--white-70); flex: 1; }
+  .lpw-price-options {
+    margin-top: 8px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--f-body);
+    font-size: 14px;
+    color: var(--white-55);
+    line-height: 1.7;
+  }
+  .lpw-price-note { margin-top: 18px; color: var(--white-55); font-size: 14px; }
+
+  /* ── Garanties : 3 blocs sans bordure répétée par ligne ── */
+  .lpw-guarantee-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+  @media (max-width: 860px) { .lpw-guarantee-grid { grid-template-columns: 1fr; } }
+  .lpw-guarantee {
+    padding-top: 20px;
+    border-top: 2px solid var(--sky);
+  }
+  .lpw-guarantee h3 {
+    font-family: var(--f-phudu);
+    font-weight: 500;
+    font-size: 19px;
+    color: var(--white);
+    margin: 0 0 10px;
+  }
+  .lpw-guarantee p { font-family: var(--f-body); font-size: 14.5px; line-height: 1.65; color: var(--white-70); margin: 0; }
+
+  /* ── Portfolio : grille d'exemples réels ── */
+  .lpw-portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 22px;
+  }
+  .lpw-proof-inline {
+    margin-top: 36px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+  }
+  .lpw-proof-lede {
+    font-family: var(--f-body);
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--white-70);
+    max-width: 62ch;
+    margin: 0;
+  }
+  @media (max-width: 980px) { .lpw-portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .lpw-portfolio-grid { grid-template-columns: 1fr; } }
+  .lpw-portfolio-item { display: block; border-radius: 16px; overflow: hidden; border: 1px solid var(--rule); background: rgba(255,255,255,0.02); transition: border-color 220ms ease; }
+  .lpw-portfolio-item:hover { border-color: var(--sky-30); }
+  .lpw-portfolio-item img { width: 100%; height: 200px; object-fit: cover; display: block; transition: transform 500ms cubic-bezier(.2,.7,.2,1); }
+  .lpw-portfolio-item:hover img { transform: scale(1.05); }
+  .lpw-portfolio-cap { padding: 12px 16px 16px; font-family: var(--f-sf); font-weight: 700; font-size: 13px; color: var(--white-70); display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .lpw-portfolio-cap::after { content: "\2192"; color: var(--sky); opacity: 0; transition: opacity 220ms ease, transform 220ms ease; transform: translateX(-4px); }
+  .lpw-portfolio-item:hover .lpw-portfolio-cap::after { opacity: 1; transform: none; }
+
+  /* ── Repère sectoriel (bâtiment/artisanat) ── */
+  .lpw-benchmark {
+    margin-top: 56px;
+    padding: 4px 0 4px 22px;
+    border-left: 2px solid var(--sky-30);
+  }
+  .lpw-benchmark-title {
+    font-family: var(--f-sf);
+    font-weight: 700;
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin: 0 0 10px;
+  }
+  .lpw-benchmark p:not(.lpw-benchmark-title) {
+    font-family: var(--f-body);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--white-70);
+    margin: 0 0 10px;
+  }
+  .lpw-benchmark p:last-child { margin-bottom: 0; }
+
+  /* ── Calculateur de rentabilité : une seule carte nette, air généreux au-dessus ── */
+  .lpw-calc {
+    margin-top: 64px;
+    padding: 34px 30px;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid var(--rule);
+    border-radius: 20px;
+  }
+  .lpw-calc-eyebrow {
+    font-family: var(--f-sf);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sky);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 10px;
+  }
+  .lpw-calc-eyebrow .dot { width: 6px; height: 6px; border-radius: 999px; background: var(--sky); box-shadow: 0 0 0 4px rgba(29,158,233,0.18); flex: none; }
+  .lpw-calc h3 {
+    font-family: var(--f-phudu);
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--white);
+    margin: 0 0 4px;
+  }
+  .lpw-calc > p:not(.lpw-calc-eyebrow) { font-family: var(--f-body); font-size: 13.5px; color: var(--white-55); margin: 0 0 22px; }
+  .lpw-calc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .lpw-calc-row-3 { grid-template-columns: 1fr 1fr 1fr; }
+  @media (max-width: 640px) { .lpw-calc-row-3 { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .lpw-calc-row { grid-template-columns: 1fr; } }
+  .lpw-calc-hint { margin: 14px 0 0; font-family: var(--f-body); font-size: 12.5px; color: var(--white-55); }
+  .lpw-calc-field label {
+    display: block;
+    font-family: var(--f-sf);
+    font-weight: 700;
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--white-55);
+    margin-bottom: 8px;
+  }
+  .lpw-calc-field input {
+    width: 100%;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    padding: 12px 6px;
+    font-family: var(--f-body);
+    font-size: 16px;
+    text-align: center;
+    color: var(--white);
+  }
+  .lpw-calc-field input:focus { outline: none; }
+  .lpw-calc-field input::-webkit-outer-spin-button,
+  .lpw-calc-field input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .lpw-calc-field input[type=number] { -moz-appearance: textfield; }
+  .lpw-stepper {
+    display: flex;
+    align-items: stretch;
+    background: var(--navy-deep);
+    border: 1px solid var(--rule-strong);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 160ms ease;
+  }
+  .lpw-stepper:focus-within { border-color: var(--sky); }
+  .lpw-step-btn {
+    flex: 0 0 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.05);
+    border: none;
+    color: var(--white-70);
+    font-family: var(--f-sf);
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 140ms ease, color 140ms ease;
+  }
+  .lpw-step-btn:hover, .lpw-step-btn:focus-visible { background: var(--sky); color: #fff; outline: none; }
+  .lpw-step-btn:first-child { border-right: 1px solid var(--rule-strong); }
+  .lpw-step-btn:last-child { border-left: 1px solid var(--rule-strong); }
+  /* ── Graphique du calculateur ── */
+  .lpw-chart-wrap {
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+  }
+  .lpw-chart-title {
+    font-family: var(--f-sf);
+    font-weight: 700;
+    font-size: 12.5px;
+    letter-spacing: 0.02em;
+    color: var(--white-70);
+    margin: 0 0 4px;
+  }
+  .lpw-chart-sub {
+    font-family: var(--f-body);
+    font-size: 12px;
+    color: var(--white-55);
+    margin: 0 0 14px;
+  }
+  .lpw-chart-caption {
+    margin: 12px 0 0;
+    font-family: var(--f-body);
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--white-55);
+  }
+  .lpw-calc-warning {
+    display: none;
+    margin: 14px 0 0;
+    padding: 10px 14px;
+    background: rgba(230, 103, 103, 0.10);
+    border: 1px solid rgba(230, 103, 103, 0.30);
+    border-radius: 10px;
+    font-family: var(--f-body);
+    font-size: 12.5px;
+    color: #e6a3a3;
+  }
+  .lpw-calc-warning.is-visible { display: block; }
+  .lpw-chart-frame {
+    position: relative;
+    padding: 18px 14px 8px;
+    background: rgba(0,0,0,0.16);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+  }
+  .lpw-chart svg { width: 100%; height: auto; display: block; overflow: visible; cursor: crosshair; }
+  .lpw-chart-tip {
+    position: absolute;
+    pointer-events: none;
+    transform: translate(-50%, -100%);
+    background: var(--navy);
+    border: 1px solid var(--rule-strong);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-family: var(--f-sf);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--white);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 120ms ease;
+    z-index: 5;
+  }
+  .lpw-chart-tip.is-visible { opacity: 1; }
+  .lpw-chart-tip .sub { display: block; font-family: var(--f-body); font-weight: 500; font-size: 11px; color: var(--white-55); margin-top: 2px; }
+
+  .lpw-calc-result {
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .lpw-calc-result-k { font-family: var(--f-body); font-size: 14px; color: var(--white-70); max-width: 34ch; }
+  .lpw-calc-result-v { font-family: var(--f-phudu); font-weight: 500; font-size: 26px; color: var(--sky); }
+  .lpw-calc-result-v.is-small { font-family: var(--f-body); font-weight: 700; font-size: 15px; }
+  .lpw-calc-result.is-hero {
+    margin-top: 18px;
+    padding: 20px 22px;
+    border-top: none;
+    background: linear-gradient(135deg, rgba(29,158,233,0.16), rgba(29,158,233,0.04));
+    border: 1px solid var(--sky-30);
+    border-radius: 16px;
+    align-items: center;
+  }
+  .lpw-calc-result.is-hero .lpw-calc-result-v { font-size: clamp(32px, 4vw, 44px); }
+
+  .lpw-mid-cta { margin-top: 32px; text-align: center; }
+  .lpw-mid-cta .btn { display: inline-flex; }
+
+  /* ── Bloc fondateurs ── */
+  .lpw-founder-grid {
+    margin-top: 44px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(14px, 3vw, 28px);
+    max-width: 760px;
+  }
+  .lpw-founder { display: flex; flex-direction: column; gap: 14px; }
+  .lpw-founder img {
+    width: 100%; aspect-ratio: 4 / 5; height: auto;
+    object-fit: cover; object-position: 50% 22%;
+    border-radius: 16px; border: 1px solid var(--sky-30);
+    background: var(--navy);
+  }
+  .lpw-founder-name { font-family: var(--f-sf); font-weight: 700; font-size: 15px; color: var(--white); margin: 0 0 4px; }
+  .lpw-founder-text { font-family: var(--f-body); font-size: 14px; line-height: 1.55; color: var(--white-70); margin: 0; }
+  @media (max-width: 640px) {
+    .lpw-founder-name { font-size: 14px; }
+    .lpw-founder-text { font-size: 13px; }
+  }
+
+  /* ── Suivi après la mise en ligne ── */
+  .lpw-followup { margin-top: 36px; max-width: 760px; }
+  .lpw-followup h3 { font-family: var(--f-sf); font-weight: 700; font-size: 17px; color: var(--white); margin: 0 0 8px; }
+  .lpw-followup > p { font-family: var(--f-body); font-size: 14.5px; line-height: 1.65; color: var(--white-70); margin: 0 0 22px; }
+  .lpw-rail { list-style: none; margin: 0; padding: 0; display: flex; align-items: flex-start; }
+  .lpw-rail li { flex: 1; position: relative; text-align: center; font-family: var(--f-sf); font-size: 12.5px; color: var(--white-70); padding-top: 26px; }
+  .lpw-rail li::before { content: ""; position: absolute; top: 5px; left: 0; right: 0; height: 2px; background: var(--sky-30); }
+  .lpw-rail li::after { content: ""; position: absolute; top: 0; left: 50%; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; background: var(--sky); box-shadow: 0 0 0 4px rgba(29,158,233,0.18); }
+  .lpw-rail li:first-child::before { left: 50%; }
+  .lpw-rail li:last-child::before { right: 50%; }
+  .lpw-rail strong { display: block; color: var(--white); font-weight: 700; font-size: 13px; }
+
+  /* ── Réassurance formulaire ── */
+  .lpw-form-privacy { margin-top: 12px; font-family: var(--f-body); font-size: 12px; color: var(--white-55); line-height: 1.5; }
+
+  /* ── Bouton flottant WhatsApp (logo officiel vert + badge notif) ── */
+  .lpw-wa-fab {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 45;
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 26px -8px rgba(18,140,126,0.6);
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+  .lpw-wa-fab:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 16px 32px -8px rgba(18,140,126,0.75); }
+  @keyframes lpwWaNotify {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    12% { transform: rotate(-16deg) scale(1.08); }
+    24% { transform: rotate(13deg) scale(1.08); }
+    36% { transform: rotate(-10deg) scale(1.04); }
+    48% { transform: rotate(8deg) scale(1.04); }
+    60% { transform: rotate(-4deg) scale(1); }
+    72% { transform: rotate(0deg) scale(1); }
+  }
+  .lpw-wa-fab.is-notifying { animation: lpwWaNotify 800ms ease-in-out; }
+  .lpw-wa-badge {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    min-width: 19px;
+    height: 19px;
+    padding: 0 4px;
+    border-radius: 999px;
+    background: #ff3b30;
+    border: 2px solid var(--navy-deep);
+    color: #fff;
+    font-family: var(--f-sf);
+    font-weight: 700;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (max-width: 760px) {
+    .lpw-wa-fab { width: 48px; height: 48px; right: 16px; bottom: calc(20px + env(safe-area-inset-bottom)); }
+  }
+
+  /* Footer minimal (identique acquisition.html) */
+  .acq-footer { background: var(--ink); border-top: 1px solid var(--rule); position: relative; padding: 28px 0; }
+  .acq-footer .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-family: var(--f-sf); font-size: 12.5px; color: var(--white-55); }
+  .acq-footer .brand { display: inline-flex; align-items: center; gap: 10px; }
+  .acq-footer a { color: var(--white-55); }
+  .acq-footer a:hover { color: var(--sky); }
+
+  /* ═══ MOBILE : sections compactes, une idée par écran ═══ */
+  .lpw-more > summary { list-style: none; }
+  .lpw-more > summary::-webkit-details-marker { display: none; }
+  @media (min-width: 641px) {
+    .lpw-more > summary { pointer-events: none; margin-top: 40px; }
+  }
+  @media (max-width: 640px) {
+    .lpw-section { padding: 40px 0; }
+    .section-process { padding: 44px 0 36px; }
+    .section-faq { padding: 44px 0 36px; }
+    .section-contact { padding: 44px 0 36px; }
+    .h-section { margin: 10px 0 10px; }
+    .lpw-subhead { margin-top: 22px !important; }
+
+    /* Méthode : cartes courtes, on garde le titre et l'explication */
+    .process-intro { padding: 0 0 18px; grid-template-columns: 1fr; gap: 10px; }
+    .process-intro .right { font-size: 14.5px; justify-self: start; }
+    .process-card > div:first-child { min-height: 0; }
+    .process-card .step-num { font-size: 40px; }
+    .process-card h3 { font-size: 21px; margin: 6px 0 8px; }
+    .process-card p { font-size: 14px; margin-bottom: 0; }
+    .process-card ul { display: none; }
+    .process-rail { padding-bottom: 20px; gap: 12px; }
+    .process-card { flex-basis: 82vw; min-height: 0; padding: 18px; gap: 10px; border-radius: 18px; }
+
+    /* Prix : trois lignes lisibles d'un coup d'oeil */
+    .lpw-pricing-grid { margin-top: 20px; gap: 10px; max-width: none; }
+    .lpw-price-card { padding: 14px 16px; gap: 4px 12px; border-radius: 14px; display: grid; grid-template-columns: 1fr auto; align-items: baseline; }
+    .lpw-price-card.is-reco { transform: none; }
+    .lpw-price-badge { grid-column: 1 / -1; justify-self: start; font-size: 10px; padding: 3px 9px; }
+    .lpw-price-name { font-size: 18px; }
+    .lpw-price-amount { font-size: 26px; }
+    .lpw-price-desc { grid-column: 1 / -1; font-size: 13px; line-height: 1.45; }
+    .lpw-price-options { margin-top: 2px; padding-top: 12px; font-size: 13px; line-height: 1.5; }
+    .lpw-price-note { margin-top: 10px; font-size: 13px; }
+
+    /* "Au-delà du prix" : replié, un tap pour lire */
+    .lpw-more { margin-top: 18px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+    .lpw-more > summary { display: flex; justify-content: space-between; align-items: center; cursor: pointer; margin: 0 !important; padding: 14px 0; color: var(--white-70); }
+    .lpw-more > summary::after { content: "+"; font-size: 20px; line-height: 1; color: var(--sky); transition: transform 200ms ease; }
+    .lpw-more[open] > summary::after { transform: rotate(45deg); }
+    .lpw-more[open] > *:last-child { margin-bottom: 16px; }
+    .lpw-more .body-md { font-size: 14px; line-height: 1.55; }
+    .lpw-benchmark { margin-top: 16px; padding-left: 14px; }
+
+    /* Calculateur : lignes compactes */
+    .lpw-calc { margin-top: 24px; padding: 18px 16px; border-radius: 16px; }
+    .lpw-calc h3 { font-size: 18px; }
+    .lpw-calc > p:not(.lpw-calc-eyebrow) { font-size: 12.5px; line-height: 1.5; margin-bottom: 14px; }
+    .lpw-calc-row-3 { grid-template-columns: 1fr; gap: 6px; }
+    .lpw-calc-field { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .lpw-calc-field label { margin: 0; font-size: 10.5px; flex: 1; }
+    .lpw-stepper { flex: none; width: 148px; }
+    .lpw-step-btn { flex-basis: 34px; }
+    .lpw-calc-field input { padding: 9px 2px; font-size: 15px; }
+    .lpw-chart-caption { font-size: 11.5px; line-height: 1.4; margin-top: 8px; }
+    .lpw-chart-wrap { margin-top: 14px; padding-top: 14px; }
+    .lpw-chart-sub { display: none; }
+    .lpw-chart-frame { padding: 10px 6px 2px; }
+    .lpw-calc-result { margin-top: 12px; padding-top: 12px; }
+    .lpw-calc-result-k { font-size: 13px; }
+    .lpw-calc-result-v { font-size: 22px; }
+    .lpw-calc-result.is-hero { margin-top: 12px; padding: 14px 16px; }
+    .lpw-calc-result.is-hero .lpw-calc-result-v { font-size: 30px; }
+    .lpw-calc-hint { margin-top: 10px; font-size: 11.5px; line-height: 1.4; }
+    .lpw-section .body-md { font-size: 14.5px; line-height: 1.55; }
+
+    /* Preuve : garanties en liste serrée, réalisations en 2 x 2 */
+    .lpw-guarantee-grid { margin-top: 20px; gap: 12px; }
+    .lpw-guarantee { padding-top: 10px; }
+    .lpw-guarantee h3 { font-size: 16px; margin-bottom: 4px; }
+    .lpw-guarantee p { font-size: 13.5px; line-height: 1.5; }
+    .lpw-founder-grid { margin-top: 20px; padding-top: 16px; }
+    .lpw-followup { margin-top: 20px; }
+    .lpw-followup h3 { font-size: 16px; }
+    .lpw-followup > p { font-size: 13.5px; line-height: 1.55; margin-bottom: 14px; }
+    .lpw-proof-inline { margin-top: 20px; padding-top: 14px; }
+    .lpw-proof-lede { font-size: 13.5px; line-height: 1.5; }
+    .lpw-portfolio-grid { grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+    .lpw-portfolio-item { border-radius: 12px; }
+    .lpw-portfolio-item img { height: 92px; }
+    .lpw-portfolio-cap { padding: 8px 10px 10px; font-size: 12px; }
+    .lpw-mid-cta { margin-top: 18px; }
+
+    /* FAQ et contact */
+    .faq-grid { gap: 18px; }
+    .faq-q { padding: 14px 0; font-size: 14.5px; gap: 14px; }
+    .faq-q .ic { flex-basis: 30px; width: 30px; height: 30px; }
+    .faq-a-inner { padding: 0 0 16px; font-size: 13px; line-height: 1.55; }
+    .contact-grid { gap: 20px; }
+    .contact-grid h2 { font-size: 32px; margin-bottom: 10px; }
+    .contact-grid .ctxt { font-size: 14.5px; }
+    .contact-list { margin-top: 14px; gap: 10px; }
+    .contact-card { padding: 18px 16px; border-radius: 18px; }
+    .contact-card h3 { font-size: 21px; }
+    .contact-card .sub { margin-bottom: 12px; }
+    .form { gap: 10px; }
+    .field input, .field select, .field textarea { padding: 11px 13px; }
+    .field textarea { min-height: 72px; }
+  }
+</style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GNMMKY3BZB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GNMMKY3BZB');
+  gtag('config', 'AW-18121297118');
+  gtag('config', 'AW-18121297118/lTTBCLaa07scEN6Z9MBD', {
+    'phone_conversion_number': '06 88 84 81 45'
+  });
+</script>
+
+<!-- TODO (Lucas) : coller ici le pixel OpenAI Ads Manager une fois le compte créé et vérifié (etude-chatgpt-ads-2026-08-23.md, section 10.f) -->
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T9M3KKHB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div id="bg-blobs" class="stars"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
+
+<header class="site-header acq-header" role="banner">
+  <div class="shell-wide nav">
+    <a href="index.html" class="brand" aria-label="Digital Dreamsbox — Accueil">
+      <img src="logo-header-480.webp" alt="Logo Digital Dreamsbox" width="118" height="36" decoding="async" fetchpriority="high" />
+      <span class="brand-text">
+        <span class="b1">Digital</span>
+        <span class="b2">Dreamsbox</span>
+      </span>
+    </a>
+    <div class="nav-cta">
+      <a href="#audit" class="btn btn-primary acq-call-btn" data-magnet="" aria-label="Réserver mon audit de rentabilité gratuit">
+        Réserver mon audit
+        <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+      </a>
+    </div>
+  </div>
+  <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress-fill"></span></div>
+</header>
+
+<main>
+
+<!-- 1. HERO -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="shell hero-shell">
+    <span class="eyebrow reveal" id="hero-eyebrow">Studio indépendant, Sarrebourg</span>
+    <h1 id="hero-title" class="hero-title reveal" style="--rd:60ms; font-size: clamp(30px, 5vw, 60px);">
+      On ne vend pas un site. On calcule combien de <span class="accent">clients</span> il doit vous ramener.
+    </h1>
+    <p class="hero-sub reveal" style="--rd:140ms;" id="hero-sub-text">
+      Création de site pour artisans et PME de Sarrebourg et alentours. Prix fixe à partir de 1 790€, annoncé dès le premier échange.
+    </p>
+    <div class="hero-ctas reveal" style="--rd:220ms;">
+      <a href="#audit" class="btn btn-ghost">Réserver mon audit</a>
+    </div>
+    <div class="hero-meta reveal" style="--rd:320ms;">
+      <div>
+        <span class="k">Audit de rentabilité</span>
+        <span class="v">15 min, offert</span>
+      </div>
+      <div>
+        <span class="k">Prix</span>
+        <span class="v">Fixe, annoncé avant</span>
+      </div>
+      <div>
+        <span class="k">Délai de mise en ligne</span>
+        <span class="v">2 semaines</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. PROBLÈME -->
+<section class="lpw-section lpw-problem" aria-labelledby="problem-title">
+  <div class="shell">
+    <span class="eyebrow reveal">01 · Le constat</span>
+    <h2 id="problem-title" class="h-section science reveal lpw-narrow" style="--rd:60ms;">
+      Un site qui ne rapporte rien n'est presque jamais un problème de design.
+    </h2>
+    <p class="body-md reveal" style="--rd:140ms;">
+      Si quelqu'un vous a déjà vendu un site qui n'a jamais amené un client, ce n'est pas votre faute. C'est un site pensé pour exister, pas pour convertir.
+    </p>
+  </div>
+</section>
+
+<!-- 3. MÉTHODE (reprend le composant process-rail existant) -->
+<section class="section-process" id="methode" aria-labelledby="process-title">
+  <div class="shell">
+    <div class="process-intro">
+      <div>
+        <span class="eyebrow reveal">02 · La méthode</span>
+        <h2 id="process-title" class="h-section science reveal" style="--rd:60ms;">
+          Quatre étapes,<br>zéro flou.
+        </h2>
+      </div>
+      <p class="right reveal" style="--rd:140ms;">On calcule avec vous si ça vaut le coup avant de vous facturer quoi que ce soit. Ensuite, prix fixe et délai tenu.</p>
+    </div>
+
+    <div class="process-controls">
+      <div class="process-nav">
+        <button type="button" data-proc-prev="" aria-label="Étape précédente">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button type="button" data-proc-next="" aria-label="Étape suivante">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="process-rail-wrap">
+    <div class="process-rail" role="region" aria-label="Étapes du projet, défilement horizontal">
+
+      <article class="process-card is-active">
+        <div>
+          <span class="step-num">01</span>
+          <span class="duration"><span style="width:6px;height:6px;background:currentColor;border-radius:999px;display:inline-block;"></span>Semaine 0</span>
+          <h3>Audit de rentabilité</h3>
+        </div>
+        <div>
+          <p>15 minutes, offert. On regarde votre activité et vos clients actuels, et on calcule ensemble combien de nouveaux clients le site doit vous apporter pour être rentable, et en combien de temps c'est réaliste.</p>
+          <ul>
+            <li>Entretien de 15 minutes</li>
+            <li>Calcul du seuil de rentabilité</li>
+            <li>Chiffrage transparent</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="process-card">
+        <div>
+          <span class="step-num">02</span>
+          <span class="duration"><span style="width:6px;height:6px;background:currentColor;border-radius:999px;display:inline-block;"></span>Semaine 0</span>
+          <h3>Décision honnête</h3>
+        </div>
+        <div>
+          <p>Si l'audit montre qu'un site n'est pas la priorité pour vous maintenant, on vous le dit avant de vous proposer quoi que ce soit. Pas de vente forcée.</p>
+          <ul>
+            <li>Verdict écrit, pas un argumentaire</li>
+            <li>Vous décidez, sans pression</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="process-card">
+        <div>
+          <span class="step-num">03</span>
+          <span class="duration"><span style="width:6px;height:6px;background:currentColor;border-radius:999px;display:inline-block;"></span>Semaines 1-2</span>
+          <h3>Production</h3>
+        </div>
+        <div>
+          <p>Prix fixe annoncé avant de commencer, pas de devis surprise après coup. Design et mise en ligne, site prêt sous 2 semaines.</p>
+          <ul>
+            <li>Prix fixe, connu à l'avance</li>
+            <li>SEO local structuré (Schema.org)</li>
+            <li>Site en ligne sous 2 semaines</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="process-card">
+        <div>
+          <span class="step-num">04</span>
+          <span class="duration"><span style="width:6px;height:6px;background:currentColor;border-radius:999px;display:inline-block;"></span>Jours 1-90</span>
+          <h3>Suivi direct</h3>
+        </div>
+        <div>
+          <p>Corrections et optimisations gratuites pendant 90 jours. Vous avez mon numéro personnel pour toute question durant cette période, pas un formulaire de ticket.</p>
+          <ul>
+            <li>90 jours de corrections offertes</li>
+            <li>Ligne directe, pas de standard</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- 4. PRIX -->
+<section class="lpw-section" aria-labelledby="pricing-title">
+  <div class="shell">
+    <span class="eyebrow reveal">03 · Le calcul</span>
+    <h2 id="pricing-title" class="h-section science reveal" style="--rd:60ms;">
+      Trois formules,<br>un prix annoncé avant de commencer.
+    </h2>
+
+    <div class="lpw-pricing-grid reveal" style="--rd:140ms;">
+      <div class="lpw-price-card">
+        <h3 class="lpw-price-name">Essentiel</h3>
+        <div class="lpw-price-amount">820€</div>
+        <p class="lpw-price-desc">Une page de conversion, pensée pour être associée à une campagne publicitaire. Sans référencement.</p>
+      </div>
+
+      <div class="lpw-price-card is-reco">
+        <span class="lpw-price-badge">Le plus choisi</span>
+        <h3 class="lpw-price-name">Recommandé</h3>
+        <div class="lpw-price-amount">1 790€</div>
+        <p class="lpw-price-desc">Site complet, orienté conversion et référencement local. Ce qu'on recommande à la majorité des PME.</p>
+      </div>
+
+      <div class="lpw-price-card">
+        <h3 class="lpw-price-name">Premium</h3>
+        <div class="lpw-price-amount">2 750€</div>
+        <p class="lpw-price-desc">Site complet, blog automatisé inclus, et une campagne publicitaire gérée pendant 3 mois pour amener du trafic pendant que le référencement s'installe.</p>
+      </div>
+    </div>
+
+    <div class="lpw-price-options reveal" style="--rd:200ms;">
+      Options : optimisation pour les moteurs IA type ChatGPT et Perplexity, 290€. Blog automatisé avec publication hebdomadaire, 350€.
+    </div>
+    <p class="lpw-price-note reveal" style="--rd:240ms;">Le prix exact dépend de votre situation, il est confirmé pendant l'audit, pas après.</p>
+
+    <details class="lpw-more reveal" style="--rd:250ms;" open>
+      <summary class="lpw-subhead">Au-delà du prix</summary>
+      <p class="body-md lpw-narrow">Un site plus crédible ne change rien à la qualité de ce que vous vendez, mais il change ce qu'on pense de vous avant même le premier échange. Ça se traduit en euros (moins de friction sur le prix, un prospect qui vous perçoit comme sérieux discute moins vos tarifs), mais pas seulement : c'est aussi l'image que vous voulez renvoyer face à des concurrents qui, eux, ont déjà investi la leur. La plupart des entreprises qu'on accompagne ont déjà un produit ou un service de qualité, le site sert à le montrer, pas à le remplacer.</p>
+      <div class="lpw-benchmark">
+      <p class="lpw-benchmark-title">Repère bâtiment et artisanat</p>
+      <p>Un site d'artisan bien positionné génère en général 3 à 8 demandes de devis supplémentaires par mois, une fois qu'il a eu le temps de se faire connaître (3 à 6 mois). Avec un taux de conversion devis → client de 30 à 50%, ça donne environ 1 à 5 nouveaux clients par mois.</p>
+      <p>Contrepoids important : plus de 80% des sites d'artisans ne génèrent aucune demande sérieuse, parce qu'ils ne sont jamais vus. Ce repère concerne un site optimisé, pas n'importe quel site.</p>
+    </div>
+    </details>
+    <div class="lpw-calc reveal" style="--rd:280ms;">
+      <p class="lpw-calc-eyebrow"><span class="dot"></span>Calculez avec vos propres chiffres</p>
+      <h3>Un premier ordre de grandeur</h3>
+      <p>Une estimation grossière, pas un engagement. On l'affine ensemble pendant l'audit. Ce calcul chiffre ce qui se chiffre, pas la crédibilité que le site vous apporte, ça compte aussi.</p>
+      <div class="lpw-calc-row lpw-calc-row-3">
+        <div class="lpw-calc-field">
+          <label for="calc-value">Valeur moyenne d'un client (€)</label>
+          <div class="lpw-stepper">
+            <button type="button" class="lpw-step-btn" data-target="calc-value" data-dir="-1" aria-label="Diminuer la valeur client">−</button>
+            <input type="number" id="calc-value" min="0" step="200" value="1500" inputmode="numeric" />
+            <button type="button" class="lpw-step-btn" data-target="calc-value" data-dir="1" aria-label="Augmenter la valeur client">+</button>
+          </div>
+        </div>
+        <div class="lpw-calc-field">
+          <label for="calc-margin">Marge sur cette valeur (%)</label>
+          <div class="lpw-stepper">
+            <button type="button" class="lpw-step-btn" data-target="calc-margin" data-dir="-1" aria-label="Diminuer la marge">−</button>
+            <input type="number" id="calc-margin" min="0" max="100" step="5" value="30" inputmode="numeric" />
+            <button type="button" class="lpw-step-btn" data-target="calc-margin" data-dir="1" aria-label="Augmenter la marge">+</button>
+          </div>
+        </div>
+        <div class="lpw-calc-field">
+          <label for="calc-clients">Nouveaux clients espérés / mois</label>
+          <div class="lpw-stepper">
+            <button type="button" class="lpw-step-btn" data-target="calc-clients" data-dir="-1" aria-label="Diminuer le nombre de clients">−</button>
+            <input type="number" id="calc-clients" min="0" step="1" value="3" inputmode="numeric" />
+            <button type="button" class="lpw-step-btn" data-target="calc-clients" data-dir="1" aria-label="Augmenter le nombre de clients">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="lpw-chart-wrap">
+        <p class="lpw-chart-title">Évolution de votre gain net cumulé sur 12 mois</p>
+        <p class="lpw-chart-sub">Hypothèse de montée en charge : vos nouveaux clients arrivent progressivement, pas tous dès le premier mois.</p>
+        <div class="lpw-chart-frame">
+          <div class="lpw-chart" id="calc-chart"></div>
+          <div class="lpw-chart-tip" id="calc-chart-tip"></div>
+        </div>
+        <p class="lpw-chart-caption">Les repères M3 et M6 sont une moyenne indicative (cohérente avec les délais annoncés par Google lui-même pour un nouveau site), pas une date garantie. Le rythme réel dépend du moment où le site est optimisé, du niveau de concurrence dans votre secteur et votre zone, de la fréquence de mise à jour du contenu et de la tendance de recherche du moment. On optimise ce qui dépend de nous, pas le reste.</p>
+        <p class="lpw-calc-warning" id="calc-warning">Ce résultat semble élevé pour ces hypothèses, on le vérifie ensemble pendant l'audit.</p>
+      </div>
+
+      <div class="lpw-calc-result">
+        <span class="lpw-calc-result-k">Temps estimé pour rembourser le site en marge nette, formule recommandée à 1&nbsp;790€</span>
+        <span class="lpw-calc-result-v" id="calc-output">6 mois</span>
+      </div>
+      <div class="lpw-calc-result is-hero">
+        <span class="lpw-calc-result-k">Gain net estimé sur 12 mois, une fois le site remboursé</span>
+        <span class="lpw-calc-result-v" id="calc-output-annual">0€</span>
+      </div>
+      <p class="lpw-calc-hint">La marge par défaut (30%) est une estimation générique, ajustez-la à votre activité. Ces chiffres sont une estimation basée sur ce que vous renseignez, pas une prédiction garantie : on ne maîtrise ni votre marché ni la conjoncture.</p>
+      <div class="lpw-mid-cta">
+        <a href="#audit" class="btn btn-primary">
+          Réserver mon audit
+          <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. GARANTIES + FONDATEURS + PREUVE, un seul temps resserré -->
+<section class="lpw-section" aria-labelledby="guarantee-title">
+  <div class="shell">
+    <span class="eyebrow reveal">04 · La preuve</span>
+    <h2 id="guarantee-title" class="h-section science reveal" style="--rd:60ms;">
+      Ce qu'on vous doit,<br>par écrit.
+    </h2>
+
+    <div class="lpw-guarantee-grid reveal" style="--rd:140ms;">
+      <div class="lpw-guarantee">
+        <h3>Délai tenu</h3>
+        <p>Votre site en ligne sous 2 semaines. Si le délai n'est pas tenu, 6 mois de gestion de votre fiche Google offerts.</p>
+      </div>
+      <div class="lpw-guarantee">
+        <h3>Satisfait ou remboursé</h3>
+        <p>30 jours après la mise en ligne pour changer d'avis. Si le site ne vous convient pas, on vous rembourse.</p>
+      </div>
+      <div class="lpw-guarantee">
+        <h3>Avant de vendre</h3>
+        <p>Si l'audit montre qu'un site n'est pas votre priorité maintenant, on vous le dit. Mieux vaut vous le dire que vous décevoir dans 3 mois.</p>
+      </div>
+    </div>
+
+    <p class="lpw-subhead reveal" style="--rd:180ms; margin-top: 40px;">Qui s'occupe de vous</p>
+    <p class="body-md reveal lpw-narrow" style="--rd:190ms;">Pas de portefeuille de comptes, pas d'interlocuteur qui change tous les 3 mois. Du premier calcul au site en ligne, et après, vous parlez toujours à la même personne.</p>
+    <div class="lpw-founder-grid reveal" style="--rd:200ms;">
+      <div class="lpw-founder">
+        <img src="equipe-lucas-480.webp" srcset="equipe-lucas-480.webp 480w, equipe-lucas-800.webp 800w" sizes="(max-width: 640px) 44vw, 360px" alt="Lucas, co-fondateur de Digital Dreamsbox" width="480" height="739" loading="lazy" decoding="async" />
+        <div>
+          <p class="lpw-founder-name">Lucas, co-fondateur</p>
+          <p class="lpw-founder-text">Le numéro personnel dont on vous parle plus haut, c'est vraiment le mien, pas un standard.</p>
+        </div>
+      </div>
+      <div class="lpw-founder">
+        <img src="equipe-leo-480.webp" srcset="equipe-leo-480.webp 480w, equipe-leo-800.webp 800w" sizes="(max-width: 640px) 44vw, 360px" alt="Léo, co-fondateur de Digital Dreamsbox" width="480" height="739" loading="lazy" decoding="async" />
+        <div>
+          <p class="lpw-founder-name">Léo, co-fondateur</p>
+          <p class="lpw-founder-text">Studio indépendant à deux, pas une agence avec 40 dossiers en cours.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="lpw-followup reveal" style="--rd:220ms;">
+      <h3>On ne disparaît pas après la mise en ligne</h3>
+      <p>Une fois le site livré, on continue de vous accompagner. On fait un point avec vous tous les deux mois pour voir comment ça se passe, jusqu'au neuvième mois.</p>
+      <ol class="lpw-rail" aria-label="Points de suivi après la mise en ligne">
+        <li><strong>Mois 2</strong>Point</li>
+        <li><strong>Mois 4</strong>Point</li>
+        <li><strong>Mois 6</strong>Point</li>
+        <li><strong>Mois 8</strong>Point</li>
+        <li><strong>Mois 9</strong>Point</li>
+      </ol>
+    </div>
+
+    <div class="lpw-proof-inline reveal" style="--rd:240ms;">
+      <p class="lpw-subhead" style="margin-top: 40px;">Le travail plutôt que des promesses</p>
+      <p class="lpw-proof-lede">Pas encore d'avis publiés, on ne va pas vous en inventer. Voici le travail à la place, cliquez sur un projet pour voir le résultat complet.</p>
+    </div>
+
+    <div class="lpw-portfolio-grid reveal" style="--rd:280ms;">
+      <a class="lpw-portfolio-item" href="pages/best-burger.html">
+        <img src="mpwm5bpt-page-best-burger-hero-burger-logo-2.webp" alt="Site et identité créés pour Best Burger" loading="lazy" width="400" height="300" />
+        <div class="lpw-portfolio-cap">Best Burger</div>
+      </a>
+      <a class="lpw-portfolio-item" href="pages/pause-co.html">
+        <img src="mpykywz4-page-pauseco-banniere-identite.webp" alt="Site et identité créés pour PauseCo" loading="lazy" width="400" height="300" />
+        <div class="lpw-portfolio-cap">PauseCo</div>
+      </a>
+      <a class="lpw-portfolio-item" href="pages/la-table-du-marche.html">
+        <img src="mpy0zxj5-page-table-marche-banniere-restaurant.webp" alt="Site et identité créés pour Table &amp; Marché" loading="lazy" width="400" height="300" />
+        <div class="lpw-portfolio-cap">Table &amp; Marché</div>
+      </a>
+      <a class="lpw-portfolio-item" href="pages/share-music.html">
+        <img src="mq0p5yck-Bannie_re-de-la-page-share-music.webp" alt="Site et identité créés pour Share Music" loading="lazy" width="400" height="300" />
+        <div class="lpw-portfolio-cap">Share Music</div>
+      </a>
+    </div>
+    <div class="lpw-mid-cta">
+      <a href="#audit" class="btn btn-primary">
+        Réserver mon audit
+        <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 7. FAQ -->
+<section class="section-faq" id="faq" aria-labelledby="faq-title">
+  <div class="shell faq-grid">
+    <aside class="faq-side">
+      <span class="eyebrow reveal">05 · Vos questions</span>
+      <h2 id="faq-title" class="h-section science reveal" style="--rd:60ms;">
+        Questions<br>légitimes.
+      </h2>
+      <p class="body-md reveal" style="--rd:140ms;">Une question vous manque ? Posez-la pendant l'audit, gratuit et sans engagement.</p>
+      <div class="ctas reveal" style="--rd:220ms;">
+        <a href="#audit" class="btn btn-solid">Réserver mon audit</a>
+      </div>
+    </aside>
+
+    <div class="faq-list reveal" style="--rd:120ms;">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Pourquoi le prix est-il annoncé alors que d'autres agences font du sur-devis ?</span>
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Parce qu'un prix caché ajoute de la méfiance à un moment où vous en avez déjà assez donné. Nos trois formules sont fixes, vous savez ce que vous payez avant même l'audit.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Et si l'audit montre que ce n'est pas rentable pour moi ?</span>
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">On vous le dit, et on ne vous facture rien. Mieux vaut vous perdre comme client maintenant que vous décevoir dans 3 mois avec un site qui ne sert à rien.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Combien de temps avant d'avoir un résultat ?</span>
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Le site est en ligne sous 2 semaines. Les premiers signes (visites, appels, demandes) apparaissent en général dans les 30 premiers jours. On fait le point ensemble à 30, 60 et 90 jours.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Qu'est-ce qui est vraiment inclus, techniquement ?</span>
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Un site en HTML statique, pas un WordPress à surveiller : pas d'abonnement d'hébergement en plus du prix annoncé, pas de mise à jour de sécurité à votre charge. Le référencement local est codé en données structurées Schema.org (adresse, activité, horaires), vérifiées avec l'outil de test officiel de Google avant la mise en ligne, et la vitesse de chargement mobile doit dépasser 70/100 sur PageSpeed avant qu'on considère le site terminé.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Comment vous travaillez le référencement local, concrètement ?</span>
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Chaque page est écrite mobile d'abord, le desktop s'adapte ensuite, jamais l'inverse. L'adresse et l'activité codées dans le Schema.org doivent correspondre exactement à votre fiche Google, sinon ça brouille le référencement local au lieu de l'aider. On vérifie aussi l'accessibilité (contraste, structure des titres), un critère que Google utilise aussi pour classer les pages.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Travaillez-vous en dehors de Sarrebourg ?</span>
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Oui. Notre zone d'intervention couvre la Moselle, le Bas-Rhin et la Meurthe-et-Moselle, 100 km autour de Sarrebourg. Nous travaillons aussi à distance partout en France.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Puis-je voir d'autres exemples de réalisations ?</span>
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Oui, plusieurs sont présentées plus haut sur cette page. On peut aller plus loin en détail pendant l'audit, avec le contexte de chaque projet.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. CTA FINAL + FORMULAIRE -->
+<section class="section-contact" id="audit" aria-labelledby="contact-title">
+  <div class="shell contact-grid">
+
+    <div>
+      <span class="eyebrow reveal">06 · On en parle</span>
+      <h2 id="contact-title" class="h-section reveal" style="--rd:60ms; margin-top: 14px; font-size: clamp(32px, 5vw, 60px);">
+        On calcule ensemble si ça vaut le coup,<br>
+        <span class="blue">avant que vous ne payiez quoi que ce soit.</span>
+      </h2>
+      <p class="ctxt reveal" style="--rd:140ms;">
+        15 minutes, offertes, sans engagement.
+      </p>
+      <div class="contact-list reveal" style="--rd:300ms;">
+        <div class="contact-item">
+          <div class="k">Téléphone</div>
+          <div class="v"><a href="tel:+33688848145">06 88 84 81 45</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="k">WhatsApp</div>
+          <div class="v"><a href="https://wa.me/33688848145?text=Bonjour%20Lucas%2C%20je%20vous%20%C3%A9cris%20depuis%20votre%20page%20%C2%AB%20cr%C3%A9ation%20de%20site%20web%20%C2%BB.%20Je%20voudrais%20en%20savoir%20plus." target="_blank" rel="noopener">Écrire directement</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="k">Email</div>
+          <div class="v"><a href="mailto:contact@digitaldreamsbox.com">contact@digitaldreamsbox.com</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="k">Localisation</div>
+          <div class="v">Sarrebourg, Moselle</div>
+        </div>
+        <div class="contact-item">
+          <div class="k">Audit</div>
+          <div class="v">Offert &amp; sans engagement</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-card reveal from-r" style="--rd:200ms;">
+      <h3>Réserver mon audit</h3>
+      <p class="sub">On vous répond sous 24h</p>
+      <form id="audit-form" class="form" novalidate action="https://formspree.io/f/xaqzyzgk" method="POST">
+        <div class="field">
+          <label for="f-name">Prénom &amp; Nom</label>
+          <input id="f-name" name="name" type="text" required autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" required autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="f-phone">Téléphone</label>
+          <input id="f-phone" name="phone" type="tel" required autocomplete="tel" />
+        </div>
+        <div class="field">
+          <label for="f-need">Votre activité <span style="opacity:.6;font-weight:400">(facultatif)</span></label>
+          <textarea id="f-need" name="message" placeholder="Votre métier, votre ville, et où en est votre site actuel..."></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="Audit rentabilite site web - Landing ChatGPT Ads">
+        <input type="hidden" name="source_page" value="lp-site-web">
+        <input type="hidden" name="utm_source" id="f-utm-source" value="">
+        <input type="hidden" name="utm_campaign" id="f-utm-campaign" value="">
+        <input type="hidden" name="utm_content" id="f-utm-content" value="">
+        <input type="hidden" name="calculateur_valeur_client" id="f-calc-value" value="">
+        <input type="hidden" name="calculateur_marge" id="f-calc-margin" value="">
+        <input type="hidden" name="calculateur_clients_mois" id="f-calc-clients" value="">
+        <input type="hidden" name="calculateur_resultat" id="f-calc-result" value="">
+        <input type="hidden" name="calculateur_gain_annuel" id="f-calc-annual" value="">
+        <input type="hidden" name="_next" value="https://digitaldreamsbox.com/pages/merci.html">
+        <div class="honeypot" aria-hidden="true">
+          <label>Ne pas remplir<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+        </div>
+        <div class="form-actions">
+          <small>Offert, sans engagement</small>
+          <button type="submit" class="btn btn-primary">
+            Réserver mon audit
+            <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+        <div class="form-success" role="status">Message reçu. On revient vers vous sous 24 h ouvrées.</div>
+        <p class="lpw-form-privacy">Vos informations servent uniquement à préparer l'audit. Jamais revendues, jamais de spam.</p>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+
+<a href="https://wa.me/33688848145?text=Bonjour%20Lucas%2C%20je%20vous%20%C3%A9cris%20depuis%20votre%20page%20%C2%AB%20cr%C3%A9ation%20de%20site%20web%20%C2%BB.%20Je%20voudrais%20en%20savoir%20plus." target="_blank" rel="noopener" class="lpw-wa-fab" id="wa-fab" aria-label="Écrire sur WhatsApp">
+  <span class="lpw-wa-badge" aria-hidden="true">1</span>
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/>
+  </svg>
+</a>
+
+<footer class="acq-footer" role="contentinfo">
+  <div class="shell">
+    <div class="footer-bottom">
+      <div class="brand">
+        <img src="logo-header-480.webp" alt="" width="105" height="32" loading="lazy" decoding="async" />
+        <span class="brand-text">
+          <span class="b1">Digital</span>
+          <span class="b2">Dreamsbox</span>
+        </span>
+      </div>
+      <span>© <span data-year>2026</span> Digital Dreamsbox, tous droits réservés &middot; SIREN 942 498 270</span>
+      <span>
+        <a href="pages/mentions-legales.html">Mentions légales</a>
+        &nbsp;·&nbsp;
+        <a href="pages/confidentialite.html">Politique de confidentialité</a>
+        &nbsp;·&nbsp;
+        <a href="pages/cgv.html">CGV</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var src = document.getElementById('f-utm-source');
+    var camp = document.getElementById('f-utm-campaign');
+    var cont = document.getElementById('f-utm-content');
+    var utmSource = (params.get('utm_source') || '').toLowerCase();
+    if (src) src.value = params.get('utm_source') || '';
+    if (camp) camp.value = params.get('utm_campaign') || '';
+    if (cont) cont.value = params.get('utm_content') || '';
+
+    // Message match par canal : on ne connaît pas les mots exacts tapés dans ChatGPT
+    // (la campagne n'existe pas encore), donc on adapte le ton au canal, pas à la conversation précise.
+    if (utmSource.indexOf('chatgpt') !== -1) {
+      var eyebrow = document.getElementById('hero-eyebrow');
+      var subText = document.getElementById('hero-sub-text');
+      if (eyebrow) eyebrow.textContent = 'La suite de votre recherche sur ChatGPT';
+      if (subText) subText.textContent = 'Vous en discutiez encore avec ChatGPT il y a quelques minutes. Voici la suite concrète : création de site pour artisans et PME, prix fixe à partir de 1 790€, annoncé dès le premier échange.';
+    }
+  })();
+
+  // Calculateur de rentabilité (montée en charge progressive) + suivi GA4 + rattachement au formulaire
+  (function () {
+    var valueInput = document.getElementById('calc-value');
+    var marginInput = document.getElementById('calc-margin');
+    var clientsInput = document.getElementById('calc-clients');
+    var output = document.getElementById('calc-output');
+    var outputAnnual = document.getElementById('calc-output-annual');
+    var warningEl = document.getElementById('calc-warning');
+    if (!valueInput || !marginInput || !clientsInput || !output || !outputAnnual) return;
+    var PRICE = 1790;
+    var trackTimer = null;
+    var lastMonths = null;
+    var chartEl = document.getElementById('calc-chart');
+    var chartScale = null; // { points, yMin, yMax, padL, padT, plotW, plotH, px, py }
+    var COLOR_UP = '#1D9EE9';
+    var COLOR_DOWN = '#e66767';
+    var COLOR_BASELINE = 'rgba(255,255,255,0.28)';
+    var COLOR_GRID = 'rgba(255,255,255,0.10)';
+    var COLOR_MUTED = 'rgba(255,255,255,0.45)';
+    // Montée en charge : fraction du rythme "de croisière" atteinte chaque mois.
+    // Mois 1-2 : quasi rien. Mois 3-4 : les premiers clients. Mois 8 : le rythme double. Puis ça continue de monter.
+    var RAMP = [0, 0, 0.33, 0.33, 0.5, 0.66, 0.66, 1.0, 1.1, 1.15, 1.2, 1.3];
+
+    function fmtEuro(n) {
+      var r = Math.round(n) || 0; // normalise -0 en 0
+      return (r > 0 ? '+' : '') + r.toLocaleString('fr-FR') + '€';
+    }
+
+    // Série des 13 points (mois 0 à 12) de gain net cumulé, selon la montée en charge.
+    function buildSeries(value, marginPct, targetClients) {
+      var points = [{ m: 0, v: -PRICE }];
+      var cum = -PRICE;
+      for (var m = 1; m <= 12; m++) {
+        var rate = targetClients * RAMP[m - 1];
+        var gain = value * (marginPct / 100) * rate;
+        cum += gain;
+        points.push({ m: m, v: cum });
+      }
+      return points;
+    }
+
+    function valueAtMonth(points, month) {
+      for (var i = 1; i < points.length; i++) {
+        if (month <= points[i].m) {
+          var a = points[i - 1], b = points[i];
+          var t = (b.m === a.m) ? 0 : (month - a.m) / (b.m - a.m);
+          return a.v + (b.v - a.v) * t;
+        }
+      }
+      return points[points.length - 1].v;
+    }
+
+    // Le gain n'est jamais décroissant (RAMP est croissant), donc au plus une seule traversée du zéro.
+    function findCrossing(points) {
+      for (var i = 1; i < points.length; i++) {
+        if (points[i - 1].v < 0 && points[i].v >= 0) {
+          var a = points[i - 1], b = points[i];
+          var t = -a.v / (b.v - a.v);
+          return a.m + (b.m - a.m) * t;
+        }
+      }
+      return null;
+    }
+
+    // Pas d'axe "rond" (250, 500, 1000, 2000, 5000...) façon logiciel comptable.
+    function niceStep(range, targetCount) {
+      var roughStep = range / targetCount;
+      var mag = Math.pow(10, Math.floor(Math.log10(roughStep)));
+      var norm = roughStep / mag;
+      var step = norm < 1.5 ? 1 : norm < 3 ? 2 : norm < 7 ? 5 : 10;
+      return step * mag;
+    }
+    function tickLabel(n) {
+      var r = Math.round(n) || 0; // normalise -0 en 0
+      return (r > 0 ? '+' : '') + r.toLocaleString('fr-FR') + '€';
+    }
+
+    function renderChart(points) {
+      if (!chartEl) return;
+      if (!points) {
+        chartEl.innerHTML = '';
+        chartScale = null;
+        return;
+      }
+      var W = 600, H = 210, padL = 60, padR = 12, padT = 40, padB = 30;
+      var crossMonth = findCrossing(points);
+      var end = points[points.length - 1].v;
+
+      var vals = points.map(function (p) { return p.v; });
+      var yMin = Math.min.apply(null, vals.concat([0]));
+      var yMax = Math.max.apply(null, vals.concat([0]));
+      var ySpan = (yMax - yMin) || 1;
+      yMin -= ySpan * 0.12;
+      yMax += ySpan * 0.12;
+
+      // Repères d'axe Y sur des valeurs rondes, jamais sur yMin/yMax bruts.
+      var step = niceStep(yMax - yMin, 4);
+      var tickStart = Math.ceil(yMin / step) * step;
+      var yTicks = [];
+      for (var t = tickStart; t <= yMax; t += step) yTicks.push(Math.round(t));
+      if (yTicks.indexOf(0) === -1 && 0 > yMin && 0 < yMax) yTicks.push(0);
+      yTicks.sort(function (a, b) { return a - b; });
+
+      var plotW = W - padL - padR;
+      var plotH = H - padT - padB;
+
+      function px(month) { return padL + (month / 12) * plotW; }
+      function py(val) { return padT + (1 - (val - yMin) / (yMax - yMin)) * plotH; }
+
+      chartScale = { points: points, yMin: yMin, yMax: yMax, padL: padL, padT: padT, plotW: plotW, plotH: plotH, px: px, py: py };
+
+      var baselineY = py(0);
+      var crosses = crossMonth !== null && crossMonth < 12;
+      var crossX = crosses ? px(crossMonth) : null;
+
+      // Découpe les points en "avant" (rouge) et "après" (bleu) le seuil, avec le point de traversée inséré aux deux.
+      var before = [], after = [];
+      points.forEach(function (p) {
+        if (!crosses || p.m <= crossMonth) before.push(p);
+        if (crosses && p.m >= crossMonth) after.push(p);
+      });
+      if (crosses) {
+        before.push({ m: crossMonth, v: 0 });
+        after.unshift({ m: crossMonth, v: 0 });
+      }
+
+      // Courbe lissée (quadratique par le milieu de chaque segment) plutôt que des segments droits.
+      // Sûr pour des données monotones (jamais de rebond artificiel) : chaque point de contrôle
+      // est un vrai point de la série, la courbe ne fait que gommer les angles entre eux.
+      function toPath(pts) {
+        if (pts.length < 2) return 'M ' + px(pts[0].m) + ' ' + py(pts[0].v);
+        var d = 'M ' + px(pts[0].m) + ' ' + py(pts[0].v);
+        for (var i = 0; i < pts.length - 1; i++) {
+          var cx = px(pts[i].m), cy = py(pts[i].v);
+          var nx = px(pts[i + 1].m), ny = py(pts[i + 1].v);
+          if (i === pts.length - 2) {
+            d += ' Q ' + cx + ' ' + cy + ', ' + nx + ' ' + ny;
+          } else {
+            var midX = (cx + nx) / 2, midY = (cy + ny) / 2;
+            d += ' Q ' + cx + ' ' + cy + ', ' + midX + ' ' + midY;
+          }
+        }
+        return d;
+      }
+      function toArea(pts) {
+        return toPath(pts) + ' L ' + px(pts[pts.length - 1].m) + ' ' + baselineY + ' L ' + px(pts[0].m) + ' ' + baselineY + ' Z';
+      }
+
+      var FONT = 'Poppins, sans-serif';
+      var TNUM = 'font-variant-numeric: tabular-nums;';
+      var parts = [];
+      parts.push('<svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" role="img" aria-label="Évolution du gain net cumulé sur 12 mois, montée en charge progressive">');
+
+      // Dégradés sous la courbe (plus dense près du trait, s\'efface vers la ligne zéro) et lueur du trait
+      parts.push('<defs>' +
+        '<linearGradient id="calcFillUp" x1="0" y1="0" x2="0" y2="1">' +
+          '<stop offset="0%" stop-color="' + COLOR_UP + '" stop-opacity="0.32"/>' +
+          '<stop offset="100%" stop-color="' + COLOR_UP + '" stop-opacity="0"/>' +
+        '</linearGradient>' +
+        '<linearGradient id="calcFillDown" x1="0" y1="0" x2="0" y2="1">' +
+          '<stop offset="0%" stop-color="' + COLOR_DOWN + '" stop-opacity="0.22"/>' +
+          '<stop offset="100%" stop-color="' + COLOR_DOWN + '" stop-opacity="0"/>' +
+        '</linearGradient>' +
+      '</defs>');
+
+      // Cadre du tableau, façon feuille de calcul
+      parts.push('<rect x="' + padL + '" y="' + padT + '" width="' + plotW + '" height="' + plotH + '" fill="none" stroke="' + COLOR_GRID + '" stroke-width="1"/>');
+
+      // Grille horizontale + repères chiffrés (axe Y), valeurs rondes
+      yTicks.forEach(function (tv) {
+        var y = py(tv);
+        var isZero = tv === 0;
+        parts.push('<line x1="' + padL + '" y1="' + y + '" x2="' + (W - padR) + '" y2="' + y + '" stroke="' + (isZero ? COLOR_BASELINE : COLOR_GRID) + '" stroke-width="1"/>');
+        parts.push('<text x="' + (padL - 8) + '" y="' + (y + 3) + '" text-anchor="end" font-size="10" style="' + TNUM + '" fill="' + COLOR_MUTED + '" font-family="' + FONT + '">' + tickLabel(tv) + '</text>');
+      });
+
+      // Grille verticale (repères mensuels)
+      [0, 3, 6, 9, 12].forEach(function (m) {
+        parts.push('<line x1="' + px(m) + '" y1="' + padT + '" x2="' + px(m) + '" y2="' + (H - padB) + '" stroke="' + COLOR_GRID + '" stroke-width="1"/>');
+      });
+
+      if (before.length > 1) {
+        parts.push('<path d="' + toArea(before) + '" fill="url(#calcFillDown)"/>');
+        parts.push('<path d="' + toPath(before) + '" fill="none" stroke="' + COLOR_DOWN + '" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 2px 6px rgba(230,103,103,0.45))"/>');
+      }
+      if (after.length > 1) {
+        parts.push('<path d="' + toArea(after) + '" fill="url(#calcFillUp)"/>');
+        parts.push('<path d="' + toPath(after) + '" fill="none" stroke="' + COLOR_UP + '" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 2px 7px rgba(29,158,233,0.55))"/>');
+      }
+
+      // Repères pédagogiques : indexation Google (M3) et premiers résultats visibles (M6), moyenne indicative.
+      // Étiquette flottante, sans encadré, reliée au point réel de la courbe par une flèche courbée à la main.
+      [{ m: 3, label: 'Indexation Google' }, { m: 6, label: 'Résultats visibles' }].forEach(function (a) {
+        var tx = px(a.m), ty = py(valueAtMonth(points, a.m));
+        var lx = tx - 6;
+        var ly = 18;
+        var sx = lx - 4, sy = ly + 9;
+        var ex = tx - 3, ey = ty - 8;
+        // Arc à un seul point de contrôle, décalé sur le côté : effet "flèche courbée à la main" façon Figma.
+        var bow = 34;
+        var cx = Math.min(sx, ex) - bow;
+        var cy = (sy + ey) / 2;
+        parts.push('<path d="M ' + sx + ' ' + sy + ' Q ' + cx + ' ' + cy + ', ' + ex + ' ' + ey + '" fill="none" stroke="rgba(29,158,233,0.55)" stroke-width="1.3" stroke-linecap="round"/>');
+        parts.push('<circle cx="' + tx + '" cy="' + ty + '" r="3" fill="' + COLOR_UP + '" stroke="#0B1526" stroke-width="1.4"/>');
+        parts.push('<text x="' + lx + '" y="' + ly + '" text-anchor="start" font-size="10.5" font-weight="700" fill="' + COLOR_UP + '" font-family="' + FONT + '">' + a.label + '</text>');
+      });
+
+      if (crosses) {
+        // Le point + le changement de couleur rouge→bleu suffisent à montrer le passage à zéro ;
+        // pas de texte ici (il entrait en collision avec l'annotation M6 selon les valeurs saisies,
+        // et le chiffre exact est déjà donné juste en dessous du graphique).
+        parts.push('<circle cx="' + crossX + '" cy="' + baselineY + '" r="4" fill="' + COLOR_UP + '" stroke="#0B1526" stroke-width="2"/>');
+      }
+
+      var p0 = points[0], p12 = points[points.length - 1];
+      parts.push('<circle cx="' + px(p0.m) + '" cy="' + py(p0.v) + '" r="4" fill="' + COLOR_DOWN + '" stroke="#0B1526" stroke-width="2"/>');
+      var endColor = end >= 0 ? COLOR_UP : COLOR_DOWN;
+      parts.push('<circle cx="' + px(p12.m) + '" cy="' + py(p12.v) + '" r="5" fill="' + endColor + '" stroke="#0B1526" stroke-width="2"/>');
+      parts.push('<text x="' + (px(p12.m) - 8) + '" y="' + (py(p12.v) - 10) + '" text-anchor="end" font-size="12" font-weight="700" fill="' + endColor + '" font-family="Poppins, sans-serif">' + fmtEuro(end) + '</text>');
+
+      [0, 3, 6, 9, 12].forEach(function (m) {
+        parts.push('<text x="' + px(m) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="10" fill="' + COLOR_MUTED + '" font-family="Poppins, sans-serif">' + (m === 0 ? 'Aujourd\'hui' : 'M' + m) + '</text>');
+      });
+
+      parts.push('<line id="calc-chart-crosshair" x1="0" y1="' + padT + '" x2="0" y2="' + (H - padB) + '" stroke="rgba(255,255,255,0.25)" stroke-width="1" opacity="0"/>');
+
+      parts.push('</svg>');
+      chartEl.innerHTML = parts.join('');
+    }
+
+    function currentValues() {
+      return {
+        value: parseFloat(valueInput.value) || 0,
+        margin: parseFloat(marginInput.value) || 0,
+        clients: parseFloat(clientsInput.value) || 0
+      };
+    }
+
+    function fillHiddenFields(v, months, annualGain) {
+      var fv = document.getElementById('f-calc-value');
+      var fm = document.getElementById('f-calc-margin');
+      var fc = document.getElementById('f-calc-clients');
+      var fr = document.getElementById('f-calc-result');
+      var fa = document.getElementById('f-calc-annual');
+      if (fv) fv.value = v.value;
+      if (fm) fm.value = v.margin;
+      if (fc) fc.value = v.clients;
+      if (fr) fr.value = months === null ? '' : months + ' mois';
+      if (fa) fa.value = (annualGain === undefined || annualGain === null) ? '' : annualGain + '€';
+    }
+
+    function update() {
+      var v = currentValues();
+      var targetGain = v.value * (v.margin / 100) * v.clients;
+      if (targetGain <= 0) {
+        output.textContent = 'Renseignez vos chiffres';
+        outputAnnual.textContent = '—';
+        lastMonths = null;
+        fillHiddenFields(v, null);
+        renderChart(null);
+        if (warningEl) warningEl.classList.remove('is-visible');
+        return;
+      }
+
+      var points = buildSeries(v.value, v.margin, v.clients);
+      renderChart(points);
+
+      var crossMonth = findCrossing(points);
+      var annualGain = Math.round(points[points.length - 1].v);
+
+      if (crossMonth === null) {
+        output.textContent = 'Pas avant 12 mois';
+        lastMonths = null;
+      } else {
+        var rounded = Math.max(1, Math.ceil(crossMonth));
+        output.textContent = rounded + ' mois';
+        lastMonths = rounded;
+      }
+
+      var annualEl = outputAnnual;
+      if (annualGain > 0) {
+        annualEl.textContent = annualGain.toLocaleString('fr-FR') + '€';
+        annualEl.classList.remove('is-small');
+      } else {
+        annualEl.textContent = 'Pas avant 12 mois';
+        annualEl.classList.add('is-small');
+      }
+
+      if (warningEl) {
+        var extreme = annualGain > 50000 || v.value > 20000 || v.clients > 20;
+        warningEl.classList.toggle('is-visible', extreme);
+      }
+
+      fillHiddenFields(v, lastMonths, annualGain);
+
+      // Historique d'usage : un événement GA4 par ajustement, avec un léger debounce
+      clearTimeout(trackTimer);
+      trackTimer = setTimeout(function () {
+        if (typeof gtag === 'function') {
+          gtag('event', 'calculator_used', {
+            calc_value: v.value,
+            calc_margin: v.margin,
+            calc_clients: v.clients,
+            calc_result_months: lastMonths,
+            calc_result_annual_gain: annualGain
+          });
+        }
+      }, 800);
+    }
+    valueInput.addEventListener('input', update);
+    marginInput.addEventListener('input', update);
+    clientsInput.addEventListener('input', update);
+    update();
+
+    // Boutons +/- des champs du calculateur
+    document.querySelectorAll('.lpw-step-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var input = document.getElementById(btn.getAttribute('data-target'));
+        if (!input) return;
+        var step = parseFloat(input.step) || 1;
+        var dir = parseFloat(btn.getAttribute('data-dir')) || 1;
+        var min = input.min !== '' ? parseFloat(input.min) : -Infinity;
+        var max = input.max !== '' ? parseFloat(input.max) : Infinity;
+        var next = (parseFloat(input.value) || 0) + step * dir;
+        next = Math.min(max, Math.max(min, next));
+        input.value = next;
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+    });
+
+    // Survol du graphique : ligne + infobulle
+    var tipEl = document.getElementById('calc-chart-tip');
+    if (chartEl && tipEl) {
+      chartEl.addEventListener('mousemove', function (e) {
+        if (!chartScale) return;
+        var svg = chartEl.querySelector('svg');
+        if (!svg) return;
+        var rect = svg.getBoundingClientRect();
+        var scaleX = rect.width / 600;
+        var xPx = (e.clientX - rect.left) / scaleX;
+        var month = ((xPx - chartScale.padL) / chartScale.plotW) * 12;
+        month = Math.max(0, Math.min(12, month));
+        var value = valueAtMonth(chartScale.points, month);
+        var cross = chartScale.px(month);
+        var crosshair = svg.querySelector('#calc-chart-crosshair');
+        if (crosshair) {
+          crosshair.setAttribute('x1', cross);
+          crosshair.setAttribute('x2', cross);
+          crosshair.setAttribute('opacity', '1');
+        }
+        var scaleY = rect.height / 210;
+        tipEl.innerHTML = 'Mois ' + Math.round(month) + '<span class="sub">' + fmtEuro(value) + ' cumulé</span>';
+        tipEl.style.left = (cross * scaleX) + 'px';
+        tipEl.style.top = ((chartScale.py(value) * scaleY) - 10) + 'px';
+        tipEl.classList.add('is-visible');
+      });
+      chartEl.addEventListener('mouseleave', function () {
+        tipEl.classList.remove('is-visible');
+        var svg = chartEl.querySelector('svg');
+        var crosshair = svg && svg.querySelector('#calc-chart-crosshair');
+        if (crosshair) crosshair.setAttribute('opacity', '0');
+      });
+    }
+  })();
+
+  // Bouton WhatsApp : petite animation façon notification, deux fois de suite, toutes les 8s
+  (function () {
+    var fab = document.getElementById('wa-fab');
+    if (!fab) return;
+    function playOnce() {
+      fab.classList.remove('is-notifying');
+      void fab.offsetWidth; // force le reflow pour pouvoir rejouer l'animation
+      fab.classList.add('is-notifying');
+    }
+    function playTwice() {
+      playOnce();
+      setTimeout(playOnce, 850);
+    }
+    setInterval(playTwice, 8000);
+  })();
+
+  // Clic WhatsApp : événement GA4 pour savoir combien de visiteurs écrivent depuis la page
+  document.querySelectorAll('a[href^="https://wa.me/"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (typeof gtag === 'function') gtag('event', 'whatsapp_click', { source_page: 'lp-site-web' });
+    });
+  });
+
+  // Mobile : le bloc "Au-delà du prix" démarre replié
+  (function () {
+    var d = document.querySelector('.lpw-more');
+    if (d && window.matchMedia('(max-width: 640px)').matches) d.removeAttribute('open');
+  })();
+</script>
+</body>
+</html>
