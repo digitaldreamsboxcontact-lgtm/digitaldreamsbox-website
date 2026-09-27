@@ -10,8 +10,8 @@
   <meta name="description" content="Un seul partenaire pour votre site, votre image de marque, votre visibilité Google et votre acquisition de clients. Étude de rentabilité offerte avant de commencer." />
   <meta property="og:image" content="https://digitaldreamsbox.com/assets/og-image.webp" />
 
-  <link rel="icon" type="image/x-icon" href="favicon.ico" /><link rel="icon" type="image/png" href="favicon-light.png" />
-  <link rel="apple-touch-icon" href="favicon-light.png" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" /><link rel="icon" type="image/png" href="favicon-192.png" />
+  <link rel="apple-touch-icon" href="favicon-180.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -242,7 +242,45 @@
       max-width: 560px;
       margin: 0 auto;
     }
-  </style>
+  
+    /* ═══ MOBILE : sections compactes, une idée par écran ═══ */
+    @media (max-width: 640px) {
+      .section-generic { padding-top: 0 !important; padding-bottom: 36px !important; }
+      .section-faq { padding: 40px 0 32px; }
+      .h-section { margin: 10px 0 10px; }
+      .section-generic .body-md { font-size: 14.5px; line-height: 1.55; }
+      .pain-strip { padding: 22px 0; }
+      .pain-item p { font-size: 14px; }
+
+      .brique-grid { gap: 10px; margin: 16px 0; }
+      .brique-card { padding: 14px 16px; border-radius: 14px; }
+      .brique-card .k { font-size: 10px; margin-bottom: 4px; }
+      .brique-card h3 { font-size: 17px; margin-bottom: 4px; }
+      .brique-card p { font-size: 13.5px; line-height: 1.45; }
+
+      .seq-row { gap: 10px; margin-top: 16px; }
+      .seq-col { padding: 14px 16px; border-radius: 14px; }
+      .seq-col strong { font-size: 16px; }
+      .seq-col p { font-size: 13.5px; }
+
+      .repere-table-wrap { overflow: visible; border: none; }
+      table.repere-table, .repere-table thead, .repere-table tbody, .repere-table tr, .repere-table td { display: block; min-width: 0; }
+      .repere-table thead { display: none; }
+      .repere-table tbody tr { border: 1px solid var(--rule); border-radius: 14px; padding: 12px 16px; margin-bottom: 10px; }
+      .repere-table th, .repere-table td { padding: 2px 0; font-size: 13.5px; }
+      .repere-table tbody td { border-bottom: none; }
+      .repere-table tbody td:first-child { font-size: 15px; margin-bottom: 2px; }
+
+      .faq-grid { gap: 16px; }
+      .faq-q { padding: 14px 0; font-size: 14.5px; gap: 14px; }
+      .faq-q .ic { flex-basis: 30px; width: 30px; height: 30px; }
+      .faq-a-inner { padding: 0 0 16px; font-size: 13px; line-height: 1.55; }
+
+      .cal-box { padding: 20px 16px; border-radius: 18px; }
+      .cal-box h3 { margin-bottom: 8px; }
+      .cal-box p { font-size: 14px; margin-bottom: 16px; }
+    }
+</style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GNMMKY3BZB"></script>
   <script>
@@ -263,7 +301,7 @@
 
 <div id="pt-overlay"></div>
 <script>if(sessionStorage.getItem('pt')){sessionStorage.removeItem('pt');var _o=document.getElementById('pt-overlay');_o.style.opacity='1';_o.style.pointerEvents='all';setTimeout(function(){_o.style.transition='opacity 150ms ease-out';_o.style.opacity='0';_o.style.pointerEvents='none';},60);}</script>
-<div id="bg-blobs"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
+<div id="bg-blobs" class="stars"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
 
 <!-- ============================================================
      HEADER MINIMAL — logo uniquement
@@ -271,7 +309,7 @@
 <header class="site-header acq-header" role="banner">
   <div class="shell-wide nav">
     <a href="index.html" class="brand" aria-label="Digital Dreamsbox — Accueil">
-      <img src="mq02h9of-NVlogo-3d-d_d.png" alt="Logo Digital Dreamsbox" width="46" height="46" />
+      <img src="logo-header-480.webp" alt="Logo Digital Dreamsbox" width="118" height="36" decoding="async" fetchpriority="high" />
       <span class="brand-text">
         <span class="b1">Digital</span>
         <span class="b2">Dreamsbox</span>
@@ -284,6 +322,7 @@
       </a>
     </div>
   </div>
+  <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress-fill"></span></div>
 </header>
 
 <main>
@@ -552,7 +591,7 @@
   <div class="shell">
     <div class="footer-bottom">
       <div class="brand">
-        <img src="mq02h9of-NVlogo-3d-d_d.png" alt="" width="32" height="32" />
+        <img src="logo-header-480.webp" alt="" width="105" height="32" loading="lazy" decoding="async" />
         <span class="brand-text">
           <span class="b1">Digital</span>
           <span class="b2">Dreamsbox</span>
