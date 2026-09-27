@@ -77,17 +77,25 @@
     revealObserver.observe(el);
   });
 
-  /* ── 3. Header scroll state ──────────────────────────────── */
+  /* ── 3. Header scroll state + barre de progression ──────── */
   var header = document.querySelector('.site-header');
+  var progressFill = document.querySelector('.scroll-progress-fill');
   if (header) {
-    window.addEventListener('scroll', function () {
+    var updateHeaderScroll = function () {
       var y = window.scrollY;
       if (y > 80) {
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');
       }
-    }, { passive: true });
+      if (progressFill) {
+        var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = scrollable > 0 ? Math.min(100, Math.max(0, (y / scrollable) * 100)) : 0;
+        progressFill.style.width = pct + '%';
+      }
+    };
+    window.addEventListener('scroll', updateHeaderScroll, { passive: true });
+    updateHeaderScroll();
   }
 
   /* ── 4. Mobile nav — premium overlay ────────────────────────── */
@@ -406,6 +414,18 @@
       field.addEventListener('input', function () { field.classList.remove('error'); });
     });
   }
+
+  /* ── 11bis. Google Ads : suivi des clics tel:/mailto: ─────── */
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest && e.target.closest('a[href]');
+    if (!link || typeof gtag !== 'function') return;
+    var href = link.getAttribute('href') || '';
+    if (href.indexOf('tel:') === 0) {
+      gtag('event', 'conversion', { 'send_to': 'AW-18121297118/0RqhCJCV1rscEN6Z9MBD' });
+    } else if (href.indexOf('mailto:') === 0) {
+      gtag('event', 'conversion', { 'send_to': 'AW-18121297118/ST_dCKm-wb8cEN6Z9MBD' });
+    }
+  });
 
   /* ── 12. Ticker animation (CSS handles it, JS adds pause on hover) ── */
   var ticker = document.querySelector('.ticker-track');
