@@ -24,6 +24,9 @@
 <link rel="stylesheet" href="styles.css" />
 
 <style>
+  /* ── Anti double-tap-zoom mobile : tap rapide sur un bouton ne doit jamais zoomer la page ── */
+  button, a.btn, .lpw-quiz-choice, .lpw-wa-fab, .lpw-step-btn { touch-action: manipulation; }
+
   /* ── lp-site-web : header minimal, un seul CTA ── */
   .acq-header .nav-links,
   .acq-header .nav-toggle { display: none !important; }
@@ -142,13 +145,19 @@
   }
   .lpw-guarantee p { font-family: var(--f-body); font-size: 14.5px; line-height: 1.65; color: var(--white-70); margin: 0; }
 
-  /* ── Portfolio : grille d'exemples réels ── */
+  /* ── Portfolio : carrousel swipeable, format court, on ne quitte jamais la page ── */
   .lpw-portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    display: flex;
+    gap: 14px;
     margin-top: 22px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+    scrollbar-width: none;
   }
+  .lpw-portfolio-grid::-webkit-scrollbar { display: none; }
   .lpw-proof-inline {
     margin-top: 36px;
     padding-top: 28px;
@@ -162,15 +171,29 @@
     max-width: 62ch;
     margin: 0;
   }
-  @media (max-width: 980px) { .lpw-portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 560px) { .lpw-portfolio-grid { grid-template-columns: 1fr; } }
-  .lpw-portfolio-item { display: block; border-radius: 16px; overflow: hidden; border: 1px solid var(--rule); background: rgba(255,255,255,0.02); transition: border-color 220ms ease; }
-  .lpw-portfolio-item:hover { border-color: var(--sky-30); }
-  .lpw-portfolio-item img { width: 100%; height: 200px; object-fit: cover; display: block; transition: transform 500ms cubic-bezier(.2,.7,.2,1); }
-  .lpw-portfolio-item:hover img { transform: scale(1.05); }
-  .lpw-portfolio-cap { padding: 12px 16px 16px; font-family: var(--f-sf); font-weight: 700; font-size: 13px; color: var(--white-70); display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-  .lpw-portfolio-cap::after { content: "\2192"; color: var(--sky); opacity: 0; transition: opacity 220ms ease, transform 220ms ease; transform: translateX(-4px); }
-  .lpw-portfolio-item:hover .lpw-portfolio-cap::after { opacity: 1; transform: none; }
+  .lpw-portfolio-item { flex: 0 0 auto; width: 172px; scroll-snap-align: start; display: block; border-radius: 16px; overflow: hidden; border: 1px solid var(--rule); background: rgba(255,255,255,0.02); }
+  .lpw-portfolio-item img { width: 100%; aspect-ratio: 4 / 5; height: auto; object-fit: cover; display: block; }
+  .lpw-portfolio-cap { padding: 10px 12px 12px; font-family: var(--f-sf); font-weight: 700; font-size: 13px; color: var(--white-70); }
+
+  /* ── Bandeau de logos concept, défilement en boucle ── */
+  .lpw-logos-section { margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--rule); }
+  .lpw-logos-wrap {
+    margin-top: 18px; overflow: hidden; overscroll-behavior-x: contain;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+  .lpw-logos-track { display: flex; gap: 16px; width: max-content; animation: lpwLogosScroll 34s linear infinite; }
+  .lpw-logos-wrap:hover .lpw-logos-track { animation-play-state: paused; }
+  .lpw-logo-chip { flex: 0 0 auto; width: 150px; height: 84px; border-radius: 14px; background: #fff; border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; padding: 12px; }
+  .lpw-logo-chip img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+  @keyframes lpwLogosScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .lpw-logos-track { animation: none; overflow-x: auto; }
+  }
+  @media (max-width: 640px) {
+    .lpw-logos-section { margin-top: 20px; padding-top: 16px; }
+    .lpw-logo-chip { width: 120px; height: 68px; border-radius: 12px; padding: 10px; }
+  }
 
   /* ── Repère sectoriel (bâtiment/artisanat) ── */
   .lpw-benchmark {
@@ -272,6 +295,7 @@
     justify-content: center;
     background: rgba(255,255,255,0.05);
     border: none;
+    touch-action: manipulation;
     color: var(--white-70);
     font-family: var(--f-sf);
     font-size: 19px;
@@ -388,23 +412,31 @@
     max-width: 760px;
   }
   .lpw-founder { display: flex; flex-direction: column; gap: 14px; }
-  .lpw-founder img {
-    width: 100%; aspect-ratio: 4 / 5; height: auto;
-    object-fit: cover; object-position: 50% 22%;
-    border-radius: 16px; border: 1px solid var(--sky-30);
-    background: var(--navy);
+  .lpw-founder-photo {
+    position: relative; border-radius: 16px; overflow: hidden;
+    border: 1px solid var(--sky-30); background: var(--navy);
   }
-  .lpw-founder-name { font-family: var(--f-sf); font-weight: 700; font-size: 15px; color: var(--white); margin: 0 0 4px; }
+  .lpw-founder-photo img {
+    width: 100%; aspect-ratio: 4 / 5; height: auto;
+    object-fit: cover; object-position: 50% 22%; display: block;
+  }
+  .lpw-founder-tag {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 30px 14px 12px;
+    background: linear-gradient(to top, rgba(11,21,38,0.95), rgba(11,21,38,0));
+    display: flex; flex-direction: column; gap: 1px;
+  }
+  .lpw-founder-first { font-family: var(--f-sf); font-weight: 700; font-size: 16px; color: var(--white); }
+  .lpw-founder-role { font-family: var(--f-sf); font-weight: 500; font-size: 12px; color: var(--white-70); }
   .lpw-founder-text { font-family: var(--f-body); font-size: 14px; line-height: 1.55; color: var(--white-70); margin: 0; }
   @media (max-width: 640px) {
-    .lpw-founder-name { font-size: 14px; }
+    .lpw-founder-first { font-size: 14px; }
     .lpw-founder-text { font-size: 13px; }
   }
 
-  /* ── Suivi après la mise en ligne ── */
+  /* ── Suivi après la mise en ligne : le schéma d'abord, le titre l'explique ensuite ── */
   .lpw-followup { margin-top: 36px; max-width: 760px; }
-  .lpw-followup h3 { font-family: var(--f-sf); font-weight: 700; font-size: 17px; color: var(--white); margin: 0 0 8px; }
-  .lpw-followup > p { font-family: var(--f-body); font-size: 14.5px; line-height: 1.65; color: var(--white-70); margin: 0 0 22px; }
+  .lpw-followup h3 { font-family: var(--f-sf); font-weight: 700; font-size: 17px; color: var(--white); margin: 22px 0 0; }
   .lpw-rail { list-style: none; margin: 0; padding: 0; display: flex; align-items: flex-start; }
   .lpw-rail li { flex: 1; position: relative; text-align: center; font-family: var(--f-sf); font-size: 12.5px; color: var(--white-70); padding-top: 26px; }
   .lpw-rail li::before { content: ""; position: absolute; top: 5px; left: 0; right: 0; height: 2px; background: var(--sky-30); }
@@ -413,8 +445,38 @@
   .lpw-rail li:last-child::before { right: 50%; }
   .lpw-rail strong { display: block; color: var(--white); font-weight: 700; font-size: 13px; }
 
+  /* ── Contour bleu sur la carte du quiz, pour qu'elle ressorte ── */
+  #audit .contact-card { border-color: var(--sky); box-shadow: 0 0 0 1px rgba(67,173,233,0.25); }
+
   /* ── Réassurance formulaire ── */
   .lpw-form-privacy { margin-top: 12px; font-family: var(--f-body); font-size: 12px; color: var(--white-55); line-height: 1.5; }
+
+  /* ── Formulaire progressif : budget/objectifs d'abord, contact à la fin ── */
+  .lpw-quiz-progress { height: 6px; border-radius: 999px; background: rgba(255,255,255,0.08); overflow: hidden; margin-bottom: 8px; }
+  .lpw-quiz-progress-fill { display: block; height: 100%; width: 25%; background: var(--sky); border-radius: 999px; transition: width 400ms cubic-bezier(.22,.9,.35,1); }
+  .lpw-quiz-progress-fill.is-pulsing { animation: lpwProgressPulse 500ms ease; }
+  @keyframes lpwProgressPulse { 0% { filter: brightness(1); } 40% { filter: brightness(1.7); box-shadow: 0 0 14px 2px rgba(67,173,233,.65); } 100% { filter: brightness(1); box-shadow: none; } }
+  .lpw-quiz-step-label { font-family: var(--f-sf); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--white-55); margin: 0 0 18px; }
+  .lpw-quiz-step { display: none; flex-direction: column; gap: 14px; border: 0; padding: 0; margin: 0; }
+  .lpw-quiz-step.is-active { display: flex; animation: lpwQuizIn 380ms cubic-bezier(.22,.9,.35,1); }
+  @keyframes lpwQuizIn { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: translateX(0); } }
+  .lpw-quiz-step legend { font-family: var(--f-body); font-weight: 600; font-size: 16px; line-height: 1.4; color: var(--white); padding: 0; margin: 0 0 4px; }
+  .lpw-quiz-choices { display: flex; flex-direction: column; gap: 10px; }
+  .lpw-quiz-choice { position: relative; display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 1px solid var(--rule); border-radius: 12px; background: rgba(255,255,255,0.04); cursor: pointer; transition: border-color 180ms ease, background-color 180ms ease, transform 120ms ease; font-family: var(--f-body); font-size: 14.5px; color: var(--white); }
+  .lpw-quiz-choice input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .lpw-quiz-choice .dot { width: 18px; height: 18px; border-radius: 999px; border: 2px solid var(--white-55); flex-shrink: 0; position: relative; transition: border-color 180ms ease; }
+  .lpw-quiz-choice:has(input:checked) { border-color: var(--sky); background: rgba(67,173,233,0.1); }
+  .lpw-quiz-choice:has(input:checked) .dot { border-color: var(--sky); }
+  .lpw-quiz-choice:has(input:checked) .dot::after { content: ""; position: absolute; inset: 3px; border-radius: 999px; background: var(--sky); animation: lpwDotPop 260ms cubic-bezier(.34,1.56,.64,1); }
+  @keyframes lpwDotPop { from { transform: scale(0); } to { transform: scale(1); } }
+  .lpw-quiz-choice:hover { border-color: var(--sky); }
+  .lpw-quiz-choice:active { transform: scale(0.98); }
+  .lpw-quiz-nav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 4px; }
+  .lpw-quiz-step[data-step="1"] .lpw-quiz-nav { justify-content: flex-end; }
+  .lpw-quiz-back { font-family: var(--f-sf); font-size: 13px; color: var(--white-55); background: none; border: 0; cursor: pointer; padding: 8px 4px; }
+  .lpw-quiz-back:hover { color: var(--white); }
+  .field.has-error input { border-color: #ff6b6b; }
+  .lpw-quiz-choices.has-error .lpw-quiz-choice { border-color: #ff6b6b; }
 
   /* ── Bouton flottant WhatsApp (logo officiel vert + badge notif) ── */
   .lpw-wa-fab {
@@ -488,8 +550,9 @@
     .lpw-subhead { margin-top: 22px !important; }
 
     /* Méthode : cartes courtes, on garde le titre et l'explication */
-    .process-intro { padding: 0 0 18px; grid-template-columns: 1fr; gap: 10px; }
+    .process-intro { padding: 0 0 9px; grid-template-columns: 1fr; gap: 10px; }
     .process-intro .right { font-size: 14.5px; justify-self: start; }
+    .process-controls { display: none; } /* flèches inutiles sur mobile, le swipe suffit */
     .process-card > div:first-child { min-height: 0; }
     .process-card .step-num { font-size: 40px; }
     .process-card h3 { font-size: 21px; margin: 6px 0 8px; }
@@ -547,13 +610,11 @@
     .lpw-guarantee p { font-size: 13.5px; line-height: 1.5; }
     .lpw-founder-grid { margin-top: 20px; padding-top: 16px; }
     .lpw-followup { margin-top: 20px; }
-    .lpw-followup h3 { font-size: 16px; }
-    .lpw-followup > p { font-size: 13.5px; line-height: 1.55; margin-bottom: 14px; }
+    .lpw-followup h3 { font-size: 16px; margin-top: 14px; }
     .lpw-proof-inline { margin-top: 20px; padding-top: 14px; }
     .lpw-proof-lede { font-size: 13.5px; line-height: 1.5; }
-    .lpw-portfolio-grid { grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
-    .lpw-portfolio-item { border-radius: 12px; }
-    .lpw-portfolio-item img { height: 92px; }
+    .lpw-portfolio-grid { gap: 10px; margin-top: 14px; }
+    .lpw-portfolio-item { border-radius: 12px; width: 136px; }
     .lpw-portfolio-cap { padding: 8px 10px 10px; font-size: 12px; }
     .lpw-mid-cta { margin-top: 18px; }
 
@@ -643,6 +704,10 @@
       <div>
         <span class="k">Délai de mise en ligne</span>
         <span class="v">2 semaines</span>
+      </div>
+      <div>
+        <span class="k">Localisation</span>
+        <span class="v">Sarrebourg, Moselle</span>
       </div>
     </div>
   </div>
@@ -767,7 +832,7 @@
       <div class="lpw-price-card">
         <h3 class="lpw-price-name">Essentiel</h3>
         <div class="lpw-price-amount">820€</div>
-        <p class="lpw-price-desc">Une page de conversion, pensée pour être associée à une campagne publicitaire. Sans référencement.</p>
+        <p class="lpw-price-desc">Un site vitrine simple et propre, avec le référencement de base pour être trouvé sur votre nom et votre ville.</p>
       </div>
 
       <div class="lpw-price-card is-reco">
@@ -780,7 +845,7 @@
       <div class="lpw-price-card">
         <h3 class="lpw-price-name">Premium</h3>
         <div class="lpw-price-amount">2 750€</div>
-        <p class="lpw-price-desc">Site complet, blog automatisé inclus, et une campagne publicitaire gérée pendant 3 mois pour amener du trafic pendant que le référencement s'installe.</p>
+        <p class="lpw-price-desc">Pour aller chercher 2 à 3 clients supplémentaires rapidement : site complet, blog automatisé inclus, et une campagne publicitaire gérée pendant 3 mois qui comble les premiers mois pendant que le référencement s'installe.</p>
       </div>
     </div>
 
@@ -794,8 +859,8 @@
       <p class="body-md lpw-narrow">Un site plus crédible ne change rien à la qualité de ce que vous vendez, mais il change ce qu'on pense de vous avant même le premier échange. Ça se traduit en euros (moins de friction sur le prix, un prospect qui vous perçoit comme sérieux discute moins vos tarifs), mais pas seulement : c'est aussi l'image que vous voulez renvoyer face à des concurrents qui, eux, ont déjà investi la leur. La plupart des entreprises qu'on accompagne ont déjà un produit ou un service de qualité, le site sert à le montrer, pas à le remplacer.</p>
       <div class="lpw-benchmark">
       <p class="lpw-benchmark-title">Repère bâtiment et artisanat</p>
-      <p>Un site d'artisan bien positionné génère en général 3 à 8 demandes de devis supplémentaires par mois, une fois qu'il a eu le temps de se faire connaître (3 à 6 mois). Avec un taux de conversion devis → client de 30 à 50%, ça donne environ 1 à 5 nouveaux clients par mois.</p>
-      <p>Contrepoids important : plus de 80% des sites d'artisans ne génèrent aucune demande sérieuse, parce qu'ils ne sont jamais vus. Ce repère concerne un site optimisé, pas n'importe quel site.</p>
+      <p>Un site bien positionné amène en général des demandes de devis supplémentaires une fois qu'il a eu le temps de se faire connaître (comptez plusieurs mois, pas plusieurs semaines).</p>
+      <p>Contrepoids important : la plupart des sites d'artisans ne génèrent aucune demande sérieuse, parce qu'ils ne sont jamais vus. Ce repère concerne un site optimisé, pas n'importe quel site.</p>
     </div>
     </details>
     <div class="lpw-calc reveal" style="--rd:280ms;">
@@ -885,56 +950,76 @@
     <p class="body-md reveal lpw-narrow" style="--rd:190ms;">Pas de portefeuille de comptes, pas d'interlocuteur qui change tous les 3 mois. Du premier calcul au site en ligne, et après, vous parlez toujours à la même personne.</p>
     <div class="lpw-founder-grid reveal" style="--rd:200ms;">
       <div class="lpw-founder">
-        <img src="equipe-lucas-480.webp" srcset="equipe-lucas-480.webp 480w, equipe-lucas-800.webp 800w" sizes="(max-width: 640px) 44vw, 360px" alt="Lucas, co-fondateur de Digital Dreamsbox" width="480" height="739" loading="lazy" decoding="async" />
-        <div>
-          <p class="lpw-founder-name">Lucas, co-fondateur</p>
-          <p class="lpw-founder-text">Le numéro personnel dont on vous parle plus haut, c'est vraiment le mien, pas un standard.</p>
+        <div class="lpw-founder-photo">
+          <img src="equipe-lucas-480.webp" srcset="equipe-lucas-480.webp 480w, equipe-lucas-800.webp 800w" sizes="(max-width: 640px) 44vw, 360px" alt="Lucas, co-fondateur de Digital Dreamsbox" width="480" height="739" loading="lazy" decoding="async" />
+          <div class="lpw-founder-tag"><span class="lpw-founder-first">Lucas</span><span class="lpw-founder-role">Co-fondateur</span></div>
         </div>
+        <p class="lpw-founder-text">Le numéro personnel dont on vous parle plus haut, c'est vraiment le mien, pas un standard.</p>
       </div>
       <div class="lpw-founder">
-        <img src="equipe-leo-480.webp" srcset="equipe-leo-480.webp 480w, equipe-leo-800.webp 800w" sizes="(max-width: 640px) 44vw, 360px" alt="Léo, co-fondateur de Digital Dreamsbox" width="480" height="739" loading="lazy" decoding="async" />
-        <div>
-          <p class="lpw-founder-name">Léo, co-fondateur</p>
-          <p class="lpw-founder-text">Studio indépendant à deux, pas une agence avec 40 dossiers en cours.</p>
+        <div class="lpw-founder-photo">
+          <img src="equipe-leo-480.webp" srcset="equipe-leo-480.webp 480w, equipe-leo-800.webp 800w" sizes="(max-width: 640px) 44vw, 360px" alt="Léo, co-fondateur de Digital Dreamsbox" width="480" height="739" loading="lazy" decoding="async" />
+          <div class="lpw-founder-tag"><span class="lpw-founder-first">Léo</span><span class="lpw-founder-role">Co-fondateur</span></div>
         </div>
+        <p class="lpw-founder-text">Studio indépendant à deux, pas une agence avec 40 dossiers en cours.</p>
       </div>
     </div>
 
     <div class="lpw-followup reveal" style="--rd:220ms;">
-      <h3>On ne disparaît pas après la mise en ligne</h3>
-      <p>Une fois le site livré, on continue de vous accompagner. On fait un point avec vous tous les deux mois pour voir comment ça se passe, jusqu'au neuvième mois.</p>
       <ol class="lpw-rail" aria-label="Points de suivi après la mise en ligne">
         <li><strong>Mois 2</strong>Point</li>
         <li><strong>Mois 4</strong>Point</li>
         <li><strong>Mois 6</strong>Point</li>
         <li><strong>Mois 8</strong>Point</li>
-        <li><strong>Mois 9</strong>Point</li>
       </ol>
+      <h3>On ne disparaît pas. On reste là pour vous accompagner.</h3>
     </div>
 
     <div class="lpw-proof-inline reveal" style="--rd:240ms;">
       <p class="lpw-subhead" style="margin-top: 40px;">Le travail plutôt que des promesses</p>
-      <p class="lpw-proof-lede">Pas encore d'avis publiés, on ne va pas vous en inventer. Voici le travail à la place, cliquez sur un projet pour voir le résultat complet.</p>
+      <p class="lpw-proof-lede">Pas encore d'avis clients publiés, on ne va pas vous en inventer. Voici des exemples de notre travail : des projets concept qu'on a conçus de A à Z pour montrer notre style, pas des clients réels.</p>
     </div>
 
     <div class="lpw-portfolio-grid reveal" style="--rd:280ms;">
-      <a class="lpw-portfolio-item" href="pages/best-burger.html">
-        <img src="mpwm5bpt-page-best-burger-hero-burger-logo-2.webp" alt="Site et identité créés pour Best Burger" loading="lazy" width="400" height="300" />
+      <div class="lpw-portfolio-item">
+        <img src="mpwm5bpt-page-best-burger-hero-burger-logo-2.webp" alt="Identité visuelle imaginée pour Best Burger" loading="lazy" width="400" height="300" />
         <div class="lpw-portfolio-cap">Best Burger</div>
-      </a>
-      <a class="lpw-portfolio-item" href="pages/pause-co.html">
-        <img src="mpykywz4-page-pauseco-banniere-identite.webp" alt="Site et identité créés pour PauseCo" loading="lazy" width="400" height="300" />
+      </div>
+      <div class="lpw-portfolio-item">
+        <img src="mpykywz4-page-pauseco-banniere-identite.webp" alt="Identité visuelle imaginée pour PauseCo" loading="lazy" width="400" height="300" />
         <div class="lpw-portfolio-cap">PauseCo</div>
-      </a>
-      <a class="lpw-portfolio-item" href="pages/la-table-du-marche.html">
-        <img src="mpy0zxj5-page-table-marche-banniere-restaurant.webp" alt="Site et identité créés pour Table &amp; Marché" loading="lazy" width="400" height="300" />
+      </div>
+      <div class="lpw-portfolio-item">
+        <img src="mpy0zxj5-page-table-marche-banniere-restaurant.webp" alt="Identité visuelle imaginée pour Table &amp; Marché" loading="lazy" width="400" height="300" />
         <div class="lpw-portfolio-cap">Table &amp; Marché</div>
-      </a>
-      <a class="lpw-portfolio-item" href="pages/share-music.html">
-        <img src="mq0p5yck-Bannie_re-de-la-page-share-music.webp" alt="Site et identité créés pour Share Music" loading="lazy" width="400" height="300" />
+      </div>
+      <div class="lpw-portfolio-item">
+        <img src="mq0p5yck-Bannie_re-de-la-page-share-music.webp" alt="Identité visuelle imaginée pour Share Music" loading="lazy" width="400" height="300" />
         <div class="lpw-portfolio-cap">Share Music</div>
-      </a>
+      </div>
     </div>
+
+    <div class="lpw-logos-section reveal" style="--rd:300ms;">
+      <div class="lpw-logos-wrap">
+        <div class="lpw-logos-track">
+          <div class="lpw-logo-chip"><img src="logos-concept/mej-renovation.png" alt="Identité concept : MEJ Rénovation" loading="lazy" /></div>
+          <div class="lpw-logo-chip"><img src="logos-concept/gce.png" alt="Identité concept : GCE" loading="lazy" /></div>
+          <div class="lpw-logo-chip"><img src="logos-concept/nord-sud-immobilier.png" alt="Identité concept : Nord Sud Immobilier" loading="lazy" /></div>
+          <div class="lpw-logo-chip"><img src="logos-concept/aquanova-plomberie.png" alt="Identité concept : AquaNova Plomberie" loading="lazy" /></div>
+          <div class="lpw-logo-chip"><img src="logos-concept/carmen-media.png" alt="Identité concept : Carmen Media" loading="lazy" /></div>
+          <div class="lpw-logo-chip"><img src="logos-concept/snow-bolt.png" alt="Identité concept : Snow Bolt" loading="lazy" /></div>
+          <div class="lpw-logo-chip"><img src="logos-concept/xa.png" alt="Identité concept : XA" loading="lazy" /></div>
+          <div class="lpw-logo-chip" aria-hidden="true"><img src="logos-concept/mej-renovation.png" alt="" loading="lazy" /></div>
+          <div class="lpw-logo-chip" aria-hidden="true"><img src="logos-concept/gce.png" alt="" loading="lazy" /></div>
+          <div class="lpw-logo-chip" aria-hidden="true"><img src="logos-concept/nord-sud-immobilier.png" alt="" loading="lazy" /></div>
+          <div class="lpw-logo-chip" aria-hidden="true"><img src="logos-concept/aquanova-plomberie.png" alt="" loading="lazy" /></div>
+          <div class="lpw-logo-chip" aria-hidden="true"><img src="logos-concept/carmen-media.png" alt="" loading="lazy" /></div>
+          <div class="lpw-logo-chip" aria-hidden="true"><img src="logos-concept/snow-bolt.png" alt="" loading="lazy" /></div>
+          <div class="lpw-logo-chip" aria-hidden="true"><img src="logos-concept/xa.png" alt="" loading="lazy" /></div>
+        </div>
+      </div>
+    </div>
+
     <div class="lpw-mid-cta">
       <a href="#audit" class="btn btn-primary">
         Réserver mon audit
@@ -1037,45 +1122,76 @@
           <div class="v"><a href="tel:+33688848145">06 88 84 81 45</a></div>
         </div>
         <div class="contact-item">
-          <div class="k">WhatsApp</div>
-          <div class="v"><a href="https://wa.me/33688848145?text=Bonjour%20Lucas%2C%20je%20vous%20%C3%A9cris%20depuis%20votre%20page%20%C2%AB%20cr%C3%A9ation%20de%20site%20web%20%C2%BB.%20Je%20voudrais%20en%20savoir%20plus." target="_blank" rel="noopener">Écrire directement</a></div>
-        </div>
-        <div class="contact-item">
           <div class="k">Email</div>
           <div class="v"><a href="mailto:contact@digitaldreamsbox.com">contact@digitaldreamsbox.com</a></div>
-        </div>
-        <div class="contact-item">
-          <div class="k">Localisation</div>
-          <div class="v">Sarrebourg, Moselle</div>
-        </div>
-        <div class="contact-item">
-          <div class="k">Audit</div>
-          <div class="v">Offert &amp; sans engagement</div>
         </div>
       </div>
     </div>
 
     <div class="contact-card reveal from-r" style="--rd:200ms;">
-      <h3>Réserver mon audit</h3>
-      <p class="sub">On vous répond sous 24h</p>
+      <h3>4 questions rapides, et vous recevez un guide gratuit</h3>
+      <p class="sub">Adapté à votre situation. Réponse sous 24h.</p>
+      <div class="lpw-quiz-progress"><span class="lpw-quiz-progress-fill" id="quiz-progress-fill"></span></div>
+      <p class="lpw-quiz-step-label">Étape <span id="quiz-step-current">1</span> sur 4</p>
       <form id="audit-form" class="form" novalidate action="https://formspree.io/f/xaqzyzgk" method="POST">
-        <div class="field">
-          <label for="f-name">Prénom &amp; Nom</label>
-          <input id="f-name" name="name" type="text" required autocomplete="name" />
-        </div>
-        <div class="field">
-          <label for="f-email">Email</label>
-          <input id="f-email" name="email" type="email" required autocomplete="email" />
-        </div>
-        <div class="field">
-          <label for="f-phone">Téléphone</label>
-          <input id="f-phone" name="phone" type="tel" required autocomplete="tel" />
-        </div>
-        <div class="field">
-          <label for="f-need">Votre activité <span style="opacity:.6;font-weight:400">(facultatif)</span></label>
-          <textarea id="f-need" name="message" placeholder="Votre métier, votre ville, et où en est votre site actuel..."></textarea>
-        </div>
-        <input type="hidden" name="_subject" value="Audit rentabilite site web - Landing ChatGPT Ads">
+
+        <fieldset class="lpw-quiz-step is-active" data-step="1">
+          <legend>Quel est votre budget à allouer pour votre projet ?</legend>
+          <div class="lpw-quiz-choices">
+            <label class="lpw-quiz-choice"><input type="radio" name="budget" value="Moins de 1 000€" required /><span class="dot"></span>Moins de 1 000€</label>
+            <label class="lpw-quiz-choice"><input type="radio" name="budget" value="1 000€ à 2 000€" /><span class="dot"></span>1 000€ à 2 000€</label>
+            <label class="lpw-quiz-choice"><input type="radio" name="budget" value="Plus de 2 000€" /><span class="dot"></span>Plus de 2 000€</label>
+          </div>
+        </fieldset>
+
+        <fieldset class="lpw-quiz-step" data-step="2">
+          <legend>Quels sont vos objectifs ?</legend>
+          <div class="lpw-quiz-choices">
+            <label class="lpw-quiz-choice"><input type="radio" name="objectif" value="Des clients rapidement (3 mois)" required /><span class="dot"></span>Des clients rapidement, d'ici 3 mois</label>
+            <label class="lpw-quiz-choice"><input type="radio" name="objectif" value="Une presence qui dure sur le long terme" /><span class="dot"></span>Une présence qui dure sur le long terme</label>
+            <label class="lpw-quiz-choice"><input type="radio" name="objectif" value="Des clients reguliers (8 mois et plus)" /><span class="dot"></span>Des clients réguliers, au-delà de 8 mois</label>
+          </div>
+          <div class="lpw-quiz-nav">
+            <button type="button" class="btn-ghost lpw-quiz-back">Retour</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="lpw-quiz-step" data-step="3">
+          <legend>Pour vous envoyer votre guide gratuit, comment peut-on vous contacter ?</legend>
+          <div class="field">
+            <label for="f-phone">Téléphone</label>
+            <input id="f-phone" name="phone" type="tel" required autocomplete="tel" />
+          </div>
+          <div class="field">
+            <label for="f-company">Nom de l'entreprise <span style="opacity:.6;font-weight:400">(facultatif)</span></label>
+            <input id="f-company" name="company" type="text" autocomplete="organization" />
+          </div>
+          <div class="lpw-quiz-nav">
+            <button type="button" class="btn-ghost lpw-quiz-back">Retour</button>
+            <button type="button" class="btn btn-primary lpw-quiz-next">Continuer</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="lpw-quiz-step" data-step="4">
+          <legend>Dernière étape avant votre guide gratuit</legend>
+          <div class="field">
+            <label for="f-name">Prénom</label>
+            <input id="f-name" name="name" type="text" required autocomplete="given-name" />
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" required autocomplete="email" />
+          </div>
+          <div class="lpw-quiz-nav">
+            <button type="button" class="btn-ghost lpw-quiz-back">Retour</button>
+            <button type="submit" class="btn btn-primary">
+              Recevoir mon guide gratuit
+              <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </fieldset>
+
+        <input type="hidden" name="_subject" value="Guide personnalise - Landing ChatGPT Ads">
         <input type="hidden" name="source_page" value="lp-site-web">
         <input type="hidden" name="utm_source" id="f-utm-source" value="">
         <input type="hidden" name="utm_campaign" id="f-utm-campaign" value="">
@@ -1089,15 +1205,8 @@
         <div class="honeypot" aria-hidden="true">
           <label>Ne pas remplir<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
         </div>
-        <div class="form-actions">
-          <small>Offert, sans engagement</small>
-          <button type="submit" class="btn btn-primary">
-            Réserver mon audit
-            <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </button>
-        </div>
-        <div class="form-success" role="status">Message reçu. On revient vers vous sous 24 h ouvrées.</div>
-        <p class="lpw-form-privacy">Vos informations servent uniquement à préparer l'audit. Jamais revendues, jamais de spam.</p>
+        <div class="form-success" role="status">Message reçu. On revient vers vous sous 24 h ouvrées, avec votre guide.</div>
+        <p class="lpw-form-privacy">Vos informations servent uniquement à préparer votre guide et votre audit. Jamais revendues, jamais de spam.</p>
       </form>
     </div>
 
@@ -1107,7 +1216,7 @@
 </main>
 
 
-<a href="https://wa.me/33688848145?text=Bonjour%20Lucas%2C%20je%20vous%20%C3%A9cris%20depuis%20votre%20page%20%C2%AB%20cr%C3%A9ation%20de%20site%20web%20%C2%BB.%20Je%20voudrais%20en%20savoir%20plus." target="_blank" rel="noopener" class="lpw-wa-fab" id="wa-fab" aria-label="Écrire sur WhatsApp">
+<a href="https://wa.me/33688848145?text=Bonjour%20Lucas%2C%20je%20suis%20tomb%C3%A9%20sur%20votre%20page%20cr%C3%A9ation%20de%20site%2C%20%C3%A7a%20a%20l%27air%20int%C3%A9ressant.%20J%27aimerais%20en%20discuter%2C%20sans%20engagement." target="_blank" rel="noopener" class="lpw-wa-fab" id="wa-fab" aria-label="Écrire sur WhatsApp">
   <span class="lpw-wa-badge" aria-hidden="true">1</span>
   <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/>
@@ -1542,7 +1651,10 @@
   // Clic WhatsApp : événement GA4 pour savoir combien de visiteurs écrivent depuis la page
   document.querySelectorAll('a[href^="https://wa.me/"]').forEach(function (a) {
     a.addEventListener('click', function () {
-      if (typeof gtag === 'function') gtag('event', 'whatsapp_click', { source_page: 'lp-site-web' });
+      if (typeof gtag === 'function') {
+        gtag('event', 'whatsapp_click', { source_page: 'lp-site-web' });
+        gtag('event', 'conversion', { 'send_to': 'AW-18121297118/HR_ZCIvNxZodEN6Z9MBD' });
+      }
     });
   });
 
@@ -1550,6 +1662,126 @@
   (function () {
     var d = document.querySelector('.lpw-more');
     if (d && window.matchMedia('(max-width: 640px)').matches) d.removeAttribute('open');
+  })();
+
+  // Formulaire progressif : budget/objectifs d'abord, coordonnées à la fin
+  (function () {
+    var form = document.getElementById('audit-form');
+    if (!form) return;
+    var steps = Array.prototype.slice.call(form.querySelectorAll('.lpw-quiz-step'));
+    var total = steps.length;
+    var fill = document.getElementById('quiz-progress-fill');
+    var stepLabel = document.getElementById('quiz-step-current');
+    var current = 0;
+
+    function trackStepView(index) {
+      if (typeof gtag === 'function') {
+        gtag('event', 'quiz_step_view', { source_page: 'lp-site-web', step: index + 1, step_total: total });
+      }
+    }
+
+    function updateProgress() {
+      var pct = ((current + 1) / total) * 100;
+      if (fill) {
+        fill.style.width = pct + '%';
+        fill.classList.remove('is-pulsing');
+        void fill.offsetWidth;
+        fill.classList.add('is-pulsing');
+      }
+      if (stepLabel) stepLabel.textContent = current + 1;
+    }
+
+    function showStep(index) {
+      steps.forEach(function (s, i) { s.classList.toggle('is-active', i === index); });
+      current = index;
+      updateProgress();
+      trackStepView(index);
+    }
+
+    function validateStep(index) {
+      var step = steps[index];
+      var ok = true;
+      // Groupes de boutons (radio) : au moins un choix du groupe coché (le required n'est mis que sur le 1er du groupe)
+      var requiredNames = {};
+      step.querySelectorAll('input[type="radio"][required]').forEach(function (r) { requiredNames[r.name] = true; });
+      Object.keys(requiredNames).forEach(function (name) {
+        var group = step.querySelectorAll('input[type="radio"][name="' + name + '"]');
+        var choicesWrap = group[0].closest('.lpw-quiz-choices');
+        var checked = Array.prototype.some.call(group, function (r) { return r.checked; });
+        if (choicesWrap) choicesWrap.classList.toggle('has-error', !checked);
+        if (!checked) ok = false;
+      });
+      // Champs texte/email/tel classiques
+      step.querySelectorAll('.field input[required]').forEach(function (input) {
+        var valid = input.checkValidity();
+        var fieldWrap = input.closest('.field');
+        if (fieldWrap) fieldWrap.classList.toggle('has-error', !valid);
+        if (!valid) ok = false;
+      });
+      return ok;
+    }
+
+    // Étapes à choix (boutons) : avancer directement au clic, pas de bouton "Continuer"
+    var advancing = false;
+    form.querySelectorAll('.lpw-quiz-choices input[type="radio"]').forEach(function (radio) {
+      radio.addEventListener('change', function () {
+        if (advancing) return;
+        advancing = true;
+        setTimeout(function () {
+          advancing = false;
+          if (validateStep(current) && current < total - 1) showStep(current + 1);
+        }, 320); // le temps de voir le choix se cocher avant de passer à la suite
+      });
+    });
+
+    // Capture silencieuse à l'étape 3 (téléphone + entreprise) : si la personne abandonne avant
+    // la fin, on garde quand même de quoi la retrouver. Pas de champ email envoyé ici, donc
+    // Formspree n'a aucune adresse à qui répondre automatiquement : zéro mail surprise côté visiteur.
+    var partialSent = false;
+    function sendPartialLead() {
+      if (partialSent) return;
+      var phoneInput = form.querySelector('#f-phone');
+      if (!phoneInput || !phoneInput.value) return;
+      partialSent = true;
+      var fd = new FormData();
+      fd.append('_subject', 'Lead partiel (etape 3/4, formulaire non termine) - lp-site-web');
+      fd.append('lead_status', 'Partiel : telephone renseigne, guide non demande jusqu\'au bout');
+      fd.append('phone', phoneInput.value);
+      var companyInput = form.querySelector('#f-company');
+      if (companyInput && companyInput.value) fd.append('company', companyInput.value);
+      var budgetChecked = form.querySelector('input[name="budget"]:checked');
+      if (budgetChecked) fd.append('budget', budgetChecked.value);
+      var objectifChecked = form.querySelector('input[name="objectif"]:checked');
+      if (objectifChecked) fd.append('objectif', objectifChecked.value);
+      fd.append('source_page', 'lp-site-web');
+      ['utm_source', 'utm_campaign', 'utm_content'].forEach(function (n) {
+        var el = form.querySelector('[name="' + n + '"]');
+        if (el && el.value) fd.append(n, el.value);
+      });
+      fetch(form.action, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } }).catch(function () {});
+      if (typeof gtag === 'function') gtag('event', 'quiz_partial_lead', { source_page: 'lp-site-web' });
+    }
+
+    form.querySelectorAll('.lpw-quiz-next').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (!validateStep(current)) return;
+        if (steps[current].dataset.step === '3') sendPartialLead();
+        if (current < total - 1) showStep(current + 1);
+      });
+    });
+    form.querySelectorAll('.lpw-quiz-back').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (current > 0) showStep(current - 1);
+      });
+    });
+    form.addEventListener('submit', function (e) {
+      if (form.querySelector('[name="website"]').value) { e.preventDefault(); return; } // honeypot
+      if (!validateStep(current)) { e.preventDefault(); return; }
+      if (typeof gtag === 'function') gtag('event', 'quiz_complete', { source_page: 'lp-site-web' });
+    });
+
+    if (fill) fill.style.width = ((1 / total) * 100) + '%';
+    trackStepView(0);
   })();
 </script>
 </body>

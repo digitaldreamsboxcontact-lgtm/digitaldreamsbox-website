@@ -280,6 +280,56 @@
       .cal-box h3 { margin-bottom: 8px; }
       .cal-box p { font-size: 14px; margin-bottom: 16px; }
     }
+
+    /* ── Bouton flottant WhatsApp (logo officiel vert + badge notif) ── */
+    .lpw-wa-fab {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 45;
+      width: 56px;
+      height: 56px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 26px -8px rgba(18,140,126,0.6);
+      transition: transform 200ms ease, box-shadow 200ms ease;
+    }
+    .lpw-wa-fab:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 16px 32px -8px rgba(18,140,126,0.75); }
+    @keyframes lpwWaNotify {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      12% { transform: rotate(-16deg) scale(1.08); }
+      24% { transform: rotate(13deg) scale(1.08); }
+      36% { transform: rotate(-10deg) scale(1.04); }
+      48% { transform: rotate(8deg) scale(1.04); }
+      60% { transform: rotate(-4deg) scale(1); }
+      72% { transform: rotate(0deg) scale(1); }
+    }
+    .lpw-wa-fab.is-notifying { animation: lpwWaNotify 800ms ease-in-out; }
+    .lpw-wa-badge {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      min-width: 19px;
+      height: 19px;
+      padding: 0 4px;
+      border-radius: 999px;
+      background: #ff3b30;
+      border: 2px solid var(--navy-deep);
+      color: #fff;
+      font-family: var(--f-sf);
+      font-weight: 700;
+      font-size: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (max-width: 760px) {
+      .lpw-wa-fab { width: 48px; height: 48px; right: 16px; bottom: calc(20px + env(safe-area-inset-bottom)); }
+    }
 </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GNMMKY3BZB"></script>
@@ -441,7 +491,7 @@
       <div class="seq-col reveal">
         <span class="k">Court terme</span>
         <strong>Publicité ciblée</strong>
-        <p>Peut ramener des premières opportunités dès les premières semaines.</p>
+        <p>Pensée pour ceux qui veulent 2 à 3 clients de plus rapidement : elle comble les premiers mois pendant que le reste s'installe, pas une solution à elle seule.</p>
       </div>
       <div class="seq-arrow reveal" aria-hidden="true">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
@@ -584,6 +634,13 @@
 
 </main>
 
+<a href="https://wa.me/33688848145?text=Bonjour%20Lucas%2C%20je%20suis%20tomb%C3%A9%20sur%20votre%20page%20agence%20web%2C%20%C3%A7a%20a%20l%27air%20int%C3%A9ressant.%20J%27aimerais%20en%20discuter%2C%20sans%20engagement." target="_blank" rel="noopener" class="lpw-wa-fab" id="wa-fab" aria-label="Écrire sur WhatsApp">
+  <span class="lpw-wa-badge" aria-hidden="true">1</span>
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/>
+  </svg>
+</a>
+
 <!-- ============================================================
      FOOTER MINIMAL
 ============================================================ -->
@@ -643,6 +700,29 @@
       if (video.duration) { fill.style.width = (video.currentTime / video.duration * 100) + '%'; }
     });
   })();
+
+  // Bouton WhatsApp : petite animation façon notification, deux fois de suite, toutes les 8s
+  (function () {
+    var fab = document.getElementById('wa-fab');
+    if (!fab) return;
+    function playOnce() {
+      fab.classList.remove('is-notifying');
+      void fab.offsetWidth;
+      fab.classList.add('is-notifying');
+    }
+    function playTwice() {
+      playOnce();
+      setTimeout(playOnce, 850);
+    }
+    setInterval(playTwice, 8000);
+  })();
+
+  // Clic WhatsApp : événement GA4 pour savoir combien de visiteurs écrivent depuis la page
+  document.querySelectorAll('a[href^="https://wa.me/"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (typeof gtag === 'function') gtag('event', 'whatsapp_click', { source_page: 'agence-web-ariane' });
+    });
+  });
 </script>
 
 </body>

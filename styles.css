@@ -36,7 +36,7 @@
 }
 
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
+html, body { margin: 0; padding: 0; overscroll-behavior-x: none; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; background: var(--navy-deep); }
 body {
   font-family: var(--f-body);
@@ -1129,6 +1129,7 @@ body.nav-open { overflow: hidden; }
   gap: 24px;
   padding: 12px max(var(--pad-x), calc((100vw - var(--shell)) / 2 + var(--pad-x))) 80px max(var(--pad-x), calc((100vw - var(--shell)) / 2 + var(--pad-x)));
   overflow-x: auto;
+  overscroll-behavior-x: contain;
   scrollbar-width: none;
   -ms-overflow-style: none;
   cursor: grab;
