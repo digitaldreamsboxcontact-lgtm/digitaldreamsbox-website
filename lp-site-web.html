@@ -776,7 +776,7 @@
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         <span class="nav-phone-txt">06 88 84 81 45</span>
       </a>
-      <a href="#audit" class="btn btn-primary acq-call-btn" data-magnet="" aria-label="Réserver mon audit de rentabilité gratuit">
+      <a href="#audit" class="btn btn-primary acq-call-btn" data-magnet="" data-cta-loc="header" aria-label="Réserver mon audit de rentabilité gratuit">
         Réserver mon audit
         <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
       </a>
@@ -788,7 +788,7 @@
 <main>
 
 <!-- 1. HERO -->
-<section class="hero" aria-labelledby="hero-title">
+<section class="hero" aria-labelledby="hero-title" data-track-section="hero">
   <div class="shell hero-shell">
     <span class="eyebrow reveal" id="hero-eyebrow">Studio indépendant, Sarrebourg</span>
     <h1 id="hero-title" class="hero-title reveal" style="--rd:60ms; font-size: clamp(30px, 5vw, 60px);">
@@ -798,7 +798,7 @@
       Création de site pour artisans et PME de Sarrebourg et alentours. Prix fixe à partir de 820€, annoncé dès le premier échange.
     </p>
     <div class="hero-ctas reveal" style="--rd:220ms;">
-      <a href="#audit" class="btn btn-ghost">Réserver mon audit</a>
+      <a href="#audit" class="btn btn-ghost" data-cta-loc="hero">Réserver mon audit</a>
     </div>
     <div class="hero-meta reveal" style="--rd:320ms;">
       <div>
@@ -822,7 +822,7 @@
 </section>
 
 <!-- 2. PROBLÈME -->
-<section class="lpw-section lpw-problem" aria-labelledby="problem-title">
+<section class="lpw-section lpw-problem" aria-labelledby="problem-title" data-track-section="constat">
   <div class="shell">
     <span class="eyebrow reveal">01 · Le constat</span>
     <h2 id="problem-title" class="h-section science reveal lpw-narrow" style="--rd:60ms;">
@@ -835,7 +835,7 @@
 </section>
 
 <!-- 3. MÉTHODE (reprend le composant process-rail existant) -->
-<section class="section-process" id="methode" aria-labelledby="process-title">
+<section class="section-process" id="methode" aria-labelledby="process-title" data-track-section="methode">
   <div class="shell">
     <div class="process-intro">
       <div>
@@ -929,7 +929,7 @@
 </section>
 
 <!-- 4. PRIX -->
-<section class="lpw-section lpw-tint-soft" aria-labelledby="pricing-title">
+<section class="lpw-section lpw-tint-soft" aria-labelledby="pricing-title" data-track-section="calcul">
   <div class="shell">
     <span class="eyebrow reveal">03 · Le calcul</span>
     <h2 id="pricing-title" class="h-section science reveal" style="--rd:60ms;">
@@ -1040,7 +1040,7 @@
 
       <p class="lpw-calc-hint">La marge par défaut (30%) est une estimation générique, ajustez-la à votre activité. Ces chiffres sont une estimation basée sur ce que vous renseignez, pas une prédiction garantie : on ne maîtrise ni votre marché ni la conjoncture.</p>
       <div class="lpw-mid-cta">
-        <a href="#audit" class="btn btn-primary">
+        <a href="#audit" class="btn btn-primary" data-cta-loc="calculateur">
           Réserver mon audit
           <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
         </a>
@@ -1050,7 +1050,7 @@
 </section>
 
 <!-- 5. GARANTIES + FONDATEURS + PREUVE, un seul temps resserré -->
-<section class="lpw-section" aria-labelledby="guarantee-title">
+<section class="lpw-section" aria-labelledby="guarantee-title" data-track-section="preuve">
   <div class="shell">
     <span class="eyebrow reveal">04 · La preuve</span>
     <h2 id="guarantee-title" class="h-section science reveal" style="--rd:60ms;">
@@ -1147,7 +1147,7 @@
     </div>
 
     <div class="lpw-mid-cta">
-      <a href="#audit" class="btn btn-primary">
+      <a href="#audit" class="btn btn-primary" data-cta-loc="preuve">
         Réserver mon audit
         <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
       </a>
@@ -1156,7 +1156,7 @@
 </section>
 
 <!-- 7. FAQ -->
-<section class="section-faq" id="faq" aria-labelledby="faq-title">
+<section class="section-faq" id="faq" aria-labelledby="faq-title" data-track-section="faq">
   <div class="shell faq-grid">
     <aside class="faq-side">
       <span class="eyebrow reveal">05 · Vos questions</span>
@@ -1165,7 +1165,7 @@
       </h2>
       <p class="body-md reveal" style="--rd:140ms;">Une question vous manque ? Posez-la pendant l'audit, gratuit et sans engagement.</p>
       <div class="ctas reveal" style="--rd:220ms;">
-        <a href="#audit" class="btn btn-solid">Réserver mon audit</a>
+        <a href="#audit" class="btn btn-solid" data-cta-loc="faq">Réserver mon audit</a>
       </div>
     </aside>
 
@@ -1175,7 +1175,7 @@
           <span>Pourquoi le prix est-il annoncé alors que d'autres agences font du sur-devis ?</span>
           <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
         </button>
-        <div class="faq-a"><div class="faq-a-inner">Parce qu'un prix caché ajoute de la méfiance à un moment où vous en avez déjà assez donné. Nos trois formules sont fixes, vous savez ce que vous payez avant même l'audit.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Parce qu'un prix caché ajoute de la méfiance à un moment où vous en avez déjà assez donné. On annonce un prix plancher public (à partir de 820€), et le prix exact de votre formule est confirmé avec vous pendant l'audit, avant de commencer quoi que ce soit, jamais après.</div></div>
       </div>
 
       <div class="faq-item">
@@ -1230,7 +1230,7 @@
 </section>
 
 <!-- 8. CTA FINAL + FORMULAIRE -->
-<section class="section-contact lpw-tint-rich" id="audit" aria-labelledby="contact-title">
+<section class="section-contact lpw-tint-rich" id="audit" aria-labelledby="contact-title" data-track-section="audit">
   <svg class="lpw-skyline" viewBox="0 0 400 120" preserveAspectRatio="none" aria-hidden="true">
     <rect x="0" y="48" width="28" height="72" fill="#1D9EE9" />
     <rect x="32" y="20" width="22" height="100" fill="#1D9EE9" />
@@ -1833,6 +1833,64 @@
   document.querySelectorAll('a[href^="tel:"]').forEach(function (a) {
     a.addEventListener('click', function () {
       if (typeof gtag === 'function') gtag('event', 'phone_click', { source_page: 'lp-site-web' });
+    });
+  });
+
+  // ── Suivi étendu (demande Lucas 2026-11-05) : savoir jusqu'où les gens vont
+  // et sur quoi ils cliquent réellement, pas seulement les conversions finales.
+
+  // Sections vues : quelle partie de la page les visiteurs atteignent vraiment,
+  // un seul événement par section et par visite (pas à chaque passage).
+  (function () {
+    var sections = document.querySelectorAll('[data-track-section]');
+    if (!sections.length || !('IntersectionObserver' in window)) return;
+    var seen = {};
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var name = entry.target.getAttribute('data-track-section');
+        if (seen[name]) return;
+        seen[name] = true;
+        if (typeof gtag === 'function') gtag('event', 'section_view', { section_name: name, source_page: 'lp-site-web' });
+      });
+    }, { threshold: 0.15 }); // seuil bas exprès : certaines sections (calcul, preuve) dépassent
+                             // largement la hauteur d'un écran, un seuil haut ne se déclencherait jamais
+    sections.forEach(function (s) { obs.observe(s); });
+  })();
+
+  // Clics "Réserver mon audit" : quel emplacement (header/hero/calculateur/preuve/faq) convertit le mieux
+  document.querySelectorAll('a[href="#audit"][data-cta-loc]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (typeof gtag === 'function') gtag('event', 'cta_click', { cta_location: a.getAttribute('data-cta-loc'), source_page: 'lp-site-web' });
+    });
+  });
+
+  // Ouverture d'une question FAQ : quelles objections reviennent le plus souvent
+  document.querySelectorAll('.faq-q').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      setTimeout(function () {
+        if (btn.getAttribute('aria-expanded') === 'true' && typeof gtag === 'function') {
+          var labelEl = btn.querySelector('span');
+          gtag('event', 'faq_open', { faq_question: labelEl ? labelEl.textContent.trim() : '', source_page: 'lp-site-web' });
+        }
+      }, 50);
+    });
+  });
+
+  // Ouverture des accordéons "Au-delà du prix" / "D'où viennent ces repères"
+  document.querySelectorAll('details.lpw-more').forEach(function (d) {
+    d.addEventListener('toggle', function () {
+      if (d.open && typeof gtag === 'function') {
+        var summaryEl = d.querySelector('summary');
+        gtag('event', 'details_open', { details_label: summaryEl ? summaryEl.textContent.trim() : '', source_page: 'lp-site-web' });
+      }
+    });
+  });
+
+  // Navigation dans "02 · La méthode" (4 étapes) : est-ce que les gens explorent le process ?
+  document.querySelectorAll('[data-proc-prev], [data-proc-next]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (typeof gtag === 'function') gtag('event', 'process_nav_click', { direction: btn.hasAttribute('data-proc-next') ? 'next' : 'prev', source_page: 'lp-site-web' });
     });
   });
 
