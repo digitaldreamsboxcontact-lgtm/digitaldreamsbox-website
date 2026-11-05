@@ -38,6 +38,28 @@
     .acq-header .brand-text { display: none !important; }
   }
 
+  /* ── Téléphone visible dans le header : trust signal + call tracking Google Ads déjà configuré ── */
+  .nav-phone {
+    display: flex; align-items: center; gap: 8px;
+    color: var(--white-70); text-decoration: none;
+    font-family: var(--f-sf); font-weight: 700; font-size: 13.5px;
+    white-space: nowrap;
+    transition: color 160ms ease;
+  }
+  .nav-phone:hover { color: var(--sky); }
+  .nav-phone svg { flex: none; }
+  @media (max-width: 640px) {
+    .nav-phone-txt { display: none; }
+    .nav-phone {
+      width: 36px; height: 36px; justify-content: center;
+      border: 1px solid var(--rule); border-radius: 999px;
+    }
+  }
+  @media (max-width: 420px) {
+    .nav-phone { width: 32px; height: 32px; }
+    .nav-phone svg { width: 15px; height: 15px; }
+  }
+
   /* ── Section générique : rythme vertical large ── */
   .lpw-section { padding: clamp(64px, 9vw, 120px) 0; position: relative; }
   .lpw-section + .lpw-section { border-top: 1px solid var(--rule); }
@@ -750,6 +772,10 @@
       </span>
     </a>
     <div class="nav-cta">
+      <a href="tel:+33688848145" class="nav-phone" id="nav-phone-link" aria-label="Appeler le 06 88 84 81 45">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="nav-phone-txt">06 88 84 81 45</span>
+      </a>
       <a href="#audit" class="btn btn-primary acq-call-btn" data-magnet="" aria-label="Réserver mon audit de rentabilité gratuit">
         Réserver mon audit
         <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
@@ -1799,6 +1825,14 @@
         gtag('event', 'whatsapp_click', { source_page: 'lp-site-web' });
         gtag('event', 'conversion', { 'send_to': 'AW-18121297118/HR_ZCIvNxZodEN6Z9MBD' });
       }
+    });
+  });
+
+  // Clic téléphone (header) : événement GA4, le suivi d'appel Google Ads est déjà
+  // configuré via phone_conversion_number plus haut dans la page.
+  document.querySelectorAll('a[href^="tel:"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (typeof gtag === 'function') gtag('event', 'phone_click', { source_page: 'lp-site-web' });
     });
   });
 
