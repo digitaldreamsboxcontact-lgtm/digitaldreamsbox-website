@@ -38,26 +38,21 @@
     .acq-header .brand-text { display: none !important; }
   }
 
-  /* ── Photo en bandeau tout en haut du hero, sous le header flottant ── */
-  .hero { padding-top: 0; }
+  /* ── Photo en fond de toute la section hero, filtre bleu léger pour garder le texte lisible ── */
   .hero-photo {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 21 / 9;
+    position: absolute;
+    inset: 0;
+    z-index: -2;
     overflow: hidden;
   }
-  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 38%; display: block; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; display: block; }
   .hero-photo::after {
     content: "";
     position: absolute; inset: 0;
-    background: linear-gradient(to bottom, rgba(11,21,38,0) 50%, rgba(11,21,38,0.6) 82%, var(--navy) 100%);
+    background: linear-gradient(160deg, rgba(10,22,42,0.86), rgba(15,55,95,0.72));
     pointer-events: none;
   }
-  .hero-shell { padding-top: 56px; }
-  @media (max-width: 760px) {
-    .hero-photo { aspect-ratio: 16 / 9; }
-    .hero-shell { padding-top: 32px; }
-  }
+  .hero-shell { position: relative; z-index: 1; }
 
   /* ── Téléphone visible dans le header : trust signal + call tracking Google Ads déjà configuré ── */
   .nav-phone {
