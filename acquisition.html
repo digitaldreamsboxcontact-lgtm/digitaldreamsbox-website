@@ -1867,6 +1867,17 @@
     });
   });
 
+  // Clic mail : conversion Google Ads "Clic sur le mail de l'entreprise" (manquait,
+  // la conversion existait côté compte Ads mais rien ne la déclenchait sur la page).
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (typeof gtag === 'function') {
+        gtag('event', 'mail_click', { source_page: 'acquisition' });
+        gtag('event', 'conversion', { 'send_to': 'AW-18121297118/ST_dCKm-wb8cEN6Z9MBD' });
+      }
+    });
+  });
+
   // ── Suivi étendu (demande Lucas 2026-11-05) : savoir jusqu'où les gens vont
   // et sur quoi ils cliquent réellement, pas seulement les conversions finales.
 
