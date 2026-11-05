@@ -38,6 +38,27 @@
     .acq-header .brand-text { display: none !important; }
   }
 
+  /* ── Photo en bandeau tout en haut du hero, sous le header flottant ── */
+  .hero { padding-top: 0; }
+  .hero-photo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    overflow: hidden;
+  }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 38%; display: block; }
+  .hero-photo::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(11,21,38,0) 50%, rgba(11,21,38,0.6) 82%, var(--navy) 100%);
+    pointer-events: none;
+  }
+  .hero-shell { padding-top: 56px; }
+  @media (max-width: 760px) {
+    .hero-photo { aspect-ratio: 16 / 9; }
+    .hero-shell { padding-top: 32px; }
+  }
+
   /* ── Téléphone visible dans le header : trust signal + call tracking Google Ads déjà configuré ── */
   .nav-phone {
     display: flex; align-items: center; gap: 8px;
@@ -789,6 +810,9 @@
 
 <!-- 1. HERO -->
 <section class="hero" aria-labelledby="hero-title" data-track-section="hero">
+  <div class="hero-photo">
+    <img src="hero-equipe-travail.webp" alt="Travail sur un projet client, en équipe" width="1600" height="1165" loading="eager" fetchpriority="high" decoding="async" />
+  </div>
   <div class="shell hero-shell">
     <span class="eyebrow reveal" id="hero-eyebrow">Studio indépendant, Sarrebourg</span>
     <h1 id="hero-title" class="hero-title reveal" style="--rd:60ms; font-size: clamp(30px, 5vw, 60px);">
