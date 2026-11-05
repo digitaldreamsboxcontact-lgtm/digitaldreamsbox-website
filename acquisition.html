@@ -38,14 +38,23 @@
     .acq-header .brand-text { display: none !important; }
   }
 
-  /* ── Photo en fond de toute la section hero, filtre bleu léger pour garder le texte lisible ── */
+  /* ── Photo en fond de la zone titre uniquement (du dessus du badge au trait avant les repères), filtre bleu léger ── */
+  .hero-photo-zone {
+    position: relative;
+    margin-top: -28px;
+    padding-top: 28px;
+    padding-bottom: 56px;
+  }
   .hero-photo {
     position: absolute;
-    inset: 0;
+    top: 0; bottom: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
     z-index: -2;
     overflow: hidden;
   }
-  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; display: block; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 38%; display: block; }
   .hero-photo::after {
     content: "";
     position: absolute; inset: 0;
@@ -53,6 +62,7 @@
     pointer-events: none;
   }
   .hero-shell { position: relative; z-index: 1; }
+  .hero .hero-meta { margin-top: 0; }
 
   /* ── Téléphone visible dans le header : trust signal + call tracking Google Ads déjà configuré ── */
   .nav-phone {
@@ -805,19 +815,21 @@
 
 <!-- 1. HERO -->
 <section class="hero" aria-labelledby="hero-title" data-track-section="hero">
-  <div class="hero-photo">
-    <img src="hero-equipe-travail.webp" alt="Travail sur un projet client, en équipe" width="1600" height="1165" loading="eager" fetchpriority="high" decoding="async" />
-  </div>
   <div class="shell hero-shell">
-    <span class="eyebrow reveal" id="hero-eyebrow">Studio indépendant, Sarrebourg</span>
-    <h1 id="hero-title" class="hero-title reveal" style="--rd:60ms; font-size: clamp(30px, 5vw, 60px);">
-      On ne vend pas un site. On calcule combien de <span class="accent">clients</span> il doit vous ramener.
-    </h1>
-    <p class="hero-sub reveal" style="--rd:140ms;" id="hero-sub-text">
-      Création de site pour artisans et PME de Sarrebourg et alentours. Prix fixe à partir de 820€, annoncé dès le premier échange.
-    </p>
-    <div class="hero-ctas reveal" style="--rd:220ms;">
-      <a href="#audit" class="btn btn-ghost" data-cta-loc="hero">Réserver mon audit</a>
+    <div class="hero-photo-zone">
+      <div class="hero-photo">
+        <img src="hero-equipe-travail.webp" alt="Travail sur un projet client, en équipe" width="1600" height="1165" loading="eager" fetchpriority="high" decoding="async" />
+      </div>
+      <span class="eyebrow reveal" id="hero-eyebrow">Studio indépendant, Sarrebourg</span>
+      <h1 id="hero-title" class="hero-title reveal" style="--rd:60ms; font-size: clamp(30px, 5vw, 60px);">
+        On ne vend pas un site. On calcule combien de <span class="accent">clients</span> il doit vous ramener.
+      </h1>
+      <p class="hero-sub reveal" style="--rd:140ms;" id="hero-sub-text">
+        Création de site pour artisans et PME de Sarrebourg et alentours. Prix fixe à partir de 820€, annoncé dès le premier échange.
+      </p>
+      <div class="hero-ctas reveal" style="--rd:220ms;">
+        <a href="#audit" class="btn btn-ghost" data-cta-loc="hero">Réserver mon audit</a>
+      </div>
     </div>
     <div class="hero-meta reveal" style="--rd:320ms;">
       <div>
