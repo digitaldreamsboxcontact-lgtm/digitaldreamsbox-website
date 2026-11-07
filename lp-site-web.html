@@ -27,6 +27,9 @@
   /* ── Anti double-tap-zoom mobile : tap rapide sur un bouton ne doit jamais zoomer la page ── */
   button, a.btn, .lpw-quiz-choice, .lpw-wa-fab, .lpw-step-btn { touch-action: manipulation; }
 
+  /* ── Pas d'étoiles qui dérivent sur cette landing page Ads, desktop et mobile (scopé à cette page, pas au site) ── */
+  #bg-blobs { display: none; }
+
   /* ── lp-site-web : header minimal, un seul CTA ── */
   .acq-header .nav-links,
   .acq-header .nav-toggle { display: none !important; }
@@ -309,6 +312,9 @@
     border: 1px solid var(--rule);
     border-radius: 20px;
   }
+  @media (min-width: 769px) {
+    .lpw-calc { max-width: 680px; margin-left: auto; margin-right: auto; }
+  }
   .lpw-calc-eyebrow {
     font-family: var(--f-sf);
     font-weight: 700;
@@ -541,6 +547,8 @@
     grid-template-columns: 1fr 1fr;
     gap: clamp(14px, 3vw, 28px);
     max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .lpw-founder { display: flex; flex-direction: column; gap: 14px; }
   .lpw-founder-photo {
