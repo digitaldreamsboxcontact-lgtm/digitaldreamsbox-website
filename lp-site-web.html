@@ -50,9 +50,27 @@
     transform: translateX(-50%);
     max-height: 460px;
     overflow: hidden;
-    margin-bottom: 32px;
+    margin-bottom: 6px;
   }
   .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 38%; display: block; }
+  .hero-photo::before,
+  .hero-photo::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .hero-photo::before {
+    top: 0;
+    height: 38%;
+    background: linear-gradient(180deg, var(--navy-deep), rgba(11,21,38,0));
+  }
+  .hero-photo::after {
+    bottom: 0;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(11,21,38,0), var(--navy-deep));
+  }
   .hero-shell { position: relative; z-index: 1; }
   .hero .hero-meta { margin-top: 0; }
 
