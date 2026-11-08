@@ -41,12 +41,14 @@
     .acq-header .brand-text { display: none !important; }
   }
 
-  /* ── Photo propre et lumineuse au-dessus du bloc texte (pas en fond assombri derrière) : demande explicite de Lucas, référence capture écran ── */
+  /* ── Photo plein-bord (bord à bord avec l'écran, sans coins arrondis, sans marge), collée sous le header, au-dessus du bloc texte : référence capture écran exacte de Lucas ── */
+  .hero { padding: 86px 0 60px; }
   .hero-photo {
     position: relative;
-    width: 100%;
-    max-height: 420px;
-    border-radius: 20px;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    max-height: 460px;
     overflow: hidden;
     margin-bottom: 32px;
   }
