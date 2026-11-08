@@ -153,7 +153,10 @@
   .lpw-problem p.body-md { max-width: 62ch; margin-top: 18px; }
   .lpw-problem p.body-md + p.body-md { margin-top: 14px; }
 
-  /* ── Méthode : reprend .process-rail existant, rien de neuf ── */
+  /* ── Méthode : reprend .process-rail existant, rien de neuf, sauf touch-action pour éviter
+     que le doigt parte à gauche/droite par erreur en scrollant verticalement la page (scopé ici,
+     pas touché dans styles.css partagé) ── */
+  .process-rail { touch-action: pan-x; }
 
   /* ── Prix : 3 cartes, la centrale mise en avant (Good-Better-Best) ── */
   .lpw-pricing-grid {
@@ -252,6 +255,7 @@
     -webkit-overflow-scrolling: touch;
     padding-bottom: 6px;
     scrollbar-width: none;
+    touch-action: pan-x;
   }
   .lpw-portfolio-grid::-webkit-scrollbar { display: none; }
   .lpw-proof-inline {
