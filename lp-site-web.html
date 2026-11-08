@@ -50,9 +50,13 @@
     transform: translateX(-50%);
     max-height: 460px;
     overflow: hidden;
-    margin-bottom: 6px;
+    margin-bottom: -40px;
   }
   .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 38%; display: block; }
+  /* Le transform sur .hero-photo crée son propre contexte d'empilement, qui se peint au-dessus
+     des éléments non positionnés même placés après elle dans le code : on remonte explicitement
+     l'eyebrow qui chevauche le bas du dégradé. */
+  #hero-eyebrow { position: relative; z-index: 2; }
   .hero-photo::before,
   .hero-photo::after {
     content: "";
