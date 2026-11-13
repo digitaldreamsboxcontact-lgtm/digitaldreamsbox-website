@@ -2078,9 +2078,16 @@
       });
     });
     form.addEventListener('submit', function (e) {
-      if (form.querySelector('[name="website"]').value) { e.preventDefault(); return; } // honeypot
-      if (!validateStep(current)) { e.preventDefault(); return; }
+      e.preventDefault();
+      if (form.querySelector('[name="website"]').value) return; // honeypot
+      if (!validateStep(current)) return;
       if (typeof gtag === 'function') gtag('event', 'quiz_complete', { source_page: 'lp-site-web' });
+      // Soumission en AJAX : le _next Formspree ne redirige pas de façon fiable (vérifié en conditions
+      // réelles), on contrôle nous-mêmes la redirection vers merci.html (balise de conversion Ads).
+      var fd = new FormData(form);
+      fetch(form.action, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } })
+        .catch(function () {})
+        .then(function () { window.location.href = 'pages/merci.html'; });
     });
 
     if (fill) fill.style.width = ((1 / total) * 100) + '%';
