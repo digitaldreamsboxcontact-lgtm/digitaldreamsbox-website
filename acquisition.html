@@ -6,8 +6,8 @@
 <meta name="robots" content="noindex, nofollow" />
 <meta name="theme-color" content="#0B1526" />
 
-<title>Un site qui vous ramène des clients, prix annoncé — Digital Dreamsbox</title>
-<meta name="description" content="Création de site pour artisans et PME de Sarrebourg et alentours. Prix fixe à partir de 820€. Audit de rentabilité gratuit avant de commencer." />
+<title>Création de site internet à Sarrebourg, dès 820€ | Digital Dreamsbox</title>
+<meta name="description" content="Agence web à Sarrebourg : création de site internet pour artisans et PME de Moselle, Metz comprise. Prix fixe dès 820€, annoncé avant de commencer. Audit de rentabilité gratuit." />
 <meta property="og:image" content="https://digitaldreamsbox.com/assets/og-image.webp" />
 
 <link rel="icon" type="image/x-icon" href="favicon.ico" /><link rel="icon" type="image/png" href="favicon-192.png" />
@@ -52,7 +52,11 @@
     overflow: hidden;
     margin-bottom: -40px;
   }
-  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 38%; display: block; }
+  /* Sur grand écran l'image (1600x1165) est plus haute que le cadre de 460px : elle n'est pas recadrée par object-fit,
+     c'est le cadre (overflow:hidden) qui la coupe, donc on ne voyait que le haut (plafond, haut des têtes).
+     On la décale vers le haut d'un tiers de l'excédent pour voir les visages ET les écrans, cadre et dégradés inchangés.
+     Sous ~630px de large l'image tient entière dans le cadre : max(0, ...) = aucun décalage, rendu mobile identique. */
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 38%; display: block; margin-top: calc(-0.33 * max(0px, 72.81vw - 460px)); }
   /* Le transform sur .hero-photo crée son propre contexte d'empilement, qui se peint au-dessus
      des éléments non positionnés même placés après elle dans le code : on remonte explicitement
      l'eyebrow qui chevauche le bas du dégradé. */
@@ -845,14 +849,14 @@
 <section class="hero" aria-labelledby="hero-title" data-track-section="hero">
   <div class="shell hero-shell">
     <div class="hero-photo">
-      <img src="hero-equipe-travail.webp" alt="Travail sur un projet client, en équipe" width="1600" height="1165" loading="eager" fetchpriority="high" decoding="async" />
+      <img src="hero-equipe-travail.webp" alt="Équipe d'une agence web à Sarrebourg au travail sur la création d'un site internet" width="1600" height="1165" loading="eager" fetchpriority="high" decoding="async" />
     </div>
-    <span class="eyebrow reveal" id="hero-eyebrow">Studio indépendant, Sarrebourg</span>
+    <span class="eyebrow reveal" id="hero-eyebrow">Agence web, Sarrebourg · Moselle</span>
     <h1 id="hero-title" class="hero-title reveal" style="--rd:60ms; font-size: clamp(30px, 5vw, 60px);">
-      On ne vend pas un site. On calcule combien de <span class="accent">clients</span> il doit vous ramener.
+      Création de site internet à Sarrebourg. On calcule combien de <span class="accent">clients</span> il doit vous ramener.
     </h1>
     <p class="hero-sub reveal" style="--rd:140ms;" id="hero-sub-text">
-      Création de site pour artisans et PME de Sarrebourg et alentours. Prix fixe à partir de 820€, annoncé dès le premier échange.
+      Agence web et agence de communication pour artisans et PME de Moselle, de Sarrebourg à Metz. Création de site web sur mesure, prix fixe à partir de 820€, annoncé dès le premier échange.
     </p>
     <div class="hero-ctas reveal" style="--rd:220ms;">
       <a href="#audit" class="btn btn-ghost" data-cta-loc="hero">Réserver mon audit</a>
@@ -1268,10 +1272,18 @@
 
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">
+          <span>Combien coûte la création d'un site internet à Sarrebourg ou à Metz ?</span>
+          <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">À partir de 820€, prix fixe annoncé avant de commencer, selon la formule (Essentiel, Recommandé ou Premium). Le prix exact est confirmé avec vous pendant l'audit de rentabilité gratuit de 15 minutes, jamais après. Le site est en ligne sous 2 semaines, sans abonnement d'hébergement en plus.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
           <span>Travaillez-vous en dehors de Sarrebourg ?</span>
           <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>
         </button>
-        <div class="faq-a"><div class="faq-a-inner">Oui. Notre zone d'intervention couvre la Moselle, le Bas-Rhin et la Meurthe-et-Moselle, 100 km autour de Sarrebourg. Nous travaillons aussi à distance partout en France.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Oui. Notre zone d'intervention couvre la Moselle (Metz comprise), le Bas-Rhin et la Meurthe-et-Moselle, 100 km autour de Sarrebourg. Nous travaillons aussi à distance partout en France.</div></div>
       </div>
 
       <div class="faq-item">
@@ -1328,7 +1340,7 @@
     </div>
 
     <div class="contact-card reveal from-r" style="--rd:200ms;">
-      <h3>4 questions rapides, et vous recevez un guide gratuit</h3>
+      <h3>4 questions rapides, et vous recevez votre audit de rentabilité gratuit</h3>
       <p class="sub">Adapté à votre situation. Réponse sous 24h.</p>
       <div class="lpw-quiz-progress"><span class="lpw-quiz-progress-fill" id="quiz-progress-fill"></span></div>
       <p class="lpw-quiz-step-label">Étape <span id="quiz-step-current">1</span> sur 4</p>
@@ -1356,7 +1368,7 @@
         </fieldset>
 
         <fieldset class="lpw-quiz-step" data-step="3">
-          <legend>Pour vous envoyer votre guide gratuit, comment peut-on vous contacter ?</legend>
+          <legend>Pour vous envoyer votre audit gratuit, comment peut-on vous contacter ?</legend>
           <div class="field">
             <label for="f-phone">Téléphone</label>
             <input id="f-phone" name="phone" type="tel" required autocomplete="tel" />
@@ -1372,7 +1384,7 @@
         </fieldset>
 
         <fieldset class="lpw-quiz-step" data-step="4">
-          <legend>Dernière étape avant votre guide gratuit</legend>
+          <legend>Dernière étape avant votre audit gratuit</legend>
           <div class="field">
             <label for="f-name">Prénom</label>
             <input id="f-name" name="name" type="text" required autocomplete="given-name" />
@@ -1384,13 +1396,13 @@
           <div class="lpw-quiz-nav">
             <button type="button" class="btn-ghost lpw-quiz-back">Retour</button>
             <button type="submit" class="btn btn-primary">
-              Recevoir mon guide gratuit
+              Recevoir mon audit gratuit
               <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
             </button>
           </div>
         </fieldset>
 
-        <input type="hidden" name="_subject" value="Guide personnalise - Landing ChatGPT Ads">
+        <input type="hidden" name="_subject" value="Audit rentabilite - Landing Google Ads (acquisition)">
         <input type="hidden" name="source_page" value="lp-site-web">
         <input type="hidden" name="utm_source" id="f-utm-source" value="">
         <input type="hidden" name="utm_campaign" id="f-utm-campaign" value="">
@@ -1404,8 +1416,8 @@
         <div class="honeypot" aria-hidden="true">
           <label>Ne pas remplir<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
         </div>
-        <div class="form-success" role="status">Message reçu. On revient vers vous sous 24 h ouvrées, avec votre guide.</div>
-        <p class="lpw-form-privacy">Vos informations servent uniquement à préparer votre guide et votre audit. Jamais revendues, jamais de spam.</p>
+        <div class="form-success" role="status">Message reçu. On revient vers vous sous 24 h ouvrées, avec votre audit.</div>
+        <p class="lpw-form-privacy">Vos informations servent uniquement à préparer votre audit. Jamais revendues, jamais de spam.</p>
       </form>
     </div>
 
@@ -2048,7 +2060,7 @@
       partialSent = true;
       var fd = new FormData();
       fd.append('_subject', 'Lead partiel (etape 3/4, formulaire non termine) - lp-site-web');
-      fd.append('lead_status', 'Partiel : telephone renseigne, guide non demande jusqu\'au bout');
+      fd.append('lead_status', 'Partiel : telephone renseigne, audit non demande jusqu\'au bout');
       fd.append('phone', phoneInput.value);
       var companyInput = form.querySelector('#f-company');
       if (companyInput && companyInput.value) fd.append('company', companyInput.value);
@@ -2084,10 +2096,31 @@
       if (typeof gtag === 'function') gtag('event', 'quiz_complete', { source_page: 'acquisition' });
       // Soumission en AJAX : le _next Formspree ne redirige pas de façon fiable (vérifié en conditions
       // réelles), on contrôle nous-mêmes la redirection vers merci.html (balise de conversion Ads).
+      // On ne redirige que si Formspree a vraiment accepté l'envoi (response.ok) : sinon le lead serait
+      // perdu et la conversion Ads comptée à tort. En cas d'échec, message + moyens de contact directs.
       var fd = new FormData(form);
+      var submitBtn = form.querySelector('button[type="submit"]');
+      var errBox = form.querySelector('.lpw-form-error');
+      if (errBox) errBox.style.display = 'none';
+      if (submitBtn) submitBtn.disabled = true;
       fetch(form.action, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } })
-        .catch(function () {})
-        .then(function () { window.location.href = 'pages/merci.html'; });
+        .then(function (res) {
+          if (!res.ok) throw new Error('formspree_' + res.status);
+          window.location.href = 'pages/merci.html';
+        })
+        .catch(function (err) {
+          if (submitBtn) submitBtn.disabled = false;
+          if (!errBox) {
+            errBox = document.createElement('p');
+            errBox.className = 'lpw-form-error';
+            errBox.setAttribute('role', 'alert');
+            errBox.style.cssText = 'margin-top:10px;font-size:14px;line-height:1.4;color:#ff8a8a;';
+            errBox.innerHTML = "L'envoi n'a pas abouti. Réessayez, ou écrivez-nous directement : <a href=\"tel:+33688848145\" style=\"text-decoration:underline\">06 88 84 81 45</a> ou <a href=\"mailto:contact@digitaldreamsbox.com\" style=\"text-decoration:underline\">contact@digitaldreamsbox.com</a>.";
+            form.appendChild(errBox);
+          }
+          errBox.style.display = 'block';
+          if (typeof gtag === 'function') gtag('event', 'form_submit_error', { source_page: 'acquisition', error: String(err && err.message || err) });
+        });
     });
 
     if (fill) fill.style.width = ((1 / total) * 100) + '%';
